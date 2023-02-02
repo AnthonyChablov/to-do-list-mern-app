@@ -6,6 +6,7 @@ const ObjectId = mongoose.Types.ObjectId;
 const TodoSchema = new Schema({
   title: String,
   description: String,
+  startDate: Date,
   dueDate: Date,
   isDone:Boolean,
 });
