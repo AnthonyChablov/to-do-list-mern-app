@@ -40,12 +40,6 @@ app.put('/api/todo/:todoId', ()=>{
 /* Delete a todo */
 app.delete('/api/todo/:todoId',deleteTodoController);
 
-
-
-
-
-
-
 mongoose.connect(
     process.env.MONGO_URL ?? ''
 ).then(()=>{

@@ -12,7 +12,7 @@ export async function createTodoController(req: Request, res:Response){
     })
 
     // persist to db 
-    const createdTodo = newTodo.save();
+    const createdTodo = await newTodo.save();
 
     // send created todo back to user
     res.json(createdTodo);
