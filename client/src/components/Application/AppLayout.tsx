@@ -1,12 +1,19 @@
+import { useState, useEffect } from "react";
 import Header from "./Header/Header";
 import Card from "./Card/Card";
 import Toolbar from "./Toolbar/Toolbar";
+import { TTodo } from "../../api/Todo/getTodos";
+import {getTodos} from '../../api/Todo/getTodos'
+
 
 const AppLayout = () => {
   return (
-    <div className="px-7 pt-5 h-screen max-h-screen overflow-auto">
-      <div className="">
+    <div className="px-7 pt-5 h-screen max-h-screen overflow-auto bg-slate-100">
+      <div className="bg- ">
         <Header/>
+      </div>
+      <div className="">
+        <Toolbar/>
       </div>
       
       {/* 

@@ -1,7 +1,7 @@
 
 import { API_URL } from "../config";
 
-export async function createDeck(
+export async function createTodo(
         title: String,
         description: String,
         startDate: Date,

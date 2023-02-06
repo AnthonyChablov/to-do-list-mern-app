@@ -8,7 +8,7 @@ export type TTodo = {
     isDone: Boolean,
 }
 
-export async function getDecks(): Promise<TTodo[]>{
+export async function getTodos(): Promise<TTodo[]>{
     const res = await fetch(`${API_URL}/decks`);
     return res.json();
 }
