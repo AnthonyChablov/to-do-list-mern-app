@@ -4,7 +4,7 @@ import Toolbar from "./Toolbar/Toolbar";
 
 const AppLayout = () => {
   return (
-    <div className=" h-screen px-7 pt-5">
+    <div className="px-7 pt-5 h-screen max-h-screen overflow-auto">
       <div className="">
         <Header/>
       </div>
@@ -12,11 +12,11 @@ const AppLayout = () => {
       {/* 
         TODO 
 
-        Make API call and retrieve all TODOS
+        - Make API call and retrieve all TODOS
         
-        Create Card component responsioble for displaying the data, 
+        - Create Card component responsioble for displaying the data, 
         
-        Create Tool bar with: 
+        - Create Tool bar with: 
         1. Clickable button that display Modal
         2. Modal contains Form with PARAMS that POSTS to DB with newly created TODO 
       */}
