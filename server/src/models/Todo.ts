@@ -11,6 +11,6 @@ const TodoSchema = new Schema({
   isDone:Boolean,
 });
 
-const TodoModel = mongoose.model('Deck', TodoSchema);
+const TodoModel = mongoose.model('ToDo', TodoSchema);
 
 export default TodoModel;

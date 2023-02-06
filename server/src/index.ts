@@ -27,10 +27,10 @@ app.get('/', (req: Request, res:Response)=>{
 app.post('/api/todo', createTodoController);
 
 /* Read - Get all todos */
-app.get('/api/todo' , getTodoController);
+app.get('/api/todo' , getTodosController); // works
 
 /* Read - Get one todo */
-app.get('/api/todo/:todoId', getTodoController);
+app.get('/api/todo/:todoId', getTodoController); // works 
 
 /* Update a todo */
 app.put('/api/todo/:todoId', ()=>{
@@ -38,7 +38,7 @@ app.put('/api/todo/:todoId', ()=>{
 });
 
 /* Delete a todo */
-app.delete('/api/todo/:todoId',deleteTodoController);
+app.delete('/api/todo/:todoId', deleteTodoController);
 
 mongoose.connect(
     process.env.MONGO_URL ?? ''
