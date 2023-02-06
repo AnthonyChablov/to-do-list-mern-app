@@ -1,13 +1,32 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import React from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Loading from './components/Loading/Loading';
+
+const Home = React.lazy(() => import('./pages/Homepage'));
+const Application = React.lazy(() => import('./pages/ApplicationPage'));
+const Login = React.lazy(() => import('./pages/LoginPage'));
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+  },
+  {
+    path: "/login", 
+    element: <Login />,
+  },
+  {
+    path: "/app", 
+    element: <Application />,
+  }
+]);
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <div className="App">
-        <div className=' bg-red-200'>123</div>
+      <React.Suspense fallback={<Loading/>}>
+        <RouterProvider router={router} />
+      </React.Suspense>
     </div>
   )
 }
