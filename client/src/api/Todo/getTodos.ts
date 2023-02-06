@@ -1,6 +1,7 @@
 import { API_URL } from "../config";
 
 export type TTodo = {
+    _id: string;
     title: String,
     description: String,
     startDate: Date,

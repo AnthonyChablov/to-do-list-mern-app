@@ -4,6 +4,7 @@ import Card from "./Card/Card";
 import Toolbar from "./Toolbar/Toolbar";
 import { TTodo } from "../../api/Todo/getTodos";
 import {getTodos} from '../../api/Todo/getTodos'
+import { deleteTodo } from "../../api/Todo/deleteTodo";
 
 const AppLayout = () => {
 
@@ -12,24 +13,28 @@ const AppLayout = () => {
   async function fetchTodos(){
     const newTodos = await getTodos();
     setTodos(newTodos);
-    
   }
+
+  async function handleDeleteTodo(todoId : string){
+    await deleteTodo(todoId);
+    setTodos(todos.filter((todo)=> todo._id !== todoId));
+  } 
 
   useEffect(() => {
     fetchTodos();
-    
   }, []);
-  
 
   /* Render Todo Items */
   const todoItems = todos.map((todo: any, index: number)=>{
     return <Card 
-      key={index}
+      key={todo?._id}
+      id={todo?._id}
       title={todo?.title}
       description={todo?.description}
       startDate={todo?.startDate}
       dueDate = {todo?.dueDate}
       isDone= {todo?.isDone}
+      handleDeleteTodo= {handleDeleteTodo}
     />
   })
 
