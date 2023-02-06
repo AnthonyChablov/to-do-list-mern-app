@@ -9,6 +9,6 @@ export type TTodo = {
 }
 
 export async function getTodos(): Promise<TTodo[]>{
-    const res = await fetch(`${API_URL}/decks`);
+    const res = await fetch(`${API_URL}/todo`);
     return res.json();
 }

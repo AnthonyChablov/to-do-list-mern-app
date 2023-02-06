@@ -7,6 +7,23 @@ import {getTodos} from '../../api/Todo/getTodos'
 
 
 const AppLayout = () => {
+  /* state */
+  const [todos, setTodos] = useState <TTodo[]>([]);
+
+  
+  async function fetchTodos(){
+    const newTodos = await getTodos();
+    
+    setTodos(newTodos);
+    
+  }
+
+  useEffect(() => {
+    fetchTodos();
+    console.log(todos);
+  }, []);
+  
+
   return (
     <div className="px-7 pt-5 h-screen max-h-screen overflow-auto bg-slate-100">
       <div className="bg- ">
