@@ -1,7 +1,8 @@
+import LoginLayout from "../components/Login/LoginLayout";
 
 const LoginPage = () => {
   return (
-    <div>LoginPage</div>
+    <div><LoginLayout/></div>
   )
 }
 
