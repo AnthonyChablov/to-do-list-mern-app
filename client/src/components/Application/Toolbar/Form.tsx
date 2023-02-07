@@ -1,19 +1,20 @@
+import { useTodoStore } from "../../../store/todoStore"
 
-interface Form {
-  handleCreateTodo :Function
-}
 
-const Form = ({handleCreateTodo} : Form) => {
 
-/* TODO FIX DATE-PICKER ON MOBILE */
+const Form = () => {
+
+  const title = useTodoStore(state => state.title)
+/* TODO Figure out Zustand and reformat code  */
+  /* onSubmit={handleCreateTodo} */
   
   return (
-    <form onSubmit={handleCreateTodo}>
+    <form > 
       <div className=""> {/* flex container */}
         {/* title input */}
         <label className=" pt-2 block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" 
           htmlFor="grid-title">
-          Title
+          Title 
         </label>
         <input className="appearance-none block w-full bg-gray-200 text-gray-700 border 
         border-gray-300 shadow-sm rounded py-3 px-4 mb-3 

@@ -7,11 +7,11 @@ import Form from './Form';
 
 const style = {
   position: 'absolute',
-  top: '50%',
+  top: '48%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: '83.5%',
-  height : '66%',
+  height : '72%',
   bgcolor: '#f1f5f9',
   border: '1px solid white',
   borderRadius: '10px',
@@ -29,10 +29,11 @@ const Toolbar = () => {
       {/* Modal */}
       <div className="fixed bottom-4 left-1/2 -translate-x-1/2">
         <div>
-          <button className="px-3 py-2 text-3xl border-4 text-gray-200 border-white rounded-full bg-red-700 hover:brightness-50"
+          <button className="px-4 py-2 text-3xl border-4 text-gray-200 border-white rounded-full bg-red-700 hover:brightness-50"
             onClick={handleModalOpen}
           >
-            +
+            <div className="pb-1">+</div>
+            
           </button>
           <Modal
             open={open}
