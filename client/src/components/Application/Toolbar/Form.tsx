@@ -1,6 +1,7 @@
 import { shallow } from 'zustand/shallow';
 import { useTodoStore } from "../../../store/todoStore";
 import { useTodosStore } from '../../../store/todosStore';
+import { useModalStore } from '../../../store/modalStore';
 import { createTodo } from '../../../api/Todo/createTodo';
 
 
@@ -31,7 +32,9 @@ const Form = () => {
     }),
     shallow
   );
-  
+  /* Retrieve Modal Store State from Zustand */
+  const open = useModalStore(state => state.open);
+  const handleModalOpen = useModalStore(state => state.handleModalOpen);
 
   async function handleCreateTodo(e: React.FormEvent){
     e.preventDefault(); 
@@ -43,6 +46,7 @@ const Form = () => {
     setDescription('');
     setStartDate(new Date);
     setDueDate(new Date);
+    handleModalOpen(!open);
   } 
 
   return (

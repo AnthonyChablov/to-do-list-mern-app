@@ -64,22 +64,7 @@ const AppLayout = () => {
       
       {/* 
         TODO 
-        - Make API call and retrieve all TODOS  --- COMPLETED
-        
-        - Create Card component responsioble for displaying the data -- pass in props that pertain to data 0 --- COMPLETED
-        - Map out cards per each TODO instance in DB -- COMPLETED
-        
-        - Create Tool bar with: 
-        1. Clickable button that display Modal -- COMPLETED
-        2. Style MODAL to make it look nice -- completed
-
-        3.a Look into a state management solution, dont wanna be drilling so deep with so much shit
-        Figure out Zustand 
-
-        3.b Reformat state code to make it so they are accesible anywhere including nested child copmonent
-          In addition add function that handles api call so it can be accessed anywhere
-
-        3.c Modal contains Form with PARAMS that POSTS to DB with newly created TODO -- 50% complete
+        - On submit form close Modal 
       */}
     </div>
   )

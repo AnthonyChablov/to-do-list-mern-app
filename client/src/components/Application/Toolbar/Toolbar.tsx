@@ -1,9 +1,9 @@
 import {useState} from 'react';
-
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Form from './Form';
+import { useModalStore } from '../../../store/modalStore';
 
 const style = {
   position: 'absolute',
@@ -20,8 +20,8 @@ const style = {
 };
 
 const Toolbar = () => {
-  const [open, setOpen] = useState(false);
-  const handleModalOpen = () => setOpen(!open);
+  const open = useModalStore(state => state.open);
+  const handleModalOpen = useModalStore(state => state.handleModalOpen);
   return (
     <>
       {/* Taskbar BG */}
@@ -30,14 +30,14 @@ const Toolbar = () => {
       <div className="fixed bottom-4 left-1/2 -translate-x-1/2">
         <div>
           <button className="px-4 py-2 text-3xl border-4 text-gray-200 border-white rounded-full bg-red-700 hover:brightness-50"
-            onClick={handleModalOpen}
+            onClick={()=>handleModalOpen(!open)}
           >
             <div className="pb-1">+</div>
             
           </button>
           <Modal
             open={open}
-            onClose={handleModalOpen}
+            onClose={()=>handleModalOpen(!open)}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
@@ -48,7 +48,7 @@ const Toolbar = () => {
                   Add Task
                 </Typography>
                 {/* Modal Close Button */}
-                <button className='rounded-lg hover:bg-slate-400 text-2xl ' onClick={()=>handleModalOpen()}>
+                <button className='rounded-lg hover:bg-slate-400 text-2xl ' onClick={()=>handleModalOpen(!open)}>
                   x
                 </button>
               </div>

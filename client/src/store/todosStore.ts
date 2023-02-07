@@ -2,7 +2,6 @@ import create from 'zustand';
 import { TTodo } from '../api/Todo/getTodos';
 import { getTodos } from '../api/Todo/getTodos';
 
-
 interface ITodos{
     todos: TTodo[],
     setTodos: (newTodos : []) => void,
@@ -10,7 +9,6 @@ interface ITodos{
     addTodo: Function,
     removeTodo: Function,
 };
-
 
 export const useTodosStore = create <ITodos>((set)=>({
     todos: [],
