@@ -6,6 +6,8 @@ import { getTodosController } from './controllers/getTodosController';
 import { getTodoController } from './controllers/getTodoController';
 import { createTodoController } from './controllers/createTodoController';
 import { deleteTodoController } from './controllers/deleteTodoController';
+import { updateTodoController } from './controllers/updateTodoController';
+
 
 /* setup */
 config();
@@ -32,10 +34,8 @@ app.get('/api/todo' , getTodosController); // works
 /* Read - Get one todo */
 app.get('/api/todo/:todoId', getTodoController); // works 
 
-/* Update a todo */
-app.put('/api/todo/:todoId', ()=>{
-    //TODO
-});
+/* Update a todo */ 
+app.put('/api/todo/:todoId', updateTodoController);
 
 /* Delete a todo */
 app.delete('/api/todo/:todoId', deleteTodoController);
