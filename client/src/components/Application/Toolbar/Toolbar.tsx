@@ -3,18 +3,20 @@ import {useState} from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-
+import Form from './Form';
 
 const style = {
   position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
+  width: '83.5%',
+  height : '66%',
+  bgcolor: '#f1f5f9',
+  border: '1px solid white',
+  borderRadius: '10px',
   boxShadow: 24,
-  p: 4,
+  p: '2em 2em ',
 };
 
 const Toolbar = () => {
@@ -27,7 +29,7 @@ const Toolbar = () => {
       {/* Modal */}
       <div className="fixed bottom-4 left-1/2 -translate-x-1/2">
         <div>
-          <button className="p-2 text-3xl border-4 text-gray-200 border-white rounded-full bg-red-700 hover:brightness-50"
+          <button className="px-3 py-2 text-3xl border-4 text-gray-200 border-white rounded-full bg-red-700 hover:brightness-50"
             onClick={handleModalOpen}
           >
             +
@@ -39,12 +41,19 @@ const Toolbar = () => {
             aria-describedby="modal-modal-description"
           >
             <Box sx={style}>
-              <Typography id="modal-modal-title" variant="h6" component="h2">
-                Add Todo
-              </Typography>
-              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-              </Typography>
+              <div className="flex justify-between">
+                {/* Header */}
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                  Add Task
+                </Typography>
+                {/* Modal Close Button */}
+                <button className='rounded-lg hover:bg-slate-400 text-2xl ' onClick={()=>handleModalOpen()}>
+                  x
+                </button>
+              </div>
+              <div className="pt-5">
+                <Form />
+              </div>
             </Box>
           </Modal>
         </div>

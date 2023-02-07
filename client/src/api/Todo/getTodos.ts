@@ -6,7 +6,6 @@ export type TTodo = {
     description: String,
     startDate: Date,
     dueDate: Date,
-    isDone: Boolean,
 }
 
 export async function getTodos(): Promise<TTodo[]>{
