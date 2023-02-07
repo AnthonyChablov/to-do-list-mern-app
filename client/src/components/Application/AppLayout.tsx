@@ -5,7 +5,6 @@ import Header from "./Header/Header";
 import Card from "./Card/Card";
 import Toolbar from "./Toolbar/Toolbar";
 import { deleteTodo } from "../../api/Todo/deleteTodo";
-import { createTodo } from "../../api/Todo/createTodo";
 
 const AppLayout = () => {
   
@@ -14,13 +13,11 @@ const AppLayout = () => {
     todos, 
     fetchTodos, 
     removeTodo, 
-    addTodo 
   } = useTodosStore(
     (state) => ({ 
       todos: state.todos, 
       fetchTodos: state.fetchTodos ,
       removeTodo: state.removeTodo ,
-      addTodo: state.addTodo,
     }),
     shallow
   );
@@ -63,8 +60,19 @@ const AppLayout = () => {
       </div>
       
       {/* 
-        TODO 
-        - On submit form close Modal 
+        TODO
+      
+          1-- Add a means of updating a Todo Task 
+
+          2a-- Revamp card layout to include button for edit which enables user to update an existing task 
+
+          2b -- FRAMER MOTION TIME
+            Make the card layout look sexier -- onclick of todo card expands it, 
+
+          3-- Find a way to display this updated task to the ui 
+
+          4-- 
+
       */}
     </div>
   )

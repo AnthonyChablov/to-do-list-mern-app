@@ -39,8 +39,10 @@ const Form = () => {
   async function handleCreateTodo(e: React.FormEvent){
     e.preventDefault(); 
     const newTodo = await createTodo(title, description, startDate, dueDate); 
+
     /* Persist To DB */
     addTodo( newTodo );
+
     /* Reset Values on Submit */
     setTitle('');
     setDescription('');
@@ -85,7 +87,6 @@ const Form = () => {
           required
           value={description}
           onChange={(e: React.ChangeEvent<HTMLInputElement>)=> {
-            
             setDescription(e.target.value);
           }}
         >
