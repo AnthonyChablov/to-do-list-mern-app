@@ -1,15 +1,52 @@
-import { useTodoStore } from "../../../store/todoStore"
-
+import { shallow } from 'zustand/shallow';
+import { useTodoStore } from "../../../store/todoStore";
+import { useTodosStore } from '../../../store/todosStore';
+import { createTodo } from '../../../api/Todo/createTodo';
 
 
 const Form = () => {
-
-  const title = useTodoStore(state => state.title)
-/* TODO Figure out Zustand and reformat code  */
-  /* onSubmit={handleCreateTodo} */
   
+  /* Retrieve Todos Store State from Zustand */
+  const addTodo = useTodosStore(state => state.addTodo);
+  /* Retrieve Todo Store State from Zustand */
+  const { 
+    title,  
+    description, 
+    startDate,
+    dueDate,
+    setTitle,
+    setDescription,
+    setStartDate,
+    setDueDate
+  } = useTodoStore(
+    (state) => ({ 
+      title: state.title, 
+      description: state.description ,
+      dueDate: state.dueDate,
+      startDate: state.startDate,
+      setTitle: state.setTitle ,
+      setDescription: state.setDescription ,
+      setStartDate: state.setStartDate ,
+      setDueDate : state.setDueDate,
+    }),
+    shallow
+  );
+  
+
+  async function handleCreateTodo(e: React.FormEvent){
+    e.preventDefault(); 
+    const newTodo = await createTodo(title, description, startDate, dueDate); 
+    /* Persist To DB */
+    addTodo( newTodo );
+    /* Reset Values on Submit */
+    setTitle('');
+    setDescription('');
+    setStartDate(new Date);
+    setDueDate(new Date);
+  } 
+
   return (
-    <form > 
+    <form onSubmit={handleCreateTodo}> 
       <div className=""> {/* flex container */}
         {/* title input */}
         <label className=" pt-2 block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" 
@@ -23,6 +60,10 @@ const Form = () => {
           type="text" 
           placeholder="Enter Title"
           required  
+          value={ title }
+          onChange={( e:  React.ChangeEvent<HTMLInputElement>)=> {
+            setTitle(e.target.value);
+          }}
         >
         </input>
         {/* description input */}
@@ -38,6 +79,11 @@ const Form = () => {
           type="text" 
           placeholder="Enter Description"
           required
+          value={description}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>)=> {
+            
+            setDescription(e.target.value);
+          }}
         >
         </input>
       </div>
@@ -53,8 +99,12 @@ const Form = () => {
         border-gray-300 shadow-sm rounded py-3 px-4 mb-3 leading-tight 
         focus:outline-none focus:bg-white" 
           type="date" 
-          value="2017-06-01" 
           required
+          
+          onChange={(e: React.ChangeEvent<HTMLInputElement>)=> {
+            const startDay = new Date(e.target.value);
+            setStartDate( startDay );
+          }}
         />
 
         {/* end-date input */}
@@ -68,8 +118,11 @@ const Form = () => {
         shadow-sm rounded py-3 px-4 mb-3 leading-tight 
         focus:outline-none focus:bg-white" 
           type="date" 
-          value="2017-06-01" 
           required 
+          onChange={(e: React.ChangeEvent<HTMLInputElement>)=> {
+            const dueDay = new Date(e.target.value);
+            setDueDate( dueDay );
+          }}
         />
       </div>
       <div className="pt-6 text-center">

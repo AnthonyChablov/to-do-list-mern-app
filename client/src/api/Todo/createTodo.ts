@@ -8,7 +8,7 @@ export async function createTodo(
         dueDate: Date,
     )
     {
-    const res = await fetch(`${API_URL}/decks`,{
+    const res = await fetch(`${API_URL}/todo`,{
         method: "POST",
         body: JSON.stringify({
             title, 

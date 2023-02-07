@@ -23,13 +23,7 @@ const AppLayout = () => {
       addTodo: state.addTodo,
     }),
     shallow
-  )
-
-  async function handleCreateTodo(e: React.FormEvent){
-    e.preventDefault(); 
-    const newTodo = await createTodo(title, description, startDate, endDate); 
-    addTodo( newTodo );
-  }
+  );
 
   async function handleDeleteTodo(todoId : string){
     await deleteTodo(todoId); // Call to api
