@@ -1,54 +1,29 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { shallow } from 'zustand/shallow'
+import { useTodosStore } from "../../store/todosStore";
 import Header from "./Header/Header";
 import Card from "./Card/Card";
 import Toolbar from "./Toolbar/Toolbar";
-import { TTodo } from "../../api/Todo/getTodos";
-import {getTodos} from '../../api/Todo/getTodos'
 import { deleteTodo } from "../../api/Todo/deleteTodo";
 import { createTodo } from "../../api/Todo/createTodo";
 
-import { useTodoStore } from "../../store/todoStore";
-import { useTodosStore } from "../../store/todosStore";
-
 const AppLayout = () => {
-
   
-  /* Todo State */
-
-
-  /* 
-    I can either keep all of my state here at top level which is a better practice
-    Then use a state management library to transfer them all down to neceesary components
-
-
-    OR
-
-    I can define state variables in nested children BUT this would most likely lead to further complexities down the line
-    As I may need these variables in the future
-
-    I THINK it is best practice to use a statemanagement library like Zustand or smth else.
-  */
-  /* const [title, setTitle]  = useState('');
-  const [description , setDescription] = useState('');
-  const [startDate, setStartDate] = useState(new Date);
-  const [endDate, setEndDate] =useState(new Date); */
-
   /* Retrieve todos Store State from Zustand */
-  const todos = useTodosStore(state => state.todos);
-  const setTodos = useTodosStore(state => state.setTodos);
-  const fetchTodos = useTodosStore(state => state.fetchTodos);
-  const removeTodo = useTodosStore(state => state.removeTodo);
-  const addTodo = useTodosStore(state => state.addTodo);
-
-  /* Retrieve todo Store State from Zustand */
-  const title = useTodoStore(state => state.title);
-  const description = useTodoStore(state => state.description);
-  const startDate = useTodoStore(state => state.startDate);
-  const endDate = useTodoStore(state => state.endDate);
-
-
-
-  
+  const { 
+    todos, 
+    fetchTodos, 
+    removeTodo, 
+    addTodo 
+  } = useTodosStore(
+    (state) => ({ 
+      todos: state.todos, 
+      fetchTodos: state.fetchTodos ,
+      removeTodo: state.removeTodo ,
+      addTodo: state.addTodo,
+    }),
+    shallow
+  )
 
   async function handleCreateTodo(e: React.FormEvent){
     e.preventDefault(); 
@@ -95,7 +70,6 @@ const AppLayout = () => {
       
       {/* 
         TODO 
-
         - Make API call and retrieve all TODOS  --- COMPLETED
         
         - Create Card component responsioble for displaying the data -- pass in props that pertain to data 0 --- COMPLETED

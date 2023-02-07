@@ -12,6 +12,7 @@ export interface Todo{
 
 const Card = ({id, title, description,startDate,dueDate, isDone, handleDeleteTodo}:Todo) => {
 
+  /* Convert data to Date Objects */
   const startDay = new Date(startDate);
   const dueDay = new Date(dueDate);
 
