@@ -1,4 +1,6 @@
 
+import { motion , AnimatePresence} from "framer-motion";
+
 export interface Todo{
   key:String,
   id:String,
@@ -10,6 +12,23 @@ export interface Todo{
   handleDeleteTodo: Function
 }
 
+const cardVariants = {
+  initial:{
+    y : -50 , 
+    opacity:0
+  },
+  animate:{
+    y: 0, 
+    opacity: 1,
+    transition:{
+      type:'tween',
+      ease:'easeInOut',
+      duration: 0.25,
+      when: ''
+    }
+  },
+}
+
 const Card = ({id, title, description,startDate,dueDate, isDone, handleDeleteTodo}:Todo) => {
 
   /* Convert data to Date Objects */
@@ -17,23 +36,32 @@ const Card = ({id, title, description,startDate,dueDate, isDone, handleDeleteTod
   const dueDay = new Date(dueDate);
 
   return (
-    <div className="w-11/12 rounded-xl mb-5 mt-2 border-solid border-2 overflow-hidden shadow-md">
-      <div className="p-2 bg-gray-300 flex justify-between">
-        <p>{title}</p>
-        <button className=" mr-3 hover:bg-slate-300 hover:rounded-xl"
-          onClick={()=>handleDeleteTodo(id)}
-        >
-          X
-        </button>
-      </div>
-      <div className="p-2 h-fit ">
-        <div className="text-sm underline pb-3">
-          {startDay.toDateString()} <span> - </span> {dueDay.toDateString()}
+    <AnimatePresence mode="wait">
+      <motion.div className="w-11/12 rounded-xl mb-5 mt-2 border-solid border-2 overflow-hidden shadow-md "
+        variants={cardVariants}
+        initial='initial'
+        animate='animate'
+      >
+        <div className="p-2 bg-gray-300 flex justify-between">
+          <p>{title}</p>
+          <button className=" mr-3 hover:bg-slate-300 hover:rounded-xl"
+            onClick={()=>handleDeleteTodo(id)}
+          >
+            X
+          </button>
         </div>
-        <p className="pb-3 text-sm"> {description}</p>
-      </div>
-      
-    </div>
+        <div className="p-2 h-fit ">
+          <div className="text-sm underline pb-3">
+            {
+              startDay.toDateString()} 
+              <span> - </span> 
+              {dueDay.toDateString()
+            }
+          </div>
+          <p className="pb-3 text-sm"> {description}</p>
+        </div>
+      </motion.div>
+    </AnimatePresence>
   )
 }
 

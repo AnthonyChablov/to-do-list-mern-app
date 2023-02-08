@@ -33,16 +33,20 @@ const AppLayout = () => {
 
   /* Render Todo Items */
   const todoItems = todos.map((todo: any)=>{
-    return <Card 
-      key={todo?._id}
-      id={todo?._id}
-      title={todo?.title}
-      description={todo?.description}
-      startDate={todo?.startDate}
-      dueDate = {todo?.dueDate}
-      isDone= {todo?.isDone}
-      handleDeleteTodo= {handleDeleteTodo}
-    />
+    return (
+    
+      <Card 
+        key={todo?._id}
+        id={todo?._id}
+        title={todo?.title}
+        description={todo?.description}
+        startDate={todo?.startDate}
+        dueDate = {todo?.dueDate}
+        isDone= {todo?.isDone}
+        handleDeleteTodo= {handleDeleteTodo}
+      />
+   
+    )
   })
 
   return (
@@ -62,12 +66,15 @@ const AppLayout = () => {
       {/* 
         TODO
       
-          1-- Add a means of updating a Todo Task 
+          1-- Add a means of updating a Todo Task in API -- COMPLETED
 
-          2a-- Revamp card layout to include button for edit which enables user to update an existing task 
+          2a-- Revamp card layout to include button for edit which enables user to update an existing task  
+              -- Maybe even revamp the styling of it all idk 
+              -- look at designs on dribble for inspiration
 
           2b -- FRAMER MOTION TIME
             Make the card layout look sexier -- onclick of todo card expands it, 
+            -- investigate framer motion variants 
 
           3-- Find a way to display this updated task to the ui 
 
