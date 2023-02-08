@@ -50,7 +50,7 @@ const AppLayout = () => {
   })
 
   return (
-    <div className="pt-5 h-screen max-h-screen overflow-auto bg-slate-100 ">
+    <div className="pt-5 h-screen max-h-screen overflow-auto bg-slate-100 font-Roboto">
       <div className="px-4 ">
         <div className="pb-6">
           <Header/>
@@ -69,6 +69,7 @@ const AppLayout = () => {
           1-- Add a means of updating a Todo Task in API -- COMPLETED
 
           2a-- Revamp card layout to include button for edit which enables user to update an existing task  
+              -- ADD PUT functionality on each CARD
               -- Maybe even revamp the styling of it all idk 
               -- look at designs on dribble for inspiration
 
