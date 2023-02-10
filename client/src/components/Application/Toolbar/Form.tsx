@@ -8,10 +8,10 @@ import SubmitButton from './SubmitButton';
 
 interface IForm{
   mode : String,
-  btnName: String,
+
 }
 
-const Form = ({mode, btnName}:IForm) => {
+const Form = ({mode}:IForm) => {
   
   /* Retrieve Todos Store State from Zustand */
   const addTodo = useTodosStore(state => state.addTodo);
@@ -59,7 +59,7 @@ const Form = ({mode, btnName}:IForm) => {
 
   async function handleUpdateTodo(e: React.FormEvent){
     e.preventDefault(); 
-    await updateTodo(title, description, startDate, dueDate);
+    await updateTodo(id, title, description, startDate, dueDate);
     handleModalOpen(!open);
   }
 

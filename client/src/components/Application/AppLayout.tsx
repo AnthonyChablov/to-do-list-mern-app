@@ -1,13 +1,11 @@
 import { useEffect } from "react";
 import { shallow } from 'zustand/shallow'
-import { useTodosStore } from "../../store/todosStore";
 import Header from "./Header/Header";
 import Card from "./Card/Card";
 import Toolbar from "./Toolbar/Toolbar";
 import ModalDialog from "./ModalDialog/ModalDialog";
 import { deleteTodo } from "../../api/Todo/deleteTodo";
-import { updateTodo } from "../../api/Todo/updateTodo";
-import { useModalStore } from "../../store/modalStore";
+import { useTodosStore } from "../../store/todosStore";
 
 const AppLayout = () => {
   
@@ -25,21 +23,10 @@ const AppLayout = () => {
     shallow
   );
 
-  /* Retrieve Modal Store State from Zustand */
-  const open = useModalStore(state => state.open);
-  const handleModalOpen = useModalStore(state => state.handleModalOpen);
- 
-
   async function handleDeleteTodo(todoId : string){
     await deleteTodo(todoId); // Call to api
     removeTodo(todoId); // Change UI 
   } 
-
-  async function handleUpdateTodo(todoId:string){
-    handleModalOpen(!open)
-    //await updateTodo() // Call to api
-    // Change ui  
-  }
 
   useEffect(() => {
     fetchTodos();
@@ -57,7 +44,7 @@ const AppLayout = () => {
         dueDate = {todo?.dueDate}
         isDone= {todo?.isDone}
         handleDeleteTodo= {handleDeleteTodo}
-        handleUpdateTodo = {handleUpdateTodo}
+        
       />
     )
   })
@@ -79,18 +66,15 @@ const AppLayout = () => {
       {/* 
         TODO
       
-          1-- Add a means of updating a Todo Task in API -- COMPLETED
+          1-- Update task function handler needs an id to pass into form copmonent, However that Id is nested within card component
+          Two different parents and child, how to solve this problem???
 
           2a-- Revamp card layout to include button for edit which enables user to update an existing task  
               -- ADD PUT functionality on each CARD
               -- Maybe even revamp the styling of it all idk 
               -- look at designs on dribble for inspiration
 
-          2b -- FRAMER MOTION TIME
-            Make the card layout look sexier -- onclick of todo card expands it, 
-            -- investigate framer motion variants 
-
-          3-- Find a way to display this updated task to the ui 
+          
 
           4-- 
 

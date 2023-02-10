@@ -12,7 +12,7 @@ export interface Todo{
   dueDate: Date,
   isDone:Boolean,
   handleDeleteTodo: Function,
-  handleUpdateTodo: Function,
+  
 }
 
 const cardVariants = {
@@ -32,7 +32,7 @@ const cardVariants = {
   },
 }
 
-const Card = ({id, title, description,startDate,dueDate, isDone, handleDeleteTodo, handleUpdateTodo}:Todo) => {
+const Card = ({id, title, description,startDate,dueDate, isDone, handleDeleteTodo, }:Todo) => {
 
   /* Convert data to Date Objects */
   const startDay = new Date(startDate);
@@ -47,47 +47,48 @@ const Card = ({id, title, description,startDate,dueDate, isDone, handleDeleteTod
  
   return (
     <>
-    
-    <AnimatePresence mode="wait">
-      <motion.div className="w-11/12 rounded-xl mb-5 mt-2 border-solid border-2 overflow-hidden shadow-md "
-        variants={cardVariants}
-        initial='initial'
-        animate='animate'
-      >
-        <div className="p-2 bg-gray-300 flex justify-between">
-          <p>{title}</p>
-          <div className="">
-            {/* Delete button */}
-            <button className=" mr-3 hover:bg-slate-300 hover:rounded-xl"
-              onClick={()=>handleDeleteTodo(id)}
-            >
-              <MdDeleteOutline color="red"/>
-            </button>
-            {/* Edit Button */}
-            <button className=" mr-3 hover:bg-slate-300 hover:rounded-xl"
-              onClick={()=>{
-                handleUpdateTodo()
-                setMode('Update')
-              }}
-            >
-              <MdModeEditOutline/>
-            </button>
+      <AnimatePresence mode="wait">
+        <motion.div className="w-11/12 rounded-xl mb-5 mt-2 border-solid border-2 overflow-hidden shadow-md "
+          variants={cardVariants}
+          initial='initial'
+          animate='animate'
+        >
+          <div className="p-2 bg-gray-300 flex justify-between">
+            <p>{title}</p>
+            <div className="">
+              {/* Delete button */}
+              <button className=" mr-3 hover:bg-slate-300 hover:rounded-xl"
+                onClick={()=>handleDeleteTodo(id)}
+              >
+                <MdDeleteOutline color="red"/>
+              </button>
+              {/* Edit Button */}
+              <button className=" mr-3 hover:bg-slate-300 hover:rounded-xl"
+                onClick={()=>{
+                  /* Opens Modal */
+                  handleModalOpen(!open);
+                  /* Set Form Mode */
+                  setMode('Update');
+                }}
+              >
+                <MdModeEditOutline/>
+              </button>
+            </div>
+            
           </div>
-          
-        </div>
-        <div className="p-2 h-fit ">
-          <div className="text-sm underline pb-3">
-            {
-              startDay.toDateString()} 
-              <span> - </span> 
-              {dueDay.toDateString()
-            }
+          <div className="p-2 h-fit ">
+            <div className="text-sm underline pb-3">
+              {
+                /* Displays Date */
+                startDay.toDateString()} 
+                <span> - </span> 
+                {dueDay.toDateString()
+              }
+            </div>
+            <p className="pb-3 text-sm"> {description}</p>
           </div>
-          <p className="pb-3 text-sm"> {description}</p>
-        </div>
-      </motion.div>
-    </AnimatePresence>
-
+        </motion.div>
+      </AnimatePresence>
     </>
   )
 }
