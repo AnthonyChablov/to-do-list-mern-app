@@ -4,6 +4,7 @@ import { useTodosStore } from '../../../store/todosStore';
 import { useModalStore } from '../../../store/modalStore';
 import { createTodo } from '../../../api/Todo/createTodo';
 import { updateTodo } from '../../../api/Todo/updateTodo';
+import { useCardStore } from '../../../store/cardStore';
 import SubmitButton from './SubmitButton';
 
 interface IForm{
@@ -43,6 +44,9 @@ const Form = ({mode}:IForm) => {
   const open = useModalStore(state => state.open);
   const handleModalOpen = useModalStore(state => state.handleModalOpen);
 
+  /* Retrieve Card Store State ID */
+  const cardId = useCardStore(state => state.cardId);
+
   /* Form Submit */
   async function handleCreateTodo(e: React.FormEvent){
     e.preventDefault(); 
@@ -59,7 +63,7 @@ const Form = ({mode}:IForm) => {
 
   async function handleUpdateTodo(e: React.FormEvent){
     e.preventDefault(); 
-    await updateTodo(id, title, description, startDate, dueDate);
+    await updateTodo(cardId, title, description, startDate, dueDate);
     handleModalOpen(!open);
   }
 

@@ -2,6 +2,8 @@ import { motion , AnimatePresence} from "framer-motion";
 import { MdModeEditOutline, MdDeleteOutline } from 'react-icons/md';
 import { useModalStore } from '../../../store/modalStore';
 import { useFormStore } from "../../../store/formStore";
+import { useCardStore } from "../../../store/cardStore";
+import ModalDialog from "../ModalDialog/ModalDialog";
 
 export interface Todo{
   key:String,
@@ -12,7 +14,6 @@ export interface Todo{
   dueDate: Date,
   isDone:Boolean,
   handleDeleteTodo: Function,
-  
 }
 
 const cardVariants = {
@@ -44,7 +45,11 @@ const Card = ({id, title, description,startDate,dueDate, isDone, handleDeleteTod
  
   /* Form State */
   const setMode = useFormStore(state => state.setMode);
- 
+
+  /* Card State */
+
+  const setCardId = useCardStore(state => state.setCardId);
+
   return (
     <>
       <AnimatePresence mode="wait">
@@ -69,6 +74,8 @@ const Card = ({id, title, description,startDate,dueDate, isDone, handleDeleteTod
                   handleModalOpen(!open);
                   /* Set Form Mode */
                   setMode('Update');
+                  /* Set Card ID state Variable to CHange to this card --- pass into update func */
+                  setCardId(id);
                 }}
               >
                 <MdModeEditOutline/>

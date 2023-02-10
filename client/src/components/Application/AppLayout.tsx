@@ -3,12 +3,12 @@ import { shallow } from 'zustand/shallow'
 import Header from "./Header/Header";
 import Card from "./Card/Card";
 import Toolbar from "./Toolbar/Toolbar";
-import ModalDialog from "./ModalDialog/ModalDialog";
 import { deleteTodo } from "../../api/Todo/deleteTodo";
 import { useTodosStore } from "../../store/todosStore";
+import ModalDialog from "./ModalDialog/ModalDialog";
+
 
 const AppLayout = () => {
-  
   /* Retrieve todos Store State from Zustand */
   const { 
     todos, 
@@ -44,7 +44,6 @@ const AppLayout = () => {
         dueDate = {todo?.dueDate}
         isDone= {todo?.isDone}
         handleDeleteTodo= {handleDeleteTodo}
-        
       />
     )
   })
