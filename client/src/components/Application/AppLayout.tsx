@@ -4,7 +4,10 @@ import { useTodosStore } from "../../store/todosStore";
 import Header from "./Header/Header";
 import Card from "./Card/Card";
 import Toolbar from "./Toolbar/Toolbar";
+import ModalDialog from "./ModalDialog/ModalDialog";
 import { deleteTodo } from "../../api/Todo/deleteTodo";
+import { updateTodo } from "../../api/Todo/updateTodo";
+import { useModalStore } from "../../store/modalStore";
 
 const AppLayout = () => {
   
@@ -22,10 +25,21 @@ const AppLayout = () => {
     shallow
   );
 
+  /* Retrieve Modal Store State from Zustand */
+  const open = useModalStore(state => state.open);
+  const handleModalOpen = useModalStore(state => state.handleModalOpen);
+ 
+
   async function handleDeleteTodo(todoId : string){
     await deleteTodo(todoId); // Call to api
     removeTodo(todoId); // Change UI 
   } 
+
+  async function handleUpdateTodo(todoId:string){
+    handleModalOpen(!open)
+    //await updateTodo() // Call to api
+    // Change ui  
+  }
 
   useEffect(() => {
     fetchTodos();
@@ -34,7 +48,6 @@ const AppLayout = () => {
   /* Render Todo Items */
   const todoItems = todos.map((todo: any)=>{
     return (
-    
       <Card 
         key={todo?._id}
         id={todo?._id}
@@ -44,8 +57,8 @@ const AppLayout = () => {
         dueDate = {todo?.dueDate}
         isDone= {todo?.isDone}
         handleDeleteTodo= {handleDeleteTodo}
+        handleUpdateTodo = {handleUpdateTodo}
       />
-   
     )
   })
 
@@ -82,6 +95,7 @@ const AppLayout = () => {
           4-- 
 
       */}
+      <ModalDialog/>
     </div>
   )
 }

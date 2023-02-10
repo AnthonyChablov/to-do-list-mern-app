@@ -3,9 +3,15 @@ import { useTodoStore } from "../../../store/todoStore";
 import { useTodosStore } from '../../../store/todosStore';
 import { useModalStore } from '../../../store/modalStore';
 import { createTodo } from '../../../api/Todo/createTodo';
+import { updateTodo } from '../../../api/Todo/updateTodo';
+import SubmitButton from './SubmitButton';
 
+interface IForm{
+  mode : String,
+  btnName: String,
+}
 
-const Form = () => {
+const Form = ({mode, btnName}:IForm) => {
   
   /* Retrieve Todos Store State from Zustand */
   const addTodo = useTodosStore(state => state.addTodo);
@@ -32,17 +38,17 @@ const Form = () => {
     }),
     shallow
   );
+
   /* Retrieve Modal Store State from Zustand */
   const open = useModalStore(state => state.open);
   const handleModalOpen = useModalStore(state => state.handleModalOpen);
 
+  /* Form Submit */
   async function handleCreateTodo(e: React.FormEvent){
     e.preventDefault(); 
     const newTodo = await createTodo(title, description, startDate, dueDate); 
-
     /* Persist To DB */
     addTodo( newTodo );
-
     /* Reset Values on Submit */
     setTitle('');
     setDescription('');
@@ -51,8 +57,18 @@ const Form = () => {
     handleModalOpen(!open);
   } 
 
+  async function handleUpdateTodo(e: React.FormEvent){
+    e.preventDefault(); 
+    await updateTodo(title, description, startDate, dueDate);
+    handleModalOpen(!open);
+  }
+
   return (
-    <form onSubmit={handleCreateTodo}> 
+    <form onSubmit={
+      mode === 'Update'
+        ? handleUpdateTodo 
+        : handleCreateTodo 
+    }>
       <div className=""> {/* flex container */}
         {/* title input */}
         <label className=" pt-2 block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" 
@@ -105,7 +121,6 @@ const Form = () => {
         focus:outline-none focus:bg-white" 
           type="date" 
           required
-          
           onChange={(e: React.ChangeEvent<HTMLInputElement>)=> {
             const startDay = new Date(e.target.value);
             setStartDate( startDay );
@@ -131,10 +146,7 @@ const Form = () => {
         />
       </div>
       <div className="pt-6 text-center">
-        {/* Create TODO Button */}
-        <button className="px-7 py-3 bg-red-700 text-gray-200 text-md inline-block rounded-xl hover:brightness-50 w-full">
-          Add Task
-        </button>
+        <SubmitButton name={mode}/>
       </div>
       
     </form>
