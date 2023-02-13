@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion , AnimatePresence} from "framer-motion";
 import { MdModeEditOutline, MdDeleteOutline } from 'react-icons/md';
 import {IoIosCheckmarkCircle} from 'react-icons/io';
-import {AiOutlineClose} from 'react-icons/ai';
+import {BiCircle} from 'react-icons/bi';
 import { useModalStore } from '../../../store/modalStore';
 import { useFormStore } from "../../../store/formStore";
 import { useCardStore } from "../../../store/cardStore";
@@ -56,7 +56,7 @@ const Card = ({id, title, description,startDate,dueDate, isDone, handleDeleteTod
   return (
     <>
       <AnimatePresence mode="wait">
-        <motion.div className="w-11/12 rounded-xl mb-5 border-solid border-2 overflow-hidden shadow-md max-w-2xl"
+        <motion.div className="w-11/12 rounded-xl mb-5 border-solid border-2 overflow-hidden shadow-md max-w-xl"
           variants={cardVariants}
           initial='initial'
           animate='animate'
@@ -67,14 +67,14 @@ const Card = ({id, title, description,startDate,dueDate, isDone, handleDeleteTod
                 {/* Change isCompleted */}
                 {
                   isCompleted 
-                    ? <div className="bg-gradient-to-br from-red-400 via-red-500 to-red-600 focus:ring-4 focus:outline-none 
-                        focus:ring-red-300 hover:text-white font-medium rounded-full text-sm p-1 text-center inline-flex items-center"
-                      >
-                        <AiOutlineClose />
-                      </div>
-                    : <div className="">
-                        <IoIosCheckmarkCircle size={22} color={'green'}/>
-                      </div>  
+                    ?
+                      <div className="">
+                        <IoIosCheckmarkCircle size={23} color={'green'}/>
+                      </div> 
+                    : 
+                      <div className="">
+                        <BiCircle size={23} color={'grey'}/>
+                      </div> 
                 }
               </button>
               <p className={`text-lg ${ isCompleted ? 'line-through' : '' }`}>{title}</p>

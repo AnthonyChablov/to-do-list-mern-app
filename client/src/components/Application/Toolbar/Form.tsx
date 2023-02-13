@@ -6,13 +6,13 @@ import { useCardStore } from '../../../store/cardStore';
 import { createTodo } from '../../../api/Todo/createTodo';
 import { updateTodo } from '../../../api/Todo/updateTodo';
 import SubmitButton from './SubmitButton';
+import { useMutation, useQueryClient } from 'react-query';
 
 interface IForm{
   mode : String,
 }
 
 const Form = ({mode}:IForm) => {
-  
   /* Retrieve Todos Store State from Zustand */
   const addTodo = useTodosStore(state => state.addTodo);
   /* Retrieve Todo Store State from Zustand */
@@ -38,18 +38,15 @@ const Form = ({mode}:IForm) => {
     }),
     shallow
   );
-
-  /* Retrieve from todo store */
+  /* Retrieve Todo Store State*/
   const todos = useTodosStore(state => state.todos );
   const updateTodoUI = useTodosStore(state => state.updateTodoUI );
-
-  /* Retrieve Modal Store State from Zustand */
+  /* Retrieve Modal Store State */
   const open = useModalStore(state => state.open);
   const handleModalOpen = useModalStore(state => state.handleModalOpen);
-
   /* Retrieve Card Store State ID */
   const cardId = useCardStore(state => state.cardId);
-
+  const queryClient = useQueryClient();
   /* Form Submit */
   async function handleCreateTodo(e: React.FormEvent){
     e.preventDefault(); 
@@ -66,14 +63,17 @@ const Form = ({mode}:IForm) => {
 
   async function handleUpdateTodo(e: React.FormEvent){
     e.preventDefault(); 
-    
     // send PUT req to API to update
     await updateTodo(cardId, title, description, startDate, dueDate);
-
     // optimistic update of UI
     updateTodoUI(cardId, title, description, startDate, dueDate)
     handleModalOpen(!open);
   }
+
+  /* React-query */
+  /* const {mutate: createTodo} = useMutation(()=>{
+    return 123
+  }) */
 
   return (
     <form onSubmit={
