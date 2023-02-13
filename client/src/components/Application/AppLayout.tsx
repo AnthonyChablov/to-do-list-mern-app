@@ -6,7 +6,7 @@ import Toolbar from "./Toolbar/Toolbar";
 import { deleteTodo } from "../../api/Todo/deleteTodo";
 import { useTodosStore } from "../../store/todosStore";
 import ModalDialog from "./ModalDialog/ModalDialog";
-
+import { useIsOverflow } from "../../hooks/useIsOverflow";
 
 const AppLayout = () => {
   /* Retrieve todos Store State from Zustand */
@@ -70,7 +70,12 @@ const AppLayout = () => {
               -- Revamp the styling of it all idk  
               -- look at designs on dribble for inspiration
 
-          3b--  
+          3b--  Familiraize urself with use refs
+              -- Learn how to utilize them in the useIsOverflow hook u found
+              -- Once the todo container is initially overflowing add some padding to the bottom ONLY ONCE 
+              -- If it is not overflowing remove the padding 
+          
+          4a -- Make the card display responsive And a custom respsonsive desktop layout
 
       */}
       <ModalDialog/>

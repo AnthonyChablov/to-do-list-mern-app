@@ -95,7 +95,7 @@ const Form = ({mode}:IForm) => {
           type="text" 
           placeholder="Enter Title"
           required  
-          value={ title }
+          value={title}
           onChange={( e:  React.ChangeEvent<HTMLInputElement>)=> {
             setTitle(e.target.value);
           }}
@@ -166,4 +166,4 @@ const Form = ({mode}:IForm) => {
   )
 }
 
-export default Form
+export default Form;

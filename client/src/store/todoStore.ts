@@ -1,9 +1,9 @@
 import create from 'zustand';
 
 interface ITodo {
-    title: String ,
+    title: String | string,
     setTitle : (newTitle : String) => void,
-    description: String,
+    description: String | string,
     setDescription : (newDescription : String)=>void,
     startDate : Date,
     setStartDate : (newStartDate : Date)=> void,

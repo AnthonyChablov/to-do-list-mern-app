@@ -19,7 +19,7 @@ const style = {
   borderRadius: '10px',
   boxShadow: 24,
   p: '2em 2em ',
-  maxWidth: '50rem',
+  maxWidth: '45rem',
 
 };
 
