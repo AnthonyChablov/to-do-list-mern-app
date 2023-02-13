@@ -1,3 +1,5 @@
+import {AiOutlineClose} from 'react-icons/ai';
+
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
@@ -11,12 +13,14 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: '83.5%',
-  height : '72%',
+  height : 'fit-content',
   bgcolor: '#f1f5f9',
   border: '1px solid white',
   borderRadius: '10px',
   boxShadow: 24,
   p: '2em 2em ',
+  maxWidth: '50rem',
+
 };
 
 const ModalDialog = () => {
@@ -42,12 +46,14 @@ const ModalDialog = () => {
             {`${mode} Task`}
           </Typography>
           {/* Modal Close Button */}
-          <button className='rounded-lg hover:bg-slate-400 text-2xl ' onClick={()=>handleModalOpen(!open)}>
-            x
+          <button className='hover:bg-gradient-to-br from-red-400 via-red-500 to-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 hover:text-white font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center ' 
+            onClick={()=>handleModalOpen(!open)}>
+            <AiOutlineClose/>
+            <span className="sr-only">Exit Button</span>
           </button>
         </div>
         <div className="pt-5">
-          <Form mode={mode}  btnName={'Add Task'}/>
+          <Form mode={mode}/>
         </div>
       </Box>
     </Modal>

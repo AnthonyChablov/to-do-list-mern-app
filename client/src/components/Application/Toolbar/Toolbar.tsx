@@ -13,11 +13,11 @@ const Toolbar = () => {
   return (
     <>
       {/* Taskbar BG */}
-      <div className="py-6 w-screen bg-red-700 text-gray-200 fixed bottom-0 "></div>
+      <div className="py-6 w-screen bg-gradient-to-r from-red-400 via-red-500 to-red-600 text-gray-200 fixed bottom-0 "></div>
       {/* Open Modal Button*/}
       <div className="fixed bottom-4 left-1/2 -translate-x-1/2">
         <div>
-          <button className="px-4 py-2 text-3xl border-4 text-gray-200 border-white rounded-full bg-red-700 hover:brightness-50"
+          <button className="px-4 py-2 text-3xl border-4 text-gray-200 border-white rounded-full bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80"
             onClick={()=>{
               handleModalOpen(!open)
               setMode('Create');

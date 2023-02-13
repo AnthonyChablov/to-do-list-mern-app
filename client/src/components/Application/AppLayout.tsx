@@ -49,12 +49,12 @@ const AppLayout = () => {
   })
 
   return (
-    <div className="pt-5 h-screen max-h-screen overflow-auto bg-slate-100 font-Roboto">
-      <div className="px-4 ">
-        <div className="pb-6">
+    <div className="pt-6  h-screen max-h-screen overflow-auto bg-slate-100 font-Roboto">
+      <div className="px-4">
+        <div className="pb-2 px-5">
           <Header/>
         </div>
-        <div className="flex flex-col items-center pt-8">
+        <div className="flex flex-col items-center pt-5">
           {todoItems}
         </div>
       </div>
@@ -64,15 +64,11 @@ const AppLayout = () => {
       
       {/* 
         TODO
-      
-          1. Edit Optimistic update 
-          
-          2a-- Revamp card layout to include button for edit which enables user to update an existing task  
-              -- ADD PUT functionality on each CARD
-              -- Maybe even revamp the styling of it all idk 
-              -- look at designs on dribble for inspiration
 
-          
+          2a-- Revamp card layout to include button for edit which enables user to update an existing task  -- COMPLETED
+              -- ADD PUT functionality on each CARD -- COMPLETED
+              -- Revamp the styling of it all idk  
+              -- look at designs on dribble for inspiration
 
           3b--  
 

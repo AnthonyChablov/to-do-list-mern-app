@@ -84,7 +84,7 @@ const Form = ({mode}:IForm) => {
     }>
       <div className=""> {/* flex container */}
         {/* title input */}
-        <label className=" pt-2 block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" 
+        <label className=" pt-1 block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" 
           htmlFor="grid-title">
           Title 
         </label>

@@ -52,12 +52,12 @@ const Card = ({id, title, description,startDate,dueDate, isDone, handleDeleteTod
   return (
     <>
       <AnimatePresence mode="wait">
-        <motion.div className="w-11/12 rounded-xl mb-5 mt-2 border-solid border-2 overflow-hidden shadow-md "
+        <motion.div className="w-11/12 rounded-xl mb-5 mt-1 border-solid border-2 overflow-hidden shadow-md max-w-2xl"
           variants={cardVariants}
           initial='initial'
           animate='animate'
         >
-          <div className="p-2 bg-gray-300 flex justify-between">
+          <div className="p-2  flex justify-between bg-gradient-to-r from-gray-300 to-gray-300">
             <p>{title}</p>
             <div className="">
               {/* Delete button */}
