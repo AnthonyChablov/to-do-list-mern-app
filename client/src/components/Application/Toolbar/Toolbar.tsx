@@ -24,9 +24,7 @@ const Toolbar = () => {
             }}
           >
             <div className="pb-1">+</div>
-            
           </button>
-          
         </div>
       </div>
       {/* Modal */}

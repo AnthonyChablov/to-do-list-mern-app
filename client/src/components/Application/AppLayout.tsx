@@ -65,9 +65,8 @@ const AppLayout = () => {
       {/* 
         TODO
       
-          1-- Update task function handler needs an id to pass into form copmonent, However that Id is nested within card component
-          Two different parents and child, how to solve this problem???
-
+          1. Edit Optimistic update 
+          
           2a-- Revamp card layout to include button for edit which enables user to update an existing task  
               -- ADD PUT functionality on each CARD
               -- Maybe even revamp the styling of it all idk 
@@ -75,7 +74,7 @@ const AppLayout = () => {
 
           
 
-          4-- 
+          3b--  
 
       */}
       <ModalDialog/>

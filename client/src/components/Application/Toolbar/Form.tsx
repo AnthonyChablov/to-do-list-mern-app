@@ -2,9 +2,9 @@ import { shallow } from 'zustand/shallow';
 import { useTodoStore } from "../../../store/todoStore";
 import { useTodosStore } from '../../../store/todosStore';
 import { useModalStore } from '../../../store/modalStore';
+import { useCardStore } from '../../../store/cardStore';
 import { createTodo } from '../../../api/Todo/createTodo';
 import { updateTodo } from '../../../api/Todo/updateTodo';
-import { useCardStore } from '../../../store/cardStore';
 import SubmitButton from './SubmitButton';
 
 interface IForm{
@@ -40,6 +40,10 @@ const Form = ({mode}:IForm) => {
     shallow
   );
 
+  /* Retrieve from todo store */
+  const todos = useTodosStore(state => state.todos );
+  const updateTodoUI = useTodosStore(state => state.updateTodoUI );
+
   /* Retrieve Modal Store State from Zustand */
   const open = useModalStore(state => state.open);
   const handleModalOpen = useModalStore(state => state.handleModalOpen);
@@ -59,11 +63,16 @@ const Form = ({mode}:IForm) => {
     setStartDate(new Date);
     setDueDate(new Date);
     handleModalOpen(!open);
-  } 
+  }
 
   async function handleUpdateTodo(e: React.FormEvent){
     e.preventDefault(); 
+    
+    // send PUT req to API to update
     await updateTodo(cardId, title, description, startDate, dueDate);
+
+    // optimistic update of UI
+    updateTodoUI(cardId, title, description, startDate, dueDate)
     handleModalOpen(!open);
   }
 

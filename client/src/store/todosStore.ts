@@ -8,9 +8,10 @@ interface ITodos{
     fetchTodos: Function,
     addTodo: Function,
     removeTodo: Function,
+    updateTodoUI: Function
 };
 
-export const useTodosStore = create <ITodos>((set)=>({
+export const useTodosStore = create <ITodos>((set, get)=>({
     todos: [],
     setTodos: (newTodos : []) => set({ todos: newTodos }),
     fetchTodos : async () => {
@@ -22,6 +23,18 @@ export const useTodosStore = create <ITodos>((set)=>({
     )),
     removeTodo : (todoId:any) => set((prevState)=>(
         {todos : [...prevState.todos].filter((todo)=> todo._id !== todoId)}
-    ))
+    )),
+    updateTodoUI : (id: string, title: string, description: string, startDate: Date, dueDate:Date) => {
+        const { todos } = get();
+        set({
+          todos: todos.map(todo =>({
+            ...todo,
+            title: todo._id === id? title : '',
+            description: todo._id === id? description : '',
+            startDate: todo._id === id? startDate : new Date,
+            dueDate: todo._id === id? dueDate : new Date,
+          }))
+        })
+      }
 
 }));

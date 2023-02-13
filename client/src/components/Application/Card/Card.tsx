@@ -47,7 +47,6 @@ const Card = ({id, title, description,startDate,dueDate, isDone, handleDeleteTod
   const setMode = useFormStore(state => state.setMode);
 
   /* Card State */
-
   const setCardId = useCardStore(state => state.setCardId);
 
   return (
