@@ -8,7 +8,6 @@ const TodoSchema = new Schema({
   description: String,
   startDate: Date,
   dueDate: Date,
-  isDone:Boolean,
 });
 
 const TodoModel = mongoose.model('ToDo', TodoSchema);

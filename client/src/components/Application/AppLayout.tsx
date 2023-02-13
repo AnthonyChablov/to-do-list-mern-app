@@ -77,6 +77,9 @@ const AppLayout = () => {
           
           4a -- Make the card display responsive And a custom respsonsive desktop layout
 
+          5 -- Refactor code making use of react query --- look at web dev C's mern stack tutorial making usage of react query 
+
+          6-- Look at authenticatino using JWT
       */}
       <ModalDialog/>
     </div>

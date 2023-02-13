@@ -13,7 +13,7 @@ export async function updateTodoController(req: Request, res:Response){
     todo.description = req.body.description;
     todo.startDate = req.body.startDate;
     todo.dueDate = req.body.dueDate;
-    todo.isDone = req.body.isDone;
+
     
     await todo.save();
     res.json(todo);

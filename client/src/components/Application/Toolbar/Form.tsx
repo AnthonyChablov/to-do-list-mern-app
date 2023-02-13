@@ -9,7 +9,6 @@ import SubmitButton from './SubmitButton';
 
 interface IForm{
   mode : String,
-
 }
 
 const Form = ({mode}:IForm) => {

@@ -5,7 +5,7 @@ export async function createTodo(
         title: String,
         description: String,
         startDate: Date,
-        dueDate: Date,
+        dueDate: Date
     )
     {
     const res = await fetch(`${API_URL}/todo`,{
@@ -14,8 +14,7 @@ export async function createTodo(
             title, 
             description, 
             startDate, 
-            dueDate, 
-
+            dueDate
         }),
         headers: {
             "Content-Type" : "application/json",
