@@ -7,6 +7,8 @@ import { deleteTodo } from "../../api/Todo/deleteTodo";
 import { useTodosStore } from "../../store/todosStore";
 import ModalDialog from "./ModalDialog/ModalDialog";
 import { useIsOverflow } from "../../hooks/useIsOverflow";
+import { useQuery } from "react-query";
+import Loading from "../Loading/Loading";
 
 const AppLayout = () => {
   /* Retrieve todos Store State from Zustand */
@@ -28,9 +30,11 @@ const AppLayout = () => {
     removeTodo(todoId); // Change UI 
   } 
 
-  useEffect(() => {
-    fetchTodos();
-  }, []);
+  /* React Query Fetch All Todos */
+  const {isLoading, data: fetchedTodos} = useQuery( 
+    'todos', 
+    ()=>fetchTodos 
+  );
 
   /* Render Todo Items */
   const todoItems = todos.map((todo: any)=>{
@@ -55,7 +59,11 @@ const AppLayout = () => {
           <Header/>
         </div>
         <div className="flex flex-col items-center pt-5">
-          {todoItems}
+          {
+            isLoading 
+              ? <Loading/> 
+              : todoItems
+          }
         </div>
       </div>
       <div className="">
@@ -65,10 +73,7 @@ const AppLayout = () => {
       {/* 
         TODO
 
-          2a-- Revamp card layout to include button for edit which enables user to update an existing task  -- COMPLETED
-              -- ADD PUT functionality on each CARD -- COMPLETED
-              -- Revamp the styling of it all idk  
-              -- look at designs on dribble for inspiration
+          1a) Refactor api fetch code to utilize react query
 
           3b--  Familiraize urself with use refs
               -- Learn how to utilize them in the useIsOverflow hook u found
