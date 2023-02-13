@@ -29,10 +29,10 @@ export const useTodosStore = create <ITodos>((set, get)=>({
         set({
           todos: todos.map(todo =>({
             ...todo,
-            title: todo._id === id? title : '',
-            description: todo._id === id? description : '',
-            startDate: todo._id === id? startDate : new Date,
-            dueDate: todo._id === id? dueDate : new Date,
+            title: todo._id === id ? title : todo.title,
+            description: todo._id === id ? description : todo.description,
+            startDate: todo._id === id ? startDate : todo.startDate,
+            dueDate: todo._id === id ? dueDate : todo.dueDate,
           }))
         })
       }
