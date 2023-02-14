@@ -13,7 +13,6 @@ const HomeLayout = () => {
             Easily manage and keep track of your tasks and to-dos. 
             Stay organized and achieve your goals with ease.
           </p>
-          
         </div>
         <div className="pt-10 text-center">
           <Button text={'Get Started'}/>
