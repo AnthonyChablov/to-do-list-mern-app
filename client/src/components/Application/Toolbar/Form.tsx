@@ -5,7 +5,7 @@ import { useModalStore } from '../../../store/modalStore';
 import { useCardStore } from '../../../store/cardStore';
 import { createTodo } from '../../../api/Todo/createTodo';
 import { updateTodo } from '../../../api/Todo/updateTodo';
-import SubmitButton from './SubmitButton';
+import SubmitButton from '../../Common/SubmitButton';
 import { useMutation, useQueryClient } from 'react-query';
 
 interface IForm{
@@ -158,7 +158,7 @@ const Form = ({mode}:IForm) => {
         />
       </div>
       <div className="pt-6 text-center">
-        <SubmitButton name={mode}/>
+        <SubmitButton name={`${mode} Task`}/>
       </div>
       
     </form>

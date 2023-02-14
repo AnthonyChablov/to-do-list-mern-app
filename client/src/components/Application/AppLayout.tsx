@@ -53,12 +53,13 @@ const AppLayout = () => {
   })
 
   return (
-    <div className="pt-6  h-screen max-h-screen overflow-auto bg-slate-100 font-Roboto">
-      <div className="px-4">
-        <div className="pb-2 px-5">
+    <div className="pt-6 h-screen max-h-screen  overflow-auto bg-slate-100 font-Roboto">
+      <div className="px-4 w-[87%] max-w-[90rem] mx-auto">
+        <div className="pb-4 ">
           <Header/>
         </div>
-        <div className="flex flex-col items-center pt-5">
+        <div className="pt-4 flex flex-col md:flex-none md:grid md:grid-cols-2 lg:grid-cols-3 items-center ">
+          {/* Render cards */}
           {
             isLoading 
               ? <Loading/> 
