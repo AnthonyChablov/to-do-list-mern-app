@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+
 import { shallow } from 'zustand/shallow'
 import Header from "./Header/Header";
 import Card from "./Card/Card";

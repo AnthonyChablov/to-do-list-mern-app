@@ -56,12 +56,12 @@ const Card = ({id, title, description,startDate,dueDate, isDone, handleDeleteTod
   return (
     <>
       <AnimatePresence mode="wait">
-        <motion.div className="w-11/12 rounded-xl mb-5 border-solid border-2 overflow-hidden shadow-md max-w-xl"
+        <motion.div className="w-11/12 rounded-xl mb-5 border-solid border-2 overflow-hidden shadow-md max-w-xl text-gray-800"
           variants={cardVariants}
           initial='initial'
           animate='animate'
         >
-          <div className="p-2 flex justify-between  bg-gradient-to-r from-gray-300 to-gray-300">
+          <div className="p-2 flex justify-between bg-gradient-to-r from-gray-300 to-gray-300">
             <div className="flex items-center">
               <button className="mr-3 ml-2" onClick={ () => setIsCompleted(!isCompleted)}>
                 {/* Change isCompleted */}
@@ -77,7 +77,9 @@ const Card = ({id, title, description,startDate,dueDate, isDone, handleDeleteTod
                       </div> 
                 }
               </button>
-              <p className={`text-lg ${ isCompleted ? 'line-through' : '' }`}>{title}</p>
+              <p className={`text-lg py-[0.16rem] ${ isCompleted ? 'line-through' : '' }`}>
+                {title}
+              </p>
             </div>
             <div className="flex items-center">
               {/* Delete button */}
@@ -102,7 +104,7 @@ const Card = ({id, title, description,startDate,dueDate, isDone, handleDeleteTod
             </div>
           </div>
           <div className="p-2 h-fit ">
-            <div className={`text-sm underline pb-3 ${ isCompleted ? 'line-through' : '' }`}>
+            <div className={`text-sm pt-1.5 text-gray-600 underline pb-3 ${ isCompleted ? 'line-through' : '' }`}>
               {/* Displays Date */}
               {startDay.toDateString()} <span> - </span> {dueDay.toDateString()}
             </div>

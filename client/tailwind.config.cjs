@@ -5,9 +5,15 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
-    fontFamily: {
-      'Roboto': ['Roboto', 'sans-serif'],
+    extend: {
+      backgroundImage: {
+        'heroImage': "url('src/assets/backgroundImage2.jpeg')",
+      },
+      fontFamily: {
+        'Roboto': ['Roboto', 'sans-serif'],
+      },
+
     },
+    
   }
 }
