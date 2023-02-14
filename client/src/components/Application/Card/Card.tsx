@@ -20,7 +20,7 @@ export interface Todo{
 
 const cardVariants = {
   initial:{
-    y : -50 , 
+    y : -50, 
     opacity:0
   },
   animate:{
@@ -29,7 +29,7 @@ const cardVariants = {
     transition:{
       type:'tween',
       ease:'easeInOut',
-      duration: 0.25,
+      duration: 0.4,
       when: ''
     }
   },

@@ -1,8 +1,27 @@
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import LoginForm from './Form/LoginForm';
 import BackgroundMask from '../Common/BackgroundMask';
 import Container from '../Common/Container';
 import Header from '../Common/Header';
+
+const loginVariants = {
+  initial:{
+    y : -50 , 
+    opacity:0
+  },
+  animate:{
+    y: 0, 
+    opacity: 1,
+    transition:{
+      type:'tween',
+      ease:'easeInOut',
+      duration: 0.7,
+      when: ''
+    }
+  },
+}
+
 
 const LoginLayout = () => {
   const history = useNavigate();
@@ -11,14 +30,18 @@ const LoginLayout = () => {
       <BackgroundMask/>
       <Container/>
       {/* layout */}
-      <div className="sm:mx-auto sm:w-full sm:max-w-md">
+      <motion.div className="sm:mx-auto sm:w-full sm:max-w-md"
+        variants={loginVariants}
+        initial='initial'
+        animate='animate'
+      >
         <div className="relative pt-9 pb-10 px-4 bg-white shadow-md rounded-xl sm:px-10 ">
           <div className="pt-3 pb-6">
             <Header text={'Login'}/>
           </div>
           <LoginForm/>
         </div>
-      </div>
+      </motion.div>
     </div>
   )
 }

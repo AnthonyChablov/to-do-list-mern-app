@@ -1,6 +1,23 @@
+import { motion } from 'framer-motion';
 import ModalDialog from '../ModalDialog/ModalDialog';
 import { useModalStore } from '../../../store/modalStore';
 import { useFormStore } from '../../../store/formStore';
+
+const toolbarVariants = {
+  initial:{
+    opacity:0
+  },
+  animate:{
+    opacity: 1,
+    transition:{
+      type:'tween',
+      ease:'easeInOut',
+      duration: 0.75,
+      when: ''
+    }
+  },
+}
+
 const Toolbar = () => {
 
   /* modal state */
@@ -11,7 +28,11 @@ const Toolbar = () => {
   const setMode = useFormStore(state => state.setMode);
 
   return (
-    <>
+    <motion.div
+      variants={toolbarVariants}
+      initial='initial'
+      animate='animate'
+    >
       {/* Taskbar BG */}
       <div className="py-6 w-screen bg-gradient-to-r from-red-400 via-red-500 to-red-600 text-gray-200 fixed bottom-0 "></div>
       {/* Open Modal Button*/}
@@ -27,9 +48,8 @@ const Toolbar = () => {
           </button>
         </div>
       </div>
-      {/* Modal */}
 
-    </>
+    </motion.div>
   )
 }
 

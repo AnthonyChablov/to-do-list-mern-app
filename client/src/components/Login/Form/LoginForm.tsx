@@ -91,11 +91,11 @@ const LoginForm = () => {
           <div className="flex items-center justify-center ">
             <div className="mt-2  text-sm font-medium text-primary-600 hover:text-primary-500 text-center">
               <p className='text-gray-500'>Dont Have An Account?</p>
-              <button className='pt-3 text-md uppercase hover:underline hover:text-red-600 '>
+              <div className='pt-3 text-md uppercase hover:underline hover:text-red-600 '>
                 <Link to='/register'>
                   Sign-Up
                 </Link>
-              </button>
+              </div>
             </div>
           </div>
         </Form>
