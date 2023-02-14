@@ -8,7 +8,7 @@ const HomeLayout = () => {
       </div>
       <div className="relative mx-auto font-Roboto pt-[25vh]">
         <div className="w-10/12 max-w-3xl mx-auto text-gray-900">
-          <h1 className="text-3xl sm:text-5xl text-center font-bold">Manage Your Tasks, Quick and Easy</h1>
+          <h1 className="text-3xl sm:text-4xl text-center font-bold">Manage Your Tasks, Quick and Easy</h1>
           <p className="pt-8 text-center text-xl sm:text-2xl ">
             Easily manage and keep track of your tasks and to-dos. 
             Stay organized and achieve your goals with ease.

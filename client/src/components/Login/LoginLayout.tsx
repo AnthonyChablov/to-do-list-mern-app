@@ -2,11 +2,7 @@ import SubmitButton from '../Common/SubmitButton';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
-
-
-  
-
-    
+import { Link } from 'react-router-dom';
 
 const LoginLayout = () => {
   const history = useNavigate();
@@ -26,15 +22,18 @@ const LoginLayout = () => {
   }
   
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8 font-Roboto">
-      <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-          Sign in to your account
-        </h2>
+    <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8 font-Roboto bg-heroImage">
+      <div className="absolute inset-0 bg-white/75 sm:bg-transparent sm:bg-gradient-to-r sm:from-white/90 sm:to-white/80"> 
+      </div>
+      <div className="sm:mx-auto sm:w-full sm:max-w-md ">
       </div>
 
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+
+      <div className="sm:mx-auto sm:w-full sm:max-w-md">
+        <div className="relative pt-9 pb-10 px-4  bg-white shadow-md rounded-xl sm:px-10 ">
+          <h2 className="mb-7 text-center text-3xl font-extrabold text-gray-900 ">
+            Login
+          </h2>
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
@@ -45,7 +44,7 @@ const LoginLayout = () => {
                 <div>
                   <label
                     htmlFor="email"
-                    className="block text-sm font-medium text-gray-700"
+                    className=" mb-2 block text-xs font-bold text-gray-700 uppercase tracking-wide "
                   >
                     Email address
                   </label>
@@ -67,7 +66,7 @@ const LoginLayout = () => {
                 <div>
                   <label
                     htmlFor="password"
-                    className="block text-sm font-medium text-gray-700"
+                    className=" mb-2 block text-xs font-bold text-gray-700 uppercase tracking-wide"
                   >
                     Password
                   </label>
@@ -86,19 +85,31 @@ const LoginLayout = () => {
                     />
                   </div>
                 </div>
-                <div className="flex items-center justify-between">
-                  <div className="text-sm">
-                    <a
-                      href="#"
-                      className="font-medium text-primary-600 hover:text-primary-500"
-                    >
-                      Forgot your password?
-                    </a>
+                <div className="flex items-center ">
+                  <div className="text-sm font-medium text-gray-500 text-primary-600 
+                  hover:text-primary-500 hover:underline hover:text-red-600">
+                    <Link to='/login'>
+                      Forgot Your Password?
+                    </Link>
                   </div>
                 </div>
-
-                <div>
+                <div className='pb-3'>
                   <SubmitButton name={'Login'}/>
+                </div>
+
+                {/* Border */}
+                <div className="border-t-2 w-6/12 mx-auto"></div>
+
+                {/* Sign Up */}
+                <div className="flex items-center justify-center ">
+                  <div className="mt-2  text-sm font-medium text-primary-600 hover:text-primary-500 text-center">
+                    <p className='text-gray-500'>Dont Have An Account?</p>
+                    <button className='pt-3 text-md uppercase hover:underline hover:text-red-600 '>
+                      <Link to='/register'>
+                        Sign-Up
+                      </Link>
+                    </button>
+                  </div>
                 </div>
               </Form>
             )}

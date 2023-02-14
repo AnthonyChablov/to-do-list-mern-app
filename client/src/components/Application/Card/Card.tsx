@@ -57,7 +57,7 @@ const Card = ({id, title, description,startDate,dueDate, isDone, handleDeleteTod
     <>
       <AnimatePresence mode="wait">
         <motion.div className="w-11/12 rounded-xl mb-5 border-solid border-2 
-          overflow-hidden shadow-md max-w-xl text-gray-800"
+          overflow-hidden shadow-md max-w-xl text-gray-800 "
           variants={cardVariants}
           initial='initial'
           animate='animate'

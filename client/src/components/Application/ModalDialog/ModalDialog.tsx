@@ -46,7 +46,7 @@ const ModalDialog = () => {
             {`${mode} Task`}
           </Typography>
           {/* Modal Close Button */}
-          <button className='hover:bg-gradient-to-br from-red-400 via-red-500 to-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 hover:text-white font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center ' 
+          <button className='hover:bg-gradient-to-br from-red-400 via-red-500 to-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 hover:text-white font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center' 
             onClick={()=>handleModalOpen(!open)}>
             <AiOutlineClose/>
             <span className="sr-only">Exit Button</span>

@@ -1,12 +1,12 @@
 import React from 'react'
 import SubmitButton from '../../Common/SubmitButton'
 
-const Form = () => {
+const LoginForm = () => {
   return (
     <form >
         
-      </form>
+    </form>
   )
 }
 
-export default Form
+export default LoginForm
