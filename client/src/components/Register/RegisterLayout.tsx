@@ -23,7 +23,8 @@ const registerVariants = {
 
 const RegisterLayout = () => {
   return (
-    <div className="relative min-h-screen  bg-gray-100 flex flex-col justify-center  sm:px-6 lg:px-8 font-Roboto bg-heroImage h-max">
+    <div className="relative min-h-screen bg-gray-100 flex flex-col justify-center 
+    sm:px-6 lg:px-8 font-Roboto bg-heroImage h-max bg-cover bg-center bg-no-repeat ">
       <BackgroundMask/>
       <Container/>
       <motion.div className="sm:mx-auto sm:w-full sm:max-w-md"
