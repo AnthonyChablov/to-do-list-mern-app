@@ -73,17 +73,12 @@ const AppLayout = () => {
       
       {/* 
         TODO
-
-          1a) Refactor api fetch code to utilize react query
-
+         
           3b--  Familiraize urself with use refs
               -- Learn how to utilize them in the useIsOverflow hook u found
               -- Once the todo container is initially overflowing add some padding to the bottom ONLY ONCE 
               -- If it is not overflowing remove the padding 
-          
-          4a -- Make the card display responsive And a custom respsonsive desktop layout
-
-          5 -- Refactor code making use of react query --- look at web dev C's mern stack tutorial making usage of react query 
+        
 
           6-- Look at authenticatino using JWT
       */}
