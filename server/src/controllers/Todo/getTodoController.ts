@@ -1,5 +1,5 @@
 import {Request, Response} from 'express';
-import TodoModel from '../models/Todo';
+import TodoModel from '../../models/Todo';
 
 export async function getTodoController(req: Request, res:Response){
     // get singlurat todo 

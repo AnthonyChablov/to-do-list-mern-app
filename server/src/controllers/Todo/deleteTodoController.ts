@@ -1,5 +1,5 @@
 import {Request, Response} from 'express';
-import TodoModel from '../models/Todo'; // mongodb model
+import TodoModel from '../../models/Todo';
 
 export async function deleteTodoController(req: Request, res:Response){
     // get the todo id

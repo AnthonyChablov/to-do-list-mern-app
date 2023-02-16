@@ -1,5 +1,5 @@
 import {Request, Response} from 'express';
-import TodoModel from '../models/Todo'; // mongodb model
+import TodoModel from '../../models/Todo'; // mongodb model
 
 export async function createTodoController(req: Request, res:Response){
     // create new todo
