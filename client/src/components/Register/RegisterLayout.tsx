@@ -1,7 +1,7 @@
 import { motion } from "framer-motion"
-import BackgroundMask from "../Common/BackgroundMask"
-import Container from "../Common/Container"
-import Header from "../Common/Header"
+import BackgroundMask from "../Common/Formatting/BackgroundMask"
+import Container from "../Common/Formatting/Container"
+import Header from "../Common/Text/Header"
 import RegisterForm from "./Form/RegisterForm"
 
 const registerVariants = {

@@ -1,11 +1,11 @@
-
+import { Dayjs } from 'dayjs';
 import { API_URL } from "../config";
 
 export async function createTodo(
         title: String,
         description: String,
-        startDate: Date,
-        dueDate: Date
+        startDate: Dayjs | null,
+        dueDate: Dayjs | null
     )
     {
     const res = await fetch(`${API_URL}/todo`,{

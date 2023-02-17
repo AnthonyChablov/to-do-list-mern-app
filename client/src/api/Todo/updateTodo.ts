@@ -1,6 +1,6 @@
 import { API_URL } from "../config";
-
-export async function updateTodo(todoId:String, title: String, description: String, startDate: Date, dueDate: Date){
+import { Dayjs } from 'dayjs';
+export async function updateTodo(todoId:String, title: String, description: String, startDate: Dayjs | null, dueDate: Dayjs | null){
     const res = await fetch(`${API_URL}/todo/${todoId}`,{
         method: "PUT",
         body: JSON.stringify({

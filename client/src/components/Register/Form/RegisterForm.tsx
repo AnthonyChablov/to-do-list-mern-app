@@ -2,7 +2,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import SubmitButton from '../../Common/SubmitButton';
+import SubmitButton from '../../Common/Buttons/SubmitButton';
 
 const RegisterForm = () => {
     const history = useNavigate();

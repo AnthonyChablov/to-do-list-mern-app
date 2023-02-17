@@ -1,26 +1,24 @@
 import {AiOutlineClose} from 'react-icons/ai';
-
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import Form from '../Toolbar/Form';
+import Form from './Form/Form';
 import { useModalStore } from '../../../store/modalStore';
 import { useFormStore } from '../../../store/formStore';
 
 const style = {
   position: 'absolute',
-  top: '48%',
+  top: '45%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: '83.5%',
+  width: '83.3%',
+  maxWidth: '38rem',
   height : 'fit-content',
   bgcolor: '#f1f5f9',
   border: '1px solid white',
   borderRadius: '10px',
   boxShadow: 24,
-  p: '2em 2em ',
-  maxWidth: '45rem',
-
+  p: '2em 2em '
 };
 
 const ModalDialog = () => {
@@ -42,16 +40,20 @@ const ModalDialog = () => {
       <Box sx={style}>
         <div className="flex justify-between">
           {/* Header */}
-          <Typography id="modal-modal-title" variant="h6" component="h2">
+          <Typography id="modal-modal-title" variant="h5" component="h2">
             {`${mode} Task`}
           </Typography>
           {/* Modal Close Button */}
-          <button className='hover:bg-gradient-to-br from-red-400 via-red-500 to-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 hover:text-white font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center' 
+          <button className='hover:bg-gradient-to-br from-red-400 via-red-500 
+          to-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 
+          hover:text-white font-medium rounded-full text-sm p-2.5 
+          text-center inline-flex items-center' 
             onClick={()=>handleModalOpen(!open)}>
             <AiOutlineClose/>
             <span className="sr-only">Exit Button</span>
           </button>
         </div>
+        {/* Form */}
         <div className="pt-5">
           <Form mode={mode}/>
         </div>
@@ -60,4 +62,4 @@ const ModalDialog = () => {
   )
 }
 
-export default ModalDialog
+export default ModalDialog;

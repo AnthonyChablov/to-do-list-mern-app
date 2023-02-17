@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import Button from "./Button/Button"
-import BackgroundMask from "../Common/BackgroundMask"
+import BackgroundMask from "../Common/Formatting/BackgroundMask"
 
 const loginVariants = {
   initial:{
