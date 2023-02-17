@@ -3,9 +3,9 @@ import { motion , AnimatePresence} from "framer-motion";
 import { MdModeEditOutline, MdDeleteOutline } from 'react-icons/md';
 import {IoIosCheckmarkCircle} from 'react-icons/io';
 import {BiCircle} from 'react-icons/bi';
-import { useModalStore } from '../../../store/modalStore';
-import { useFormStore } from "../../../store/formStore";
-import { useCardStore } from "../../../store/cardStore";
+import { useModalStore } from '../../../store/Modal/modalStore';
+import { useFormStore } from "../../../store/Form/formStore";
+import { useCardStore } from "../../../store/Card/cardStore";
 
 export interface Todo{
   key:String,

@@ -1,13 +1,14 @@
 import create from 'zustand';
 
-interface ICard{
+type State = {
     cardId: String,
+}
+
+type Action = {
     setCardId: Function
+}
 
-};
-
-export const useCardStore = create<ICard>((set)=>({
+export const useCardStore = create<State & Action>((set)=>({
     cardId:'',
     setCardId: (newCardId : String) => set({ cardId : newCardId }),
-
 }));

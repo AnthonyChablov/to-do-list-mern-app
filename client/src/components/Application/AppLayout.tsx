@@ -4,7 +4,7 @@ import Header from "./Header/Header";
 import Card from "./Card/Card";
 import Toolbar from "./Toolbar/Toolbar";
 import { deleteTodo } from "../../api/Todo/deleteTodo";
-import { useTodosStore } from "../../store/todosStore";
+import { useTodosStore } from "../../store/Todo/todosStore";
 import ModalDialog from "./ModalDialog/ModalDialog";
 import { useIsOverflow } from "../../hooks/useIsOverflow"; // ****
 import { useQuery } from "react-query"; 

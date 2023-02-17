@@ -1,17 +1,21 @@
 import create from 'zustand';
-import { TTodo } from '../api/Todo/getTodos';
-import { getTodos } from '../api/Todo/getTodos';
+import { TTodo } from '../../api/Todo/getTodos';
+import { getTodos } from '../../api/Todo/getTodos';
 
-interface ITodos{
-    todos: TTodo[],
-    setTodos: (newTodos : []) => void,
-    fetchTodos: Function,
-    addTodo: Function,
-    removeTodo: Function,
-    updateTodoUI: Function
-};
+type State = {
+  todos: TTodo[],
+}
 
-export const useTodosStore = create <ITodos>((set, get)=>({
+type Action = {
+  setTodos: (newTodos : []) => void,
+  fetchTodos: Function,
+  addTodo: Function,
+  removeTodo: Function,
+  updateTodoUI: Function
+}
+
+export const useTodosStore = create <State & Action>((set, get)=>({
+
     todos: [],
     setTodos: (newTodos : []) => set({ todos: newTodos }),
     fetchTodos : async () => {

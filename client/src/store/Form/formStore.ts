@@ -1,11 +1,14 @@
 import create from 'zustand';
 
-interface IForm{
+type State = {
     mode: String,
-    setMode: Function
-};
+}
 
-export const useFormStore = create<IForm>((set)=>({
+type Action = {
+    setMode: Function
+}
+
+export const useFormStore = create<State & Action>((set)=>({
     mode:'',
     setMode: (newMode : String) => set({ mode : newMode }),
 }));

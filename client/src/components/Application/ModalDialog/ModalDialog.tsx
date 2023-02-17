@@ -3,8 +3,8 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Form from './Form/Form';
-import { useModalStore } from '../../../store/modalStore';
-import { useFormStore } from '../../../store/formStore';
+import { useModalStore } from '../../../store/Modal/modalStore';
+import { useFormStore } from '../../../store/Form/formStore';
 
 const style = {
   position: 'absolute',

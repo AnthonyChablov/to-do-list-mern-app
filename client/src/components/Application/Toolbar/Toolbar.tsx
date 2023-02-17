@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import ModalDialog from '../ModalDialog/ModalDialog';
-import { useModalStore } from '../../../store/modalStore';
-import { useFormStore } from '../../../store/formStore';
+import { useModalStore } from '../../../store/Modal/modalStore';
+import { useFormStore } from '../../../store/Form/formStore';
 
 const toolbarVariants = {
   initial:{
