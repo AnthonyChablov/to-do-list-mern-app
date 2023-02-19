@@ -22,11 +22,9 @@ const loginVariants = {
   },
 }
 
-
 const LoginLayout = () => {
-  const history = useNavigate();
   return (
-    <div className="relative min-h-screen bg-gray-100 flex flex-col justify-center py-12 
+    <section className="relative min-h-screen bg-gray-100 flex flex-col justify-center py-12 
     sm:px-6 lg:px-8 font-Roboto bg-heroImage bg-cover bg-center bg-no-repeat">
       <BackgroundMask/>
       <Container/>
@@ -37,13 +35,15 @@ const LoginLayout = () => {
         animate='animate'
       >
         <div className="relative pt-9 pb-10 px-4 bg-white shadow-md rounded-xl sm:px-10 ">
-          <div className="pt-3 pb-6">
+          <div className="pt-3">
             <Header text={'Login'}/>
           </div>
-          <LoginForm/>
+          <div className="">
+            <LoginForm/>
+          </div>
         </div>
       </motion.div>
-    </div>
+    </section>
   )
 }
 

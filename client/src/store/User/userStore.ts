@@ -1,22 +1,26 @@
 import create from 'zustand';
 
 type State = {
-    name: String,
+    firstName: String,
+    lastName: String,
     email: String,
     password: String,
 }
   
 type Action = {
-    setName : (newName : String) => void,
+    setFirstName : (newFirstName : String) => void,
+    setLastName : (newLastName : String) => void,
     setEmail : (newEmail : String)=>void,
     setPassword : (newPassword : String)=> void,
 }
 
 export const useUserStore = create<State & Action>((set)=>({
-    name: '',
+    firstName: '',
+    lastName:'',
     email: '',
     password: '',
-    setName : (newName : String) => set({ name: newName }),
+    setFirstName : (newFirstName : String) => set({ firstName: newFirstName }),
+    setLastName : (newLastName : String) => set({ lastName: newLastName }),
     setEmail: (newEmail : String) => set({ email: newEmail }),
-    setPassword : (newName : String) => set({ name: newName }),
+    setPassword : (newPassword : String) => set({ password: newPassword }),
 }));

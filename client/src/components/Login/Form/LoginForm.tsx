@@ -1,28 +1,40 @@
 import SubmitButton from '../../Common/Buttons/SubmitButton'
-import { Link } from 'react-router-dom';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
+import FormFooter from '../../Common/FormFooter/FormFooter';
+import { Form, Link } from 'react-router-dom';
 import { TextField } from '@mui/material';
+import { shallow } from 'zustand/shallow';
+import { useUserStore } from '../../../store/User/userStore';
+
 
 const LoginForm = () => {
 
-  function onSubmit(){
+  /* State */
+  const {email, password, setEmail, setPassword} = useUserStore(
+    (state) => ({ 
+      email: state.email,
+      password: state.password,
+      setEmail: state.setEmail ,
+      setPassword: state.setPassword 
+    }), shallow
+  );
+
+  function handleSubmit(){
 
   }
 
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit}>
       {/* Email */}
         <TextField 
           name='Email' 
           variant='standard' 
           label='Email' 
           fullWidth 
-          value={'e'} 
+          value={email} 
           required 
           onChange={( e: React.ChangeEvent<HTMLInputElement>) => { 
-
+            setEmail(e.target.value);
           }
         }>
         </TextField>
@@ -32,42 +44,29 @@ const LoginForm = () => {
           variant='standard' 
           label='Password' 
           fullWidth 
-          value={'e'} 
+          value={password} 
           required 
           margin="normal"
           onChange={( e: React.ChangeEvent<HTMLInputElement>) => { 
-            
+            setPassword(e.target.value);
           }
         }>
         </TextField>
-
         <div className="flex items-center ">
-          <div className="text-sm font-medium text-gray-500 text-primary-600 
+          <div className="pt-4 text-sm font-medium text-gray-500 text-primary-600 
           hover:text-primary-500 hover:underline hover:text-red-600">
             <Link to='/login'>
               Forgot Your Password?
             </Link>
           </div>
         </div>
-        <div className='pb-3'>
+        <div className='pb-3 pt-7'>
           <SubmitButton name={'Login'}/>
         </div>
-      </form>
-
-      {/* Border */}
-      <div className="border-t-2 w-6/12 mx-auto"></div>
-
-      {/* Sign Up */}
-      <div className="flex items-center justify-center ">
-        <div className="mt-2  text-sm font-medium text-primary-600 hover:text-primary-500 text-center">
-          <p className='text-gray-500'>Dont Have An Account?</p>
-          <div className='pt-3 text-md uppercase hover:underline hover:text-red-600 '>
-            <Link to='/register'>
-              Sign-Up
-            </Link>
-          </div>
+        <div className="pt-5">
+          <FormFooter headerText={"Don't have an Account?"} buttonText={'Sign Up'}/>
         </div>
-      </div>
+      </form>
     </>
   )
 }

@@ -3,6 +3,7 @@ import BackgroundMask from "../Common/Formatting/BackgroundMask"
 import Container from "../Common/Formatting/Container"
 import Header from "../Common/Text/Header"
 import RegisterForm from "./Form/RegisterForm"
+import FormFooter from "../Common/FormFooter/FormFooter"
 
 const registerVariants = {
   initial:{
