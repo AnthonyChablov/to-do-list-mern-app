@@ -64,11 +64,11 @@ const LoginForm = () => {
           <SubmitButton name={'Login'}/>
         </div>
         <div className="pt-5">
-          <FormFooter headerText={"Don't have an Account?"} buttonText={'Sign Up'}/>
+          <FormFooter mode={'login'}/>
         </div>
       </form>
     </>
   )
 }
 
-export default LoginForm
+export default LoginForm;

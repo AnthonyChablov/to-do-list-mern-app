@@ -34,7 +34,7 @@ const RegisterLayout = () => {
         animate='animate'
       >
         <div className="relative pt-9 pb-10 px-4 bg-white shadow-md rounded-xl sm:px-10 ">
-          <div className="pt-1 pb-4">
+          <div className="pt-1">
             <Header text={'Register'}/>
           </div>
           <RegisterForm/>

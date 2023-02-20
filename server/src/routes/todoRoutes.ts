@@ -13,6 +13,4 @@ router.get('/:todoId', getTodoController);
 router.put('/:todoId', updateTodoController);
 router.delete('/:todoId', deleteTodoController);
 
-
-
 export default router;

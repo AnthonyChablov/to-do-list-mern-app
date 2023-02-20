@@ -7,9 +7,10 @@ const UserSchema = new Schema({
     lastName : {type:String, required: true},
     email: {type:String, required : true},
     password: {type:String, required : true},
+    confirmPassword: {type:String, required : true},
     id:{type:String}
 });
 
-const UserModel = mongoose.model('ToDo', UserSchema);
+const UserModel = mongoose.model('User', UserSchema);
 
 export default UserModel;

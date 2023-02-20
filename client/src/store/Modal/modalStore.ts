@@ -2,7 +2,7 @@ import create from 'zustand';
 
 
 type State = {
-    open: Boolean,
+    open: boolean,
 }
 type Action = {
     handleModalOpen : Function,

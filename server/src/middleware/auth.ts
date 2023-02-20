@@ -1,5 +1,4 @@
 import type { RequestHandler } from "express";
-
 import jwt from 'jsonwebtoken';
 
 export const auth : RequestHandler = (req, res, next) => {
@@ -8,7 +7,6 @@ export const auth : RequestHandler = (req, res, next) => {
         // need to check if the users token is valid 
         const token = req.headers.authorization?.split(' ')[1];
         
-
     } catch(err) {
         console.log(err);
     }

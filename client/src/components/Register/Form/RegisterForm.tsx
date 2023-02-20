@@ -7,24 +7,25 @@ import SubmitButton from '../../Common/Buttons/SubmitButton';
 
 const RegisterForm = () => {
 
-
-
     /* State */
-    const {firstName, lastName,password, email, setFirstName, setLastName, setEmail, setPassword} = useUserStore(
+    const {firstName, lastName,password, confirmPassword, email, 
+        setFirstName, setLastName, setEmail, setPassword, setConfirmPassword} = useUserStore(
         (state) => ({ 
         firstName: state.firstName,
         lastName : state.lastName, 
         email: state.email,
         password: state.password,
+        confirmPassword: state.confirmPassword,
         setFirstName: state.setFirstName,
         setLastName: state.setLastName,
         setEmail: state.setEmail ,
-        setPassword: state.setPassword 
+        setPassword: state.setPassword ,
+        setConfirmPassword: state.setConfirmPassword,
         }), shallow
     );
     
-    function handleSubmit(){
-        
+    function handleSubmit(e: React.FormEvent){
+        e.preventDefault();
     }   
 
     return (
@@ -57,6 +58,7 @@ const RegisterForm = () => {
                 }
             }>
             </TextField>
+
         {/* Email */}
             <TextField 
                 name='Email' 
@@ -77,11 +79,11 @@ const RegisterForm = () => {
                 variant='standard' 
                 label='Password' 
                 fullWidth 
-                value={''} 
+                value={password} 
                 required 
                 margin="normal"
                 onChange={( e: React.ChangeEvent<HTMLInputElement>) => { 
-                    setPassword(e.target.value)
+                    setPassword(e.target.value);
                 }
             }>
             </TextField>
@@ -91,20 +93,20 @@ const RegisterForm = () => {
                 variant='standard' 
                 label='Confirm Password' 
                 fullWidth 
-                value={''} 
+                value={confirmPassword} 
                 required 
                 margin="normal"
                 onChange={( e: React.ChangeEvent<HTMLInputElement>) => { 
-                    
+                    setConfirmPassword(confirmPassword)
                 }
             }>
             </TextField>
-            <div className='pb-3 pt-7'>
+            <div className='pb-3 pt-9'>
                 <SubmitButton name={'Login'}/>
             </div>
         </form>
         <div className="pt-5">
-          <FormFooter headerText={"Don't have an Account?"} buttonText={'Sign Up'}/>
+          <FormFooter mode={'register'}/>
         </div>
     </>
     )

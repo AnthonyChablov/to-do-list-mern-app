@@ -16,27 +16,33 @@ export interface Todo{
   dueDate: Date,
   isDone:Boolean,
   handleDeleteTodo: Function,
+  animationProperty: number
 }
 
-const cardVariants = {
-  initial:{
-    y : -50, 
-    opacity:0
-  },
-  animate:{
-    y: 0, 
-    opacity: 1,
-    transition:{
-      type:'tween',
-      ease:'easeInOut',
-      duration: 0.4,
-      when: ''
-    }
-  },
-}
+const Card = ({id, title, description,startDate,dueDate, handleDeleteTodo, animationProperty}:Todo) => {
 
-
-const Card = ({id, title, description,startDate,dueDate, isDone, handleDeleteTodo, }:Todo) => {
+  /* Framer Motion config */
+  const cardVariants = {
+    initial:{
+      x: animationProperty % 2 === 0 ? -50 : 2, // if even come from left -50, if odd come from right -8, on x axis
+      y : -50, 
+      opacity:0,
+      scale: 0.85
+    },
+    animate:{
+      x:0,
+      y: 0, 
+      scale:1,
+      opacity: 1,
+      transition:{
+        type: 'tween',
+        ease: 'easeInOut',
+        duration: .3,
+        when: '',
+        delay: animationProperty * 0.075
+      }
+    },
+  }
 
   /* Convert data to Date Objects */
   const startDay = new Date(startDate);
@@ -55,7 +61,7 @@ const Card = ({id, title, description,startDate,dueDate, isDone, handleDeleteTod
 
   return (
     <>
-      <AnimatePresence mode="wait">
+      <AnimatePresence  mode={"wait"}>
         <motion.div className="w-11/12 rounded-xl mb-5 border-solid border-2 
           overflow-hidden shadow-md max-w-xl text-gray-800 "
           variants={cardVariants}
