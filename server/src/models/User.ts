@@ -1,16 +1,14 @@
-import mongoose from 'mongoose';
-
-const Schema = mongoose.Schema;
+import mongoose, { InferSchemaType, model, Schema } from 'mongoose';
 
 const UserSchema = new Schema({
-    firstName: {type:String, required : true},
-    lastName : {type:String, required: true},
-    email: {type:String, required : true},
-    password: {type:String, required : true},
-    confirmPassword: {type:String, required : true},
-    id:{type:String}
+    id: {type: String},
+    firstName: {type: String, required : true},
+    lastName : {type: String, required: true},
+    // select: false makes sure that email/pw is not returned to Frontend
+    // unique: true makes it so we can only store only one email in out db
+    email: {type: String, required : true, unique:true, select: false}, 
+    password: {type:String, required : true, select: false}, 
 });
 
-const UserModel = mongoose.model('User', UserSchema);
-
-export default UserModel;
+type User = InferSchemaType<typeof UserSchema>
+export default model<User>("User", UserSchema);

@@ -1,32 +1,42 @@
-import {Request, Response} from 'express';
+import {Request, Response, NextFunction} from 'express';
+import User from "../../models/User";
+import bcrypt from "bcryptjs";
 
-import bcrypt from 'bcryptjs'; // hashing the passwords with bcrypt
-import jwt from 'jsonwebtoken'; // safe way to store the users for some period of time -- allows the user to stayed logged in for some period
+export const registerUser = async(req: Request, res:Response, next:NextFunction) => {
+    const firstName = req.body.firstName;
+    const lastName = req.body.lastName;
+    const email = req.body.password;
+    const passwordRaw = req.body.password;  // for securtiy reasons never store passwords raw in db, we need to hash it 
 
-import UserModel from '../../models/User';
-
-export async function registerUser(req: Request, res:Response) {
-    const {email, password, firstName, lastName, confirmPassword}  = req.body;
-
-    try{
-        const existingUser = await UserModel.findOne({email});
-        if(existingUser){
-            return res.status(400).json({message: 'User already exists.'});
+    try {
+        if (!firstName || !lastName || !email || !passwordRaw){
+            res.status(400).send("Parameters missing."); // bad request
+        }
+        // We dont want to rely on error msg from our database, we want to create our own check in the backend
+        const existingUserEmail = await User.findOne({email: email}).exec(); // if this is true we know user already exists
+        
+        if(existingUserEmail){
+            res.status(400).send("User already exists. Please use another email address or log in.");
         }
 
-        // if password is not the same to the existing password
-        if (password !== confirmPassword){
-            return res.status(400).json({message: 'Passwords do not match.'});
-        }
+        // Hashing password 
+        const passwordHashed = await bcrypt.hash(passwordRaw, 10); //param1: password we want to hash, param2: hashing salt difficulty 
 
-        // if there is no existing user and if the passwords match, we are good to create the new user
-        const hashedPassword = await bcrypt.hash(password, 12) // we pass in password and the salt(level of difficulty of hashing)
-        const result = await UserModel.create({ 
-            email, password: hashedPassword, name: `${firstName} ${lastName}` 
+        // After signing up successfully, we create user and return user to FrontEnd
+        const newUser = await User.create({
+            firstName:firstName,
+            lastName:lastName,
+            email:email,
+            password:passwordHashed
         });
-        const token = jwt.sign({email: result.email, id: result._id}, 'test', {expiresIn: '1h'});
-        res.status(200).json({result, token});
+
+        // We now need to establish a session for recently registered user
+        // We are using express sessions
+        req.session.userId = newUser._id; // We need todo extra config as TS does not know of session obj of req
+
+        res.status(201).json(newUser);
+
     }catch(error){
-        res.status(500).json({message: 'Something went wrong'});
+        next(error);
     }
 }
