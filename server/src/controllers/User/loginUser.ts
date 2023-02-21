@@ -1,35 +1,34 @@
-import {Request, Response} from 'express';
-
+import {NextFunction, Request, Response} from 'express';
 import bcrypt from 'bcryptjs'; // hashing the passwords with bcrypt
-import jwt from 'jsonwebtoken'; // safe way to store the users for some period of time -- allows the user to stayed logged in for some period
-
 import UserModel from '../../models/User';
+import createHttpError from 'http-errors';
 
-export async function loginUser(req: Request, res:Response) {
-    /* login form field has email and password */
-    const {email, password}  = req.body;
+export async function loginUser(req: Request, res:Response, next:NextFunction) {
+    const email = req.body.email;
+    const password = req.body.password;  
 
     try{
-
-        const existingUser = await UserModel.findOne({email});
-
-        if(!existingUser){
-            return res.status(404).json({message: 'User does not exist'});
+        if(!email || !password){
+            throw createHttpError(400,'Parameters Missing' );
         }
 
-        const isPasswordCorrect = await bcrypt.compare(password, existingUser.password);
+        const user = await UserModel.findOne({email: email}).select('+password +email').exec();
 
-        if(!isPasswordCorrect){ 
-            return res.status(400).json({message: 'Invalid Login'});
+        if(!user){
+            throw createHttpError( 401, 'Invalid Credentials' );
         }
 
-        const token = jwt.sign({
-            email: existingUser.email, 
-            id: existingUser._id
-        }, 'test', {expiresIn: '1h'});
+        const passwordMatch = await bcrypt.compare(password, user.password); // comparing raw password with hashed password from our database
+
+        if(!passwordMatch){
+            throw createHttpError( 401, 'Invalid Credentials' );
+        }
+
+        // If the user exists and the passowrd matches
+        req.session.userId = user?._id;
+        res.status(201).json(user);
         
-        res.status(200).json({result: existingUser, token});
     }catch(error){
-        res.status(500).json({message: 'Something went wrong'});
+        next(error);
     }
 }
