@@ -39,6 +39,7 @@ const RegisterForm = () => {
                 fullWidth 
                 value={firstName} 
                 required 
+                margin="normal"
                 onChange={( e: React.ChangeEvent<HTMLInputElement>) => { 
                     setFirstName(e.target.value)
                 }

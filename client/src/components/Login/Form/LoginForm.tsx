@@ -4,7 +4,7 @@ import { Form, Link } from 'react-router-dom';
 import { TextField } from '@mui/material';
 import { shallow } from 'zustand/shallow';
 import { useUserStore } from '../../../store/User/userStore';
-
+import { loginUser } from '../../../api/User/loginUser';
 
 const LoginForm = () => {
 
@@ -18,8 +18,8 @@ const LoginForm = () => {
     }), shallow
   );
 
-  function handleSubmit(){
-
+  function handleSubmit(e: React.FormEvent){
+    loginUser(email,password);
   }
 
   return (
@@ -52,7 +52,7 @@ const LoginForm = () => {
           }
         }>
         </TextField>
-        <div className="flex items-center ">
+        <div className="flex items-center">
           <div className="pt-4 text-sm font-medium text-gray-500 text-primary-600 
           hover:text-primary-500 hover:underline hover:text-red-600">
             <Link to='/login'>

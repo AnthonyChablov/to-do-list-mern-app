@@ -3,9 +3,8 @@ import BackgroundMask from "../Common/Formatting/BackgroundMask"
 import Container from "../Common/Formatting/Container"
 import Header from "../Common/Text/Header"
 import RegisterForm from "./Form/RegisterForm"
-import FormFooter from "../Common/FormFooter/FormFooter"
 
-const registerVariants = {
+const registerVariants = { // Framer motion config
   initial:{
     y : -50 , 
     opacity:0
@@ -34,9 +33,7 @@ const RegisterLayout = () => {
         animate='animate'
       >
         <div className="relative pt-9 pb-10 px-4 bg-white shadow-md rounded-xl sm:px-10 ">
-          <div className="pt-1">
-            <Header text={'Register'}/>
-          </div>
+          <Header text={'Register'}/>
           <RegisterForm/>
         </div>
       </motion.div>
