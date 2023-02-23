@@ -19,7 +19,7 @@ const registerVariants = { // Framer motion config
       when: ''
     }
   },
-}
+};
 
 const RegisterLayout = () => {
   return (

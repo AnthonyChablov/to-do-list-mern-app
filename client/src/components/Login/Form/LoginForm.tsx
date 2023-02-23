@@ -18,13 +18,14 @@ const LoginForm = () => {
     }), shallow
   );
 
-  function handleSubmit(e: React.FormEvent){
-    loginUser(email,password);
+  async function handleLogin(e: React.FormEvent){
+    e.preventDefault(); 
+    await loginUser({email,password});
   }
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleLogin}>
       {/* Email */}
         <TextField 
           name='Email' 
