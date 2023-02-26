@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { motion , AnimatePresence} from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { TextField, FormControl,  InputLabel, Input, InputAdornment, IconButton} from '@mui/material';
 import { shallow } from 'zustand/shallow';
@@ -6,6 +7,24 @@ import { useUserStore } from '../../../store/User/userStore';
 import FormFooter from '../../Common/FormFooter/FormFooter';
 import SubmitButton from '../../Common/Buttons/SubmitButton';
 import { registerUser } from '../../../api/User/registerUser';
+
+const errorMessageVariants = { // Framer motion config
+    initial:{
+      opacity: 0
+    },
+    animate:{
+      opacity: 1,
+      transition:{
+        type:'tween',
+        ease:'easeInOut',
+        duration: 0.55,
+        when: ''
+      }
+    },
+    exit:{
+      opacity:0
+    }
+  };
 
 const RegisterForm = () => {
 
@@ -26,22 +45,32 @@ const RegisterForm = () => {
         }), shallow
     );
     const [isPasswordsMatch, setIsPasswordsMatch] = useState(true);
+    const [error, setError] = useState(false);
 
     async function handleRegister(e: React.FormEvent){
-        e.preventDefault();
-        // check if password and confirmPassword match 
-        if (password !== confirmPassword){
+        e.preventDefault(); 
+        if (password !== confirmPassword){ // check if password and confirmPassword match
             setIsPasswordsMatch(false);
-        } else {
+            resetErrorMessage();
+        } else{
             setIsPasswordsMatch(true);
-            await registerUser({firstName, lastName, password, email});
+            try{ // error catch api request
+                await registerUser({firstName, lastName, password, email});
+            } catch (error){
+                console.error(error);
+                setError(true);
+                resetErrorMessage();
+            }
             resetFormInputs();
         }
-        resetErrorMessage();
+        
     }   
 
     async function resetErrorMessage(){
-        setTimeout(() => setIsPasswordsMatch(true), 7000);
+        setTimeout(() => {
+            setIsPasswordsMatch(true)
+            setError(false);
+        }, 6500);
     }
 
     async function resetFormInputs(){
@@ -57,6 +86,7 @@ const RegisterForm = () => {
         <form onSubmit={handleRegister}>
         {/* First Name */}
             <TextField 
+                error={error}
                 name='FirstName' 
                 variant='standard' 
                 label='First Name' 
@@ -71,6 +101,7 @@ const RegisterForm = () => {
             </TextField>
         {/* Last Name */}
             <TextField 
+                error={error}
                 name='LastName' 
                 variant='standard' 
                 label='Last Name' 
@@ -86,6 +117,7 @@ const RegisterForm = () => {
 
         {/* Email */}
             <TextField 
+                error={error}
                 name='Email' 
                 variant='standard' 
                 label='Email' 
@@ -100,7 +132,7 @@ const RegisterForm = () => {
             </TextField>
         {/* Password */}
             <TextField 
-                error = {!isPasswordsMatch}
+                error = {!isPasswordsMatch || error}
                 helperText={!isPasswordsMatch ? "Passwords do not match." : ''}
                 name='Password' 
                 variant='standard' 
@@ -135,7 +167,7 @@ const RegisterForm = () => {
             
         {/* Confirm Password */}
             <TextField 
-                error = {!isPasswordsMatch}
+                error = {!isPasswordsMatch || error}
                 helperText={!isPasswordsMatch? "Passwords do not match." : ''}
                 name='ConfirmPassword' 
                 variant='standard' 
@@ -149,7 +181,22 @@ const RegisterForm = () => {
                 }
             }>
             </TextField>
-            <div className='pb-3 pt-9'>
+            <AnimatePresence>
+                {
+                    error && (
+                        <motion.div className="pt-3 text-sm text-center text-red-600"
+                            key="error"
+                            variants={errorMessageVariants}
+                            initial='initial'
+                            animate='animate'
+                            exit={'exit'}
+                        >
+                            <p>User already exists. Please use another email address or log in.</p>
+                        </motion.div>
+                    )
+                }
+            </AnimatePresence>
+            <div className='pb-3 pt-5'>
                 <SubmitButton name={'Register'}/>
             </div>
         </form>

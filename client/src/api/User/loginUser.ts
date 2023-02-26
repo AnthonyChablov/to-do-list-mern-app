@@ -6,13 +6,21 @@ export interface ILoginCredentials{
     password:String
 }
 
-export async function loginUser(credentials: ILoginCredentials):Promise<IUser>{
-    const res = await fetch(`${API_URL}/user/login`, {
+export async function loginUser(credentials: ILoginCredentials){
+    await fetch(`${API_URL}/user/login`, {
         method:'POST',
         headers:{
             "Content-Type":"application/json",
         },
         body: JSON.stringify(credentials),
+    }).then((res) => {
+        console.log(res.status); 
+
+        if (!res.ok) {
+            throw new Error("HTTP status " + res.status);
+        }
+
+        return res.json();
     });
-    return res.json();
+    
 }

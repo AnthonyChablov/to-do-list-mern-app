@@ -42,6 +42,9 @@ const Card = ({id, title, description,startDate,dueDate, handleDeleteTodo, anima
         delay: animationProperty * 0.075
       }
     },
+    exit:{
+      opacity:0
+    }
   }
 
   /* Convert data to Date Objects */
@@ -64,9 +67,11 @@ const Card = ({id, title, description,startDate,dueDate, handleDeleteTodo, anima
       <AnimatePresence  mode={"wait"}>
         <motion.div className="w-11/12 rounded-xl mb-5 border-solid border-2 
           overflow-hidden shadow-md max-w-xl text-gray-800 "
+          key='card'
           variants={cardVariants}
           initial='initial'
           animate='animate'
+          exit={'exit'}
         >
           <div className="p-2 flex justify-between bg-gradient-to-r from-gray-300 to-gray-300">
             <div className="flex items-center">

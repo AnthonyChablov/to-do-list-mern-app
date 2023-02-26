@@ -6,11 +6,9 @@ import RegisterForm from "./Form/RegisterForm"
 
 const registerVariants = { // Framer motion config
   initial:{
-    y : -50 , 
     opacity:0
   },
   animate:{
-    y: 0, 
     opacity: 1,
     transition:{
       type:'tween',
@@ -19,6 +17,7 @@ const registerVariants = { // Framer motion config
       when: ''
     }
   },
+
 };
 
 const RegisterLayout = () => {
@@ -28,9 +27,11 @@ const RegisterLayout = () => {
       <BackgroundMask/>
       <Container/>
       <motion.div className="sm:mx-auto sm:w-full sm:max-w-md"
+      key={'register'}
         variants={registerVariants}
         initial='initial'
         animate='animate'
+        exit='exit'
       >
         <div className="relative pt-9 pb-10 px-4 bg-white shadow-md rounded-xl sm:px-10 ">
           <Header text={'Register'}/>
@@ -38,7 +39,7 @@ const RegisterLayout = () => {
         </div>
       </motion.div>
     </div>
-  )
+  );
 }
 
 export default RegisterLayout
