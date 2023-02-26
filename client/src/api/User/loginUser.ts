@@ -13,6 +13,7 @@ export async function loginUser(credentials: ILoginCredentials){
             "Content-Type":"application/json",
         },
         body: JSON.stringify(credentials),
+        credentials: 'include'
     }).then((res) => {
         console.log(res.status); 
 

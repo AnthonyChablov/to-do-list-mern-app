@@ -17,7 +17,7 @@ interface IForm{
 };
 
 const textFieldStyles ={
-  '& label.Mui-focused': {
+  /* '& label.Mui-focused': {
     color: '#f76a6a',
   },
   '& .MuiInput-underline:after': {
@@ -25,7 +25,7 @@ const textFieldStyles ={
   },
   '&:hover fieldset': {
     borderColor: 'yellow',
-  }
+  } */
 };
 
 const Form = ({mode}:IForm) => {

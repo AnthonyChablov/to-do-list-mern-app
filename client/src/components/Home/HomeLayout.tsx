@@ -3,8 +3,7 @@ import Button from "./Button/Button"
 import BackgroundMask from "../Common/Formatting/BackgroundMask"
 
 const loginVariants = {
-  initial:{
-    y : -50 , 
+  initial:{ 
     opacity:0
   },
   animate:{

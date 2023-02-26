@@ -5,6 +5,7 @@ import Card from "./Card/Card";
 import Toolbar from "./Toolbar/Toolbar";
 import { deleteTodo } from "../../api/Todo/deleteTodo";
 import { useTodosStore } from "../../store/Todo/todosStore";
+import { useUserStore } from '../../store/User/userStore';
 import ModalDialog from "./ModalDialog/ModalDialog";
 import { useIsOverflow } from "../../hooks/useIsOverflow"; // ****
 import { useQuery } from "react-query"; 
@@ -13,16 +14,16 @@ import Loading from "../Loading/Loading";
 
 
 const AppLayout = () => {
-  /* Retrieve todos Store State from Zustand */
-  const { 
-    todos, fetchTodos, removeTodo, 
-  } = useTodosStore(
+
+  /* State*/
+  const { todos, fetchTodos, removeTodo } = useTodosStore(
     (state) => ({ 
       todos: state.todos, 
       fetchTodos: state.fetchTodos,
       removeTodo: state.removeTodo,
     }), shallow
   );
+  const loggedInUser = useUserStore(state => state.loggedInUser);
 
   async function handleDeleteTodo(todoId : string){
     await deleteTodo(todoId); // Call to api
@@ -60,7 +61,8 @@ const AppLayout = () => {
         <motion.div className="pt-8 flex flex-col md:flex-none md:grid 
           md:grid-cols-2 lg:grid-cols-3 items-center "
         >
-          { /* Render cards */
+          { 
+            /* Render cards */
             isLoading 
               ? <Loading/> 
               : todoItems

@@ -20,7 +20,7 @@ export const useTodosStore = create <State & Action>((set, get)=>({
     setTodos: (newTodos : []) => set({ todos: newTodos }),
     fetchTodos : async () => {
         const fetchedTodos = await getTodos();
-        set({todos: fetchedTodos})
+        set({todos: fetchedTodos});
     },
     addTodo: (newTodo:any) => set((prevState) => (
         {todos: [...prevState.todos, newTodo]}

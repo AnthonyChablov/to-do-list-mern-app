@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion , AnimatePresence} from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { TextField, FormControl,  InputLabel, Input, InputAdornment, IconButton} from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { TextField,} from '@mui/material';
 import { shallow } from 'zustand/shallow';
 import { useUserStore } from '../../../store/User/userStore';
 import FormFooter from '../../Common/FormFooter/FormFooter';
@@ -32,30 +32,35 @@ const RegisterForm = () => {
     const {firstName, lastName,password, confirmPassword, email, 
         setFirstName, setLastName, setEmail, setPassword, setConfirmPassword} = useUserStore(
         (state) => ({ 
-        firstName: state.firstName,
-        lastName : state.lastName, 
-        email: state.email,
-        password: state.password,
-        confirmPassword: state.confirmPassword,
-        setFirstName: state.setFirstName,
-        setLastName: state.setLastName,
-        setEmail: state.setEmail ,
-        setPassword: state.setPassword ,
-        setConfirmPassword: state.setConfirmPassword,
+            firstName: state.firstName,
+            lastName : state.lastName, 
+            email: state.email,
+            password: state.password,
+            confirmPassword: state.confirmPassword,
+            setFirstName: state.setFirstName,
+            setLastName: state.setLastName,
+            setEmail: state.setEmail ,
+            setPassword: state.setPassword ,
+            setConfirmPassword: state.setConfirmPassword,
+
         }), shallow
     );
     const [isPasswordsMatch, setIsPasswordsMatch] = useState(true);
     const [error, setError] = useState(false);
 
+    const navigate = useNavigate();
+
     async function handleRegister(e: React.FormEvent){
         e.preventDefault(); 
         if (password !== confirmPassword){ // check if password and confirmPassword match
             setIsPasswordsMatch(false);
-            resetErrorMessage();
-        } else{
+            resetPasswordErrorMessage()
+        } else {
             setIsPasswordsMatch(true);
             try{ // error catch api request
-                await registerUser({firstName, lastName, password, email});
+                const user = await registerUser({firstName, lastName, password, email});
+                navigate('/app');
+                console.log(user);
             } catch (error){
                 console.error(error);
                 setError(true);
@@ -63,13 +68,16 @@ const RegisterForm = () => {
             }
             resetFormInputs();
         }
-        
     }   
 
     async function resetErrorMessage(){
         setTimeout(() => {
-            setIsPasswordsMatch(true)
             setError(false);
+        }, 6500);
+    }
+    async function resetPasswordErrorMessage(){
+        setTimeout(() => {
+            setIsPasswordsMatch(true);
         }, 6500);
     }
 

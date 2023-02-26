@@ -1,12 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import SubmitButton from '../../Common/Buttons/SubmitButton'
 import FormFooter from '../../Common/FormFooter/FormFooter';
-import { Form, Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { TextField } from '@mui/material';
 import { shallow } from 'zustand/shallow';
 import { useUserStore } from '../../../store/User/userStore';
 import { loginUser } from '../../../api/User/loginUser';
+import { getLoggedInUser } from '../../../api/User/getLoggedInUser';
 
 const errorMessageVariants = { // Framer motion config
   initial:{
@@ -27,7 +28,7 @@ const errorMessageVariants = { // Framer motion config
 };
 
 const LoginForm = () => {
-
+  
   /* State */
   const {email, password, setEmail, setPassword} = useUserStore(
     (state) => ({ 
@@ -37,22 +38,26 @@ const LoginForm = () => {
       setPassword: state.setPassword 
     }), shallow
   );
+
   const[error, setError] = useState(false);
+
+  const navigate = useNavigate();
 
   async function handleLogin(e: React.FormEvent){
     e.preventDefault(); 
     try{
       await loginUser({email,password});
+      navigate('/app');
     } catch(error) {
       console.error(error);
       setError(true);
-      resetErrorMessage()
+      resetErrorMessage();
     }
   }
 
   async function resetErrorMessage(){
     setTimeout(() => setError(false), 5000);
-}
+  }
 
   return (
     <>
