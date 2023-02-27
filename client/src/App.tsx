@@ -49,7 +49,7 @@ function App() {
 
   useEffect(()=>{
     console.log(loggedInUser);
-  },[])
+  },[fetchedLoggedInUser]);
   
 
   return (

@@ -30,8 +30,8 @@ app.use(session({
     // configure cookie that will be stored onto users browser
     cookie:{
         maxAge: 60 * 60 * 1000, // how long cookie lives (in this case 1hr) 
-        sameSite: 'none',    //  Soon, cookies *without* the “SameSite” attribute or with an invalid value will be treated as “Lax”. 
-                            //This means that the cookie will no longer be sent in third-party contexts.
+        sameSite: false,        //  Soon, cookies *without* the “SameSite” attribute or with an invalid value will be treated as “Lax”. 
+                                //This means that the cookie will no longer be sent in third-party contexts.
     },
     rolling: true,  // as long as user is using our website, this cookie will be refreshed automatically,
                     // if user revists our website within the hour, they will remain signed in.
