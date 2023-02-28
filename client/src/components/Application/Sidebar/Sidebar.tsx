@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { motion, Variants } from 'framer-motion';
 import Box from '@mui/material/Box';
 import { Drawer,  } from '@mui/material';
 import { Link } from 'react-router-dom';
@@ -11,6 +12,21 @@ import UserInfo from './UserInfo/UserInfo';
 import { logoutUser } from '../../../api/User/logoutUser';
 import useDarkMode from '../../../hooks/useDarkMode';
 
+/* framer motions config */
+const sideBarVariants : Variants={
+    initial:{
+        opacity:0
+    },
+    animate:{
+        opacity:1,
+        transition:{
+            type: 'tween',
+            ease: 'easeInOut',
+            duration: .41,
+            when: '',
+        }
+    },
+}
 
 export const Sidebar = () => {
     /* State */
@@ -20,15 +36,10 @@ export const Sidebar = () => {
 
     const navigate = useNavigate();
 
-    function toggleDrawer(mode:boolean){
-        setIsOpen(mode);
-        console.log(isOpen)
-    }
-
     function logOutHandeller(){
         logoutUser();
+        setIsOpen(!isOpen);
         navigate('/');
-        setIsOpen(false);
     }
 
     return (
@@ -37,14 +48,15 @@ export const Sidebar = () => {
                 anchor={'left'}
                 open={!isOpen} 
                 onClose={()=>setIsOpen(false)}
-                sx={{
-                    backgroundColor: '' /* bg of grey overlay */
-                }}
             >
-                <div className="w-[25rem] px-10 py-6 ">
+                <motion.div className="w-screen sm:w-[25rem] px-10 py-6 "
+                    variants={sideBarVariants}
+                    initial={'initial'}
+                    whileInView={'animate'}
+                >
                     <div className="text-left flex justify-between items-center">
                         <div className="">
-                            <h1 className='text-3xl font-semibold'>TodoIfy </h1>
+                            <h1 className='text-3xl font-semibold'>TodoIfy</h1>
                         </div>
                         <button 
                             className='' 
@@ -56,7 +68,7 @@ export const Sidebar = () => {
                         </button>
                     </div>
                     <p className='text-xl pt-1.5 text-gray-500 dark:text-white pb-4'>How can we help?</p>
-                    {/* Border */}
+                {/* Border */}
                     <div className="border-t-2 w-8/12 "></div>
                     <div className="pt-9">
                         <div className="flex items-center">
@@ -96,7 +108,7 @@ export const Sidebar = () => {
                         </div>
                         <div className=" mt-5 ">
                             <button className="text-md hover:underline "
-                                onClick={()=> logOutHandeller()}
+                                onClick={()=>logOutHandeller()}
                             >
                                 {`Log Out`}
                             </button>
@@ -106,7 +118,7 @@ export const Sidebar = () => {
                         <UserInfo/>
                     </div>
                     
-                </div>
+                </motion.div>
             </Drawer>
         </div>
       );

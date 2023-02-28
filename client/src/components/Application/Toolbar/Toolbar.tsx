@@ -46,7 +46,7 @@ const Toolbar = () => {
               setMode('Create');
             }}
           >
-            <div className="pb-1">+</div>
+            <div className="pb-1 ">+</div>
           </button>
         </div>
       </div>

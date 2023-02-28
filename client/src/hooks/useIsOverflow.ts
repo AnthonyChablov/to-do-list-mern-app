@@ -1,6 +1,8 @@
 import React from 'react';
 
-export const useIsOverflow = (ref:any, callback:Function) => {
+export const useIsOverflow = (ref:any) => {
+
+  
   const [isOverflow, setIsOverflow] = React.useState(false);
 
   React.useLayoutEffect(() => {
@@ -11,13 +13,12 @@ export const useIsOverflow = (ref:any, callback:Function) => {
 
       setIsOverflow(hasOverflow);
 
-      if (callback) callback(hasOverflow);
     };
 
     if (current) {
       trigger();
     }
-  }, [callback, ref]);
+  }, [ ref]);
 
   return isOverflow;
 };
