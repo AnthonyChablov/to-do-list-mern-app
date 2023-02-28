@@ -10,7 +10,7 @@ type State = {
     email: String,
     password: String,
     confirmPassword: String,
-    loggedInUser: IUser | null
+    loggedInUser: IUser | undefined
 }
   
 type Action = {
@@ -20,6 +20,7 @@ type Action = {
     setPassword : (newPassword : String)=> void,
     setConfirmPassword: (newConfirmPassword : String)=> void,
     fetchLoggedInUser: Function,
+    setLoggedInUser: (newLoggedInUser : IUser)=> void
 }
 
 export const useUserStore = create<State & Action>((set)=>({
@@ -28,7 +29,7 @@ export const useUserStore = create<State & Action>((set)=>({
     email: '',
     password: '',
     confirmPassword:'',
-    loggedInUser: null,
+    loggedInUser: undefined,
     setFirstName : (newFirstName : String) => set({ firstName: newFirstName }),
     setLastName : (newLastName : String) => set({ lastName: newLastName }),
     setEmail: (newEmail : String) => set({ email: newEmail }),
@@ -38,5 +39,5 @@ export const useUserStore = create<State & Action>((set)=>({
         const fetchedUser = await getLoggedInUser();
         set({loggedInUser: fetchedUser});
     },
-
+    setLoggedInUser: (newLoggedInUser : any) => set({ loggedInUser: newLoggedInUser }),
 }));

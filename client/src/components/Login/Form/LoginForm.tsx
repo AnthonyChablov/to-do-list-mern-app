@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useQuery } from 'react-query';
 import { AnimatePresence, motion } from 'framer-motion';
 import SubmitButton from '../../Common/Buttons/SubmitButton'
 import FormFooter from '../../Common/FormFooter/FormFooter';
@@ -38,9 +39,7 @@ const LoginForm = () => {
       setPassword: state.setPassword 
     }), shallow
   );
-
   const[error, setError] = useState(false);
-
   const navigate = useNavigate();
 
   async function handleLogin(e: React.FormEvent){
@@ -53,10 +52,16 @@ const LoginForm = () => {
       setError(true);
       resetErrorMessage();
     }
+    resetFormInputs();
   }
 
   async function resetErrorMessage(){
     setTimeout(() => setError(false), 5000);
+  }
+
+  async function resetFormInputs(){
+    setEmail('');
+    setPassword('');
   }
 
   return (

@@ -5,7 +5,6 @@ import Loading from './components/Loading/Loading';
 import { useUserStore } from './store/User/userStore';
 import { getLoggedInUser } from './api/User/getLoggedInUser';
 
-
 const Home = React.lazy(() => import('./pages/Homepage'));
 const Application = React.lazy(() => import('./pages/AppPage'));
 const Login = React.lazy(() => import('./pages/LoginPage'));
@@ -37,19 +36,6 @@ const router = createBrowserRouter([
 
 function App() {
 
-  /* State */
-  const loggedInUser = useUserStore(state => state.loggedInUser);
-  const fetchLoggedInUser = useUserStore(state => state.fetchLoggedInUser);
-
-  /* React Query Fetch Logged In User */
-  const {isLoading, data: fetchedLoggedInUser} = useQuery( 
-    'todos', 
-    () => fetchLoggedInUser
-  );
-
-  useEffect(()=>{
-    console.log(loggedInUser);
-  },[fetchedLoggedInUser]);
   
 
   return (

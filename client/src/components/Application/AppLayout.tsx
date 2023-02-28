@@ -1,3 +1,4 @@
+import {useEffect} from 'react';
 import { motion } from 'framer-motion';
 import { shallow } from 'zustand/shallow'
 import { useQuery } from "react-query"; 
@@ -26,6 +27,7 @@ const AppLayout = () => {
   const loggedInUser = useUserStore(state => state.loggedInUser);
   const isOpen = useDrawerStore(state => state.isOpen);
   const setIsOpen = useDrawerStore(state => state.setIsOpen);
+  const fetchLoggedInUser = useUserStore(state => state.fetchLoggedInUser);
 
   async function handleDeleteTodo(todoId : string){
     await deleteTodo(todoId); // Call to api
@@ -37,6 +39,11 @@ const AppLayout = () => {
     'todos', 
     ()=>fetchTodos 
   );
+
+  useEffect(()=>{
+    fetchLoggedInUser();
+    console.log(loggedInUser);
+  },[loggedInUser?.email]);
 
   /* Render Todo Items */
   const todoItems = todos.map((todo: any, i:number)=>{
