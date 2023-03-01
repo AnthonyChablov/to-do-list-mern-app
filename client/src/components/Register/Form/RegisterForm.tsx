@@ -1,7 +1,14 @@
 import { useState } from 'react';
 import { motion , AnimatePresence} from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { TextField,} from '@mui/material';
+import TextField from '@mui/material/TextField';
+import InputAdornment from '@mui/material/InputAdornment';
+import InputLabel from '@mui/material/InputLabel';
+import IconButton from '@mui/material/IconButton';
+import Input from '@mui/material/Input';
+import FormControl from '@mui/material/FormControl';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { shallow } from 'zustand/shallow';
 import { useUserStore } from '../../../store/User/userStore';
 import FormFooter from '../../Common/FormFooter/FormFooter';
@@ -47,6 +54,8 @@ const RegisterForm = () => {
     );
     const [isPasswordsMatch, setIsPasswordsMatch] = useState(true);
     const [error, setError] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     const navigate = useNavigate();
 
@@ -75,6 +84,7 @@ const RegisterForm = () => {
             setError(false);
         }, 6500);
     }
+
     async function resetPasswordErrorMessage(){
         setTimeout(() => {
             setIsPasswordsMatch(true);
@@ -88,6 +98,18 @@ const RegisterForm = () => {
         setPassword('');
         setConfirmPassword('');
     }
+
+    function handleClickShowPassword(){
+        setShowPassword((show) => !show);
+    };
+
+    function handleClickShowConfirmPassword(){
+        setShowConfirmPassword((show) => !show);
+    };
+
+    function handleMouseDownPassword(e: React.MouseEvent<HTMLButtonElement>) {
+        e.preventDefault();
+    };
 
     return (
     <>
@@ -139,7 +161,35 @@ const RegisterForm = () => {
             }>
             </TextField>
         {/* Password */}
-            <TextField 
+            <FormControl 
+                error={!isPasswordsMatch || error}
+                variant='standard' 
+                fullWidth
+                margin="normal"
+                required
+                onChange={( e: React.ChangeEvent<HTMLInputElement>) => { 
+                    setPassword(e.target.value);
+                }}
+            >
+                <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                <Input
+                    id="outlined-adornment-password"
+                    type={showPassword ? 'text' : 'password'}
+                    endAdornment={
+                    <InputAdornment position="end">
+                        <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                        >
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                    </InputAdornment>
+                    }
+                />
+            </FormControl>
+            {/* <TextField 
                 error = {!isPasswordsMatch || error}
                 helperText={!isPasswordsMatch ? "Passwords do not match." : ''}
                 name='Password' 
@@ -153,28 +203,9 @@ const RegisterForm = () => {
                     setPassword(e.target.value);
                 }
             }>
-            </TextField> 
-            {/* <FormControl sx={{ m: 1, width: '25ch' }} variant="standard">
-                <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
-                <Input
-                    id="standard-adornment-password"
-                    type={showPassword ? 'text' : 'password'}
-                    endAdornment={
-                    <InputAdornment position="end">
-                        <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                        >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                    </InputAdornment>
-                    }
-                />
-            </FormControl> */}
-            
+            </TextField>  */}
         {/* Confirm Password */}
-            <TextField 
+            {/* <TextField 
                 error = {!isPasswordsMatch || error}
                 helperText={!isPasswordsMatch? "Passwords do not match." : ''}
                 name='ConfirmPassword' 
@@ -188,7 +219,35 @@ const RegisterForm = () => {
                     setConfirmPassword(e.target.value)
                 }
             }>
-            </TextField>
+            </TextField> */}
+            <FormControl 
+                error={!isPasswordsMatch || error}
+                variant='standard' 
+                fullWidth
+                margin="normal"
+                required
+                onChange={( e: React.ChangeEvent<HTMLInputElement>) => { 
+                    setConfirmPassword(e.target.value)
+                }}
+            >
+                <InputLabel htmlFor="outlined-adornment-password">Confirm Password</InputLabel>
+                <Input
+                    id="outlined-adornment-password"
+                    type={showConfirmPassword ? 'text' : 'password'}
+                    endAdornment={
+                    <InputAdornment position="end">
+                        <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowConfirmPassword}
+                            onMouseDown={handleMouseDownPassword}
+                            edge="end"
+                        >
+                        {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                    </InputAdornment>
+                    }
+                />
+            </FormControl>
             <AnimatePresence>
                 {
                     error && (
@@ -200,6 +259,20 @@ const RegisterForm = () => {
                             exit={'exit'}
                         >
                             <p>User already exists. Please use another email address or log in.</p>
+                        </motion.div>
+                    )
+                    
+                }
+                {
+                    !isPasswordsMatch && (
+                        <motion.div className="pt-3 text-sm text-center text-red-600"
+                            key="error"
+                            variants={errorMessageVariants}
+                            initial='initial'
+                            animate='animate'
+                            exit={'exit'}
+                        >
+                            <p>Passwords do not match.</p>
                         </motion.div>
                     )
                 }

@@ -27,7 +27,7 @@ const RegisterLayout = () => {
       <BackgroundMask/>
       <Container/>
       <motion.div className="sm:mx-auto sm:w-full sm:max-w-md"
-      key={'register'}
+        key={'register'}
         variants={registerVariants}
         initial='initial'
         animate='animate'

@@ -31,7 +31,6 @@ const buttonVariants : Variants={
   },
 }
 
-
 const AppLayout = () => {
 
   /* State */
@@ -47,10 +46,9 @@ const AppLayout = () => {
   const setIsOpen = useDrawerStore(state => state.setIsOpen);
   const fetchLoggedInUser = useUserStore(state => state.fetchLoggedInUser);
 
-  async function handleDeleteTodo(todoId : string){
-    await deleteTodo(todoId); // Call to api
-    removeTodo(todoId); // Change UI 
-  };
+  /* Hooks */
+  const layoutRef = useRef();
+  const isOverflow = useIsOverflow(layoutRef);
 
   /* React Query Fetch All Todos */
   const {isLoading : loadingFetchTodos, data : fetchedTodos} = useQuery( 
@@ -63,12 +61,6 @@ const AppLayout = () => {
     'loggedInUser', 
     ()=>fetchLoggedInUser
   ); 
-
-  /* useEffect(()=>{
-    fetchLoggedInUser();
-    console.log(loggedInUser);
-  },[loggedInUser?.email]);
- */
 
   /* Render Todo Items */
   const todoItems = todos.map((todo: any, i:number)=>{
@@ -87,16 +79,14 @@ const AppLayout = () => {
     )
   });
 
-  const layoutRef = useRef();
-  const isOverflow = useIsOverflow(layoutRef);
-
-  useEffect(()=>{
-    console.log(isOverflow);
-  },[isOverflow])
+  async function handleDeleteTodo(todoId : string){
+    await deleteTodo(todoId); // Call to api
+    removeTodo(todoId); // Change UI 
+  };
 
   return (
     <div className={`pt-6 h-screen max-h-screen  overflow-auto 
-      bg-slate-100 font-Roboto ${layoutRef && 'pb-52' }`}
+      bg-slate-100 font-Roboto ${!isOverflow && 'pb-52' }`}
       ref={layoutRef}
     >
       <div className="px-4 w-[87%] max-w-[90rem] mx-auto">
@@ -132,4 +122,4 @@ const AppLayout = () => {
   );
 };
 
-export default AppLayout
+export default AppLayout;

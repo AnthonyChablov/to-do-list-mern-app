@@ -1,6 +1,6 @@
 import {AiOutlineClose} from 'react-icons/ai';
 import { motion , AnimatePresence, Variants} from 'framer-motion';
-import Box from '@mui/material/Box';
+import {Box} from '@mui/material';  
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Form from './Form/Form';

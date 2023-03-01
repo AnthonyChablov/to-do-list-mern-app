@@ -1,14 +1,20 @@
 import { useState, useEffect } from 'react';
-import { useQuery } from 'react-query';
+import { isError, useQuery } from 'react-query';
+import { shallow } from 'zustand/shallow';
 import { AnimatePresence, motion } from 'framer-motion';
+import TextField from '@mui/material/TextField';
+import InputAdornment from '@mui/material/InputAdornment';
+import InputLabel from '@mui/material/InputLabel';
+import IconButton from '@mui/material/IconButton';
+import Input from '@mui/material/Input';
+import FormControl from '@mui/material/FormControl';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { Link, useNavigate } from 'react-router-dom';
 import SubmitButton from '../../Common/Buttons/SubmitButton'
 import FormFooter from '../../Common/FormFooter/FormFooter';
-import { Link, useNavigate } from 'react-router-dom';
-import { TextField } from '@mui/material';
-import { shallow } from 'zustand/shallow';
 import { useUserStore } from '../../../store/User/userStore';
 import { loginUser } from '../../../api/User/loginUser';
-import { getLoggedInUser } from '../../../api/User/getLoggedInUser';
 
 const errorMessageVariants = { // Framer motion config
   initial:{
@@ -19,8 +25,8 @@ const errorMessageVariants = { // Framer motion config
     transition:{
       type:'tween',
       ease:'easeInOut',
-      duration: 0.65,
-      when: ''
+      duration: 0.05,
+      when: '',
     }
   },
   exit:{
@@ -40,6 +46,9 @@ const LoginForm = () => {
     }), shallow
   );
   const[error, setError] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
+  /* Navigate Routes */
   const navigate = useNavigate();
 
   async function handleLogin(e: React.FormEvent){
@@ -52,23 +61,31 @@ const LoginForm = () => {
       setError(true);
       resetErrorMessage();
     }
-    resetFormInputs();
-  }
+  };
 
   async function resetErrorMessage(){
     setTimeout(() => setError(false), 5000);
-  }
+  };
 
   async function resetFormInputs(){
     setEmail('');
     setPassword('');
-  }
+  };
+
+  function handleClickShowPassword(){
+    setShowPassword((show) => !show);
+  };
+
+  function handleMouseDownPassword(event: React.MouseEvent<HTMLButtonElement>) {
+    event.preventDefault();
+  };
 
   return (
     <>
       <form onSubmit={handleLogin}>
       {/* Email */}
         <TextField 
+        autoComplete='on'
           error = {error}
           name='Email' 
           variant='standard' 
@@ -77,25 +94,40 @@ const LoginForm = () => {
           value={email} 
           required 
           onChange={( e: React.ChangeEvent<HTMLInputElement>) => { 
+            e.preventDefault();
             setEmail(e.target.value);
           }
         }>
         </TextField>
       {/* Password */}
-        <TextField 
-          error = {error}
-          name='Password' 
+        <FormControl 
+          error={error}
           variant='standard' 
-          label='Password' 
-          fullWidth 
-          value={password} 
-          required 
+          fullWidth
           margin="normal"
+          required
           onChange={( e: React.ChangeEvent<HTMLInputElement>) => { 
             setPassword(e.target.value);
-          }
-        }>
-        </TextField>
+          }}
+        >
+          <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+          <Input
+            id="outlined-adornment-password"
+            type={showPassword ? 'text' : 'password'}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            }
+          />
+        </FormControl>
         <div className="flex items-center justify-between text-sm font-medium">
           <div className="pt-4  text-gray-500 text-primary-600 
           hover:text-primary-500 hover:underline hover:text-red-600">

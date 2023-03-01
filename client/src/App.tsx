@@ -1,43 +1,50 @@
-import React, {useEffect} from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { useQuery } from "react-query"; 
+import React from 'react';
+import { ErrorBoundary } from "react-error-boundary";
+import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import Loading from './components/Loading/Loading';
-import { useUserStore } from './store/User/userStore';
-import { getLoggedInUser } from './api/User/getLoggedInUser';
+import GlobalError from './components/GlobalError/GlobalError';
 
 const Home = React.lazy(() => import('./pages/Homepage'));
 const Application = React.lazy(() => import('./pages/AppPage'));
 const Login = React.lazy(() => import('./pages/LoginPage'));
 const Register = React.lazy(() => import('./pages/RegisterPage'));
-const Error404 = React.lazy(() => import('./pages/Error404Page'));
+const RouteNotFound = React.lazy(() => import('./pages/RouteNotFoundPage'));
+
+const ErrorBoundaryLayout = () => (
+  <ErrorBoundary FallbackComponent={GlobalError}>
+    <Outlet />
+  </ErrorBoundary>
+);
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <Home />,
-  },
-  {
-    path: "/login", 
-    element: <Login />,
-  },
-  {
-    path: "/app", 
-    element: <Application />,
-  },
-  {
-    path: "/register", 
-    element: <Register />,
-  },
-  {
-    path: "*", 
-    element: <Error404 />,
-  },
-]);
+    element: <ErrorBoundaryLayout />,
+    children:[
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/login", 
+        element: <Login />,
+      },
+      {
+        path: "/app", 
+        element: <Application />,
+      },
+      {
+        path: "/register", 
+        element: <Register />,
+      },
+      {
+        path: "*", 
+        element: <RouteNotFound />,
+      },
+    ]
+  }
+]); 
 
 function App() {
-
-  
-
   return (
     <div className="App">
       <React.Suspense fallback={<Loading/>}>
@@ -47,4 +54,4 @@ function App() {
   )
 }
 
-export default App
+export default App;

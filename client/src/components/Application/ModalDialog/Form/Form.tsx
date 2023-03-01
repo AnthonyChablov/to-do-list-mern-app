@@ -16,7 +16,6 @@ interface IForm{
   mode : String,
 };
 
-
 const Form = ({mode}:IForm) => {
 
     /* State */
@@ -66,6 +65,7 @@ const Form = ({mode}:IForm) => {
       }>
       {/* title */}
         <TextField 
+          autoComplete='off'
           name='Title' 
           variant='standard' 
           label='Title' 
@@ -78,6 +78,7 @@ const Form = ({mode}:IForm) => {
         </TextField>
       {/* desc */}
         <TextField 
+          autoComplete='off'
           name='Description' 
           variant='standard' 
           label='Description' 
@@ -103,6 +104,7 @@ const Form = ({mode}:IForm) => {
               renderInput={
                 (params) => 
                   <TextField 
+                    autoComplete='off'
                     fullWidth 
                     variant='standard'  
                     margin="normal"
@@ -123,6 +125,7 @@ const Form = ({mode}:IForm) => {
               renderInput={
                 (params) => 
                   <TextField 
+                    autoComplete='off'
                     fullWidth 
                     variant='standard'  
                     margin="normal"
