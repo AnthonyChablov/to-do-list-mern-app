@@ -1,8 +1,47 @@
+import { motion } from "framer-motion";
+import {FaSadCry} from 'react-icons/fa';
+import BackgroundMask from "../Common/Formatting/BackgroundMask";
+
+
+
+const errorVariants =  {
+  initial:{ 
+    opacity:0
+  },
+  animate:{
+    y: 0, 
+    opacity: 1,
+    transition:{
+      type:'tween',
+      ease:'easeInOut',
+      duration: 0.7,
+      when: ''
+    }
+  },
+}
+
 const Error404Layout = () => {
   return (
-    <div>
-        Error 404
-    </div>
+    <section className="relative bg-heroImage bg-cover bg-center bg-no-repeat flex flex-col items-center h-screen ">
+      <BackgroundMask/>
+      <motion.div className="mt-[14vh] px-20 py-20 relative mx-auto font-Roboto bg-white shadow-2xl rounded-xl"
+        variants={errorVariants}
+        initial='initial'
+        animate='animate'
+      >
+        <div className="w-10/12 max-w-3xl mx-auto text-gray-900">
+          <h1 className="text-3xl sm:text-4xl text-center font-bold">
+            404: Page Not Found
+          </h1>
+          <p className="pt-12 text-center text-xl sm:text-xl ">
+            Sorry, this page does not exist.  Please go back and try again.
+          </p>
+        </div>
+        <div className="pt-10 flex justify-center ">
+          <FaSadCry size={90} color={'#e02c2c'}/>
+        </div>
+      </motion.div>
+    </section>
   )
 }
 

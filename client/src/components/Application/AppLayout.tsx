@@ -1,4 +1,4 @@
-import { useRef , useEffect} from 'react';
+import { useRef } from 'react';
 import { motion, Variants } from 'framer-motion';
 import { shallow } from 'zustand/shallow'
 import { useQuery } from "react-query"; 
@@ -47,7 +47,7 @@ const AppLayout = () => {
   const fetchLoggedInUser = useUserStore(state => state.fetchLoggedInUser);
 
   /* Hooks */
-  const layoutRef = useRef();
+  const layoutRef = useRef<HTMLInputElement>(null); 
   const isOverflow = useIsOverflow(layoutRef);
 
   /* React Query Fetch All Todos */
@@ -86,8 +86,9 @@ const AppLayout = () => {
 
   return (
     <div className={`pt-6 h-screen max-h-screen  overflow-auto 
-      bg-slate-100 font-Roboto ${!isOverflow && 'pb-52' }`}
-      ref={layoutRef}
+       bg-slate-100 font-Roboto ${!isOverflow && 'pb-52' }`
+      }
+      ref={layoutRef }
     >
       <div className="px-4 w-[87%] max-w-[90rem] mx-auto">
         <div className=" flex items-center">
