@@ -1,7 +1,6 @@
 import React from 'react';
 
-export const useIsOverflow = (ref:any) => {
-
+export default function useIsOverflow (ref:any){
   
   const [isOverflow, setIsOverflow] = React.useState(false);
 

@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react';
-import { isError, useQuery } from 'react-query';
+import { useState,  } from 'react';
 import { shallow } from 'zustand/shallow';
 import { AnimatePresence, motion } from 'framer-motion';
 import TextField from '@mui/material/TextField';
@@ -47,7 +46,9 @@ const LoginForm = () => {
   );
   const[error, setError] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-
+  const isAuthenticated = useUserStore(state=> state.isAuthenticated);
+  const setIsAuthenticated = useUserStore(state=> state.setIsAuthenticated);
+  
   /* Navigate Routes */
   const navigate = useNavigate();
 

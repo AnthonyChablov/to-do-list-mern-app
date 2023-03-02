@@ -9,6 +9,7 @@ import session from "express-session";
 import env from "./utils/validateEnv";
 import MongoStore from 'connect-mongo';
 import createHttpError, {isHttpError} from 'http-errors';
+import { auth } from './middleware/auth';
 
 /* setup */
 config();
@@ -45,7 +46,7 @@ app.get('/', (req: Request, res:Response)=>{
     res.send('Server Running');
 });
 
-app.use('/api/todo', todoRoutes);
+app.use('/api/todo', auth, todoRoutes);
 app.use('/api/user', userRoutes);
 app.use((req: Request, res:Response, next: NextFunction)=>{
     next(createHttpError(404, "Endpoint not found"));

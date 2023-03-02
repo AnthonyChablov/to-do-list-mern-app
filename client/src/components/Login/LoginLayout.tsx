@@ -4,7 +4,6 @@ import BackgroundMask from '../Common/Formatting/BackgroundMask';
 import Container from '../Common/Formatting/Container';
 import Header from '../Common/Text/Header';
 
-
 const loginVariants = {
   initial:{
     opacity:0
@@ -21,6 +20,7 @@ const loginVariants = {
 }
 
 const LoginLayout = () => {
+  
   return (
     <section className="relative min-h-screen bg-gray-100 flex flex-col justify-center py-12 
     sm:px-6 lg:px-8 font-Roboto bg-heroImage bg-cover bg-center bg-no-repeat">

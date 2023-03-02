@@ -4,47 +4,52 @@ import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import Loading from './components/Loading/Loading';
 import GlobalError from './components/GlobalError/GlobalError';
 
+
+/* lazy loading on routes */
 const Home = React.lazy(() => import('./pages/Homepage'));
 const Application = React.lazy(() => import('./pages/AppPage'));
 const Login = React.lazy(() => import('./pages/LoginPage'));
 const Register = React.lazy(() => import('./pages/RegisterPage'));
 const RouteNotFound = React.lazy(() => import('./pages/RouteNotFoundPage'));
 
-const ErrorBoundaryLayout = () => (
+const ErrorBoundaryLayout = () => ( // Error boundary for catching errors in our app 
   <ErrorBoundary FallbackComponent={GlobalError}>
     <Outlet />
   </ErrorBoundary>
 );
 
-const router = createBrowserRouter([
-  {
-    element: <ErrorBoundaryLayout />,
-    children:[
-      {
-        path: "/",
-        element: <Home />,
-      },
-      {
-        path: "/login", 
-        element: <Login />,
-      },
-      {
-        path: "/app", 
-        element: <Application />,
-      },
-      {
-        path: "/register", 
-        element: <Register />,
-      },
-      {
-        path: "*", 
-        element: <RouteNotFound />,
-      },
-    ]
-  }
-]); 
-
 function App() {
+
+  const router = createBrowserRouter([
+    {
+      element: <ErrorBoundaryLayout />,
+      children:[
+        {
+          path: "/",
+          element: <Home />,
+        },
+        {
+          path: "/login", 
+          element: <Login />,
+        },
+        {
+          path: "/app", 
+          element: ( 
+              <Application /> 
+          )
+        },
+        {
+          path: "/register", 
+          element: <Register />,
+        },
+        {
+          path: "*", 
+          element: <RouteNotFound />,
+        },
+      ]
+    }
+  ]); 
+
   return (
     <div className="App">
       <React.Suspense fallback={<Loading/>}>

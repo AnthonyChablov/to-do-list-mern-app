@@ -10,7 +10,8 @@ type State = {
     email: String,
     password: String,
     confirmPassword: String,
-    loggedInUser: IUser | undefined
+    loggedInUser: IUser | undefined,
+    isAuthenticated: boolean,
 }
   
 type Action = {
@@ -20,7 +21,8 @@ type Action = {
     setPassword : (newPassword : String)=> void,
     setConfirmPassword: (newConfirmPassword : String)=> void,
     fetchLoggedInUser: Function,
-    setLoggedInUser: (newLoggedInUser : IUser)=> void
+    setIsAuthenticated : (newIsAuthenticated : boolean) => void
+    setLoggedInUser: (newLoggedInUser : IUser)=> void,
 }
 
 export const useUserStore = create<State & Action>((set)=>({
@@ -30,6 +32,7 @@ export const useUserStore = create<State & Action>((set)=>({
     password: '',
     confirmPassword:'',
     loggedInUser: undefined,
+    isAuthenticated : false,
     setFirstName : (newFirstName : String) => set({ firstName: newFirstName }),
     setLastName : (newLastName : String) => set({ lastName: newLastName }),
     setEmail: (newEmail : String) => set({ email: newEmail }),
@@ -40,4 +43,5 @@ export const useUserStore = create<State & Action>((set)=>({
         set({loggedInUser: fetchedUser});
     },
     setLoggedInUser: (newLoggedInUser : any) => set({ loggedInUser: newLoggedInUser }),
+    setIsAuthenticated: (newIsAuthenticated : boolean)=> set({isAuthenticated: newIsAuthenticated}),
 }));
