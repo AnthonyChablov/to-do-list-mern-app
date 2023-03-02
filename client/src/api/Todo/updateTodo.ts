@@ -9,9 +9,12 @@ export async function updateTodo(todoId:String, title: String, description: Stri
             startDate, 
             dueDate, 
         }),
-        headers: {
-            "Content-Type" : "application/json",
-        },
+        credentials: 'include',
+        headers: new Headers({
+            'Accept': 'application/json',
+            'Access-Control-Allow-Origin':'http://localhost:8000/',
+            'Content-Type': 'application/json',
+        })
     });
     return res.json();
 }

@@ -20,7 +20,7 @@ const errorVariants = {
 
 
 const GlobalError = () => {
-  
+
   return (
     <section className="relative bg-heroImage bg-cover bg-center bg-no-repeat flex flex-col items-center h-screen ">
       <BackgroundMask/>
