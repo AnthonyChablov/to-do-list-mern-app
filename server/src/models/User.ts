@@ -1,4 +1,4 @@
-import mongoose, { InferSchemaType, model, Schema } from 'mongoose';
+import  { InferSchemaType, model, Schema } from 'mongoose';
 
 const UserSchema = new Schema({
     id: {type: String},
@@ -10,5 +10,5 @@ const UserSchema = new Schema({
     password: {type:String, required : true, select: false}, 
 });
 
-type User = InferSchemaType<typeof UserSchema>
+type User = InferSchemaType<typeof UserSchema>;
 export default model<User>("User", UserSchema);

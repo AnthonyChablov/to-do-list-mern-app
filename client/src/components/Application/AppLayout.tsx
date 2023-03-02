@@ -62,7 +62,7 @@ const AppLayout = () => {
   );
 
   /* Fetch Logged In User */
-  const {isLoading : loadingFetchLoggedInUser, data : fetchUser} = useQuery( 
+  const {isLoading : loadingFetchLoggedInUser, data : fetchUser, isError} = useQuery( 
     'loggedInUser', 
     ()=>fetchLoggedInUser
   ); 

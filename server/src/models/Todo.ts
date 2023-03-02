@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const ObjectId = mongoose.Types.ObjectId;
 
 const TodoSchema = new Schema({
-  userId: {type: ObjectId},
+  userId: ObjectId,
   title: String,
   description: String,
   startDate: Date,
