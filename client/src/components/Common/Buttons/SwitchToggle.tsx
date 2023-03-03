@@ -73,9 +73,7 @@ const SwitchToggle = () => {
   useEffect(()=>{
     body.classList.add(!isDarkMode ? 'light' : 'dark');
     body.classList.remove(isDarkMode ? 'light' : 'dark'  );
-    console.log(isDarkMode)
   },[isDarkMode]);
-
 
   return (
     <FormGroup>
@@ -93,7 +91,6 @@ const SwitchToggle = () => {
         }
         label={'Dark Mode'}
         labelPlacement={'start'}
-        
       />
     </FormGroup>
   )

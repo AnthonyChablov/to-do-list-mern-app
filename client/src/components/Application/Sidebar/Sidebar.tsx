@@ -40,7 +40,6 @@ export const Sidebar = () => {
         navigate('/');
     }
 
-
     return (
         <div className='top-0 z-50 absolute '>
             <Drawer

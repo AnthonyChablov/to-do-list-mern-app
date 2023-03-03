@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion , AnimatePresence} from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
@@ -110,6 +110,10 @@ const RegisterForm = () => {
         e.preventDefault();
     };
 
+    useEffect(()=>{
+        resetFormInputs();
+    },[])
+
     return (
     <>
         <form onSubmit={handleRegister}>
@@ -161,6 +165,7 @@ const RegisterForm = () => {
             </TextField>
         {/* Password */}
             <FormControl 
+                
                 error={!isPasswordsMatch || error}
                 variant='standard' 
                 fullWidth
@@ -172,6 +177,7 @@ const RegisterForm = () => {
             >
                 <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                 <Input
+                    
                     id="outlined-adornment-password"
                     type={showPassword ? 'text' : 'password'}
                     endAdornment={

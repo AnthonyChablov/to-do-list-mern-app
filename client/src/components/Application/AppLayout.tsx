@@ -50,7 +50,8 @@ const AppLayout = () => {
   /* Hooks */
   const layoutRef = useRef<HTMLInputElement>(null); 
   const isOverflow = useIsOverflow(layoutRef);
-  
+  const navigate = useNavigate();
+
   /* Fetch All Todos */
   const {isLoading : loadingFetchTodos, isError: isErrorFetchTodos,  data : fetchedTodos} = useQuery( 
     'todos', 
@@ -65,25 +66,33 @@ const AppLayout = () => {
 
   /* Render Todo Items */
   const todoItems = todos.map((todo: any, i:number)=>{
-      return ( 
-        <Card 
-          key={todo?._id}
-          id={todo?._id}
-          title={todo?.title}
-          description={todo?.description}
-          startDate={todo?.startDate}
-          dueDate = {todo?.dueDate}
-          isDone= {todo?.isDone}
-          handleDeleteTodo= {handleDeleteTodo}
-          animationProperty = {i}
-        />
-      )
-    });
-
+    return ( 
+      <Card 
+        key={todo?._id}
+        id={todo?._id}
+        title={todo?.title}
+        description={todo?.description}
+        startDate={todo?.startDate}
+        dueDate = {todo?.dueDate}
+        isDone= {todo?.isDone}
+        handleDeleteTodo= {handleDeleteTodo}
+        animationProperty = {i}
+      />
+    )
+  });
   async function handleDeleteTodo(todoId : string){
     await deleteTodo(todoId); // Call to api
     removeTodo(todoId); // Change UI 
   };
+
+  
+  /* if user not logged in redirect */
+  /*  
+  useEffect(()=>{
+    if (!fetchUser ){
+      navigate('/login')
+    }
+  },[]) */
 
   return (
     <div className={`pt-6 h-screen max-h-screen  overflow-auto dark:bg-zinc-800 dark:text-gray-100
