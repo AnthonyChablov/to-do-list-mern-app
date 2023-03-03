@@ -9,7 +9,7 @@ const UserInfo = () => {
     const loggedInUser = useUserStore(state => state.loggedInUser);
 
     return (
-        <div className="flex items-center pb-2 pl-1 rounded-2xl">
+        <div className="flex items-center pb-2 pl-1 rounded-2xl dark:text-gray-100">
             {/* image */}
             <div className="mr-5">
                 <FaUserCircle size={46} color={'#e02c2c'}/>

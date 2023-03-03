@@ -66,15 +66,17 @@ const Card = ({id, title, description,startDate,dueDate, handleDeleteTodo, anima
     <>
       <AnimatePresence  mode={"wait"}>
         <motion.div className="w-11/12 rounded-xl mb-5 border-solid border-2 
-          overflow-hidden shadow-md max-w-xl text-gray-800 "
+          overflow-hidden shadow-md max-w-xl text-gray-800 dark:text-gray-100 "
           key='card'
           variants={cardVariants}
           initial='initial'
           animate='animate'
           exit={'exit'}
         >
-          <div className="p-2 flex justify-between bg-gradient-to-r from-gray-300 to-gray-300">
-            <div className="flex items-center">
+          <div className="p-2 flex justify-between bg-gradient-to-r from-gray-300 to-gray-300 
+          dark:from-zinc-700 dark:to-zinc-700 "
+          >
+            <div className="flex items-center ">
               <button className="mr-3 ml-2" onClick={ () => setIsCompleted(!isCompleted)}>
                 {/* Change isCompleted */}
                 {
@@ -95,13 +97,13 @@ const Card = ({id, title, description,startDate,dueDate, handleDeleteTodo, anima
             </div>
             <div className="flex items-center">
               {/* Delete button */}
-              <button className=" mr-3 hover:bg-slate-300 hover:rounded-xl"
+              <button className=" mr-3 p-1 hover:bg-zinc-600 hover:rounded-xl"
                 onClick={()=>handleDeleteTodo(id)}
               >
                 <MdDeleteOutline size={19} color="red"/>
               </button>
               {/* Edit Button */}
-              <button className=" mr-3 hover:bg-slate-300 hover:rounded-xl"
+              <button className=" mr-3 p-1 hover:bg-zinc-600 hover:rounded-xl"
                 onClick={()=>{
                   /* Opens Modal */
                   handleModalOpen(!open);
@@ -115,12 +117,12 @@ const Card = ({id, title, description,startDate,dueDate, handleDeleteTodo, anima
               </button>
             </div>
           </div>
-          <div className="p-2 h-fit ">
-            <div className={`text-sm pt-1.5 text-gray-600 underline pb-3 ${ isCompleted ? 'line-through' : '' }`}>
+          <div className="p-2 h-fit dark:bg-gray-200 ">
+            <div className={`text-sm pt-1.5 text-gray-600 underline pb-3 ${ isCompleted ? 'line-through' : '' } dark:text-zinc-900`}>
               {/* Displays Date */}
               {startDay.toDateString()} <span> - </span> {dueDay.toDateString()}
             </div>
-            <p className={`pb-3 text-sm ${isCompleted ? 'line-through' : '' }`}> {description}</p>
+            <p className={`pb-3 text-sm dark:text-zinc-900  ${isCompleted ? 'line-through' : '' }`}> {description}</p>
           </div>
         </motion.div>
       </AnimatePresence>

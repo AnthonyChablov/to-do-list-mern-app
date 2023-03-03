@@ -1,5 +1,4 @@
 import create from 'zustand';
-
 import { getLoggedInUser } from '../../api/User/getLoggedInUser';
 import { IUser } from '../../models/User';
 

@@ -56,9 +56,12 @@ const ModalDialog = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
         key='modal'
+        className=''
       >
-        <Box sx={style} >
-          <motion.div className=""
+        <Box className='dark:bg-zinc-800 dark:text-gray-100'
+          sx={style} 
+        >
+          <motion.div 
             variants={modalBoxVariants}
             initial={'initial'}
             animate={'animate'}

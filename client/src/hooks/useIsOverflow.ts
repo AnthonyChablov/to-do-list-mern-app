@@ -9,9 +9,7 @@ export default function useIsOverflow (ref:any){
 
     const trigger = () => {
       const hasOverflow = current.scrollHeight > current.clientHeight;
-
       setIsOverflow(hasOverflow);
-
     };
 
     if (current) {
