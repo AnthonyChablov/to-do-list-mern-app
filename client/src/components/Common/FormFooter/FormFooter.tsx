@@ -12,14 +12,14 @@ const FormFooter = ({ mode }:IFormFooter) => {
       {/* Form Footer */}
       <div className="mt-2 text-sm font-medium text-primary-600 hover:text-primary-500 
       text-center flex flex-col items-center justify-center">
-        <p className='text-gray-500'>
+        <p className='text-gray-500 dark:text-gray-300'>
           {
             mode ==='register' 
               ? "Have an Account?"
               : "Don't have an Account?"
           }
         </p>
-        <div className='pt-3 text-md uppercase w-fit '>
+        <div className='pt-3 text-md uppercase w-fit dark:text-gray-100'>
           <Link to={
               mode ==='register' 
                 ? "/login"

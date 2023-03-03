@@ -23,16 +23,16 @@ const LoginLayout = () => {
   
   return (
     <section className="relative min-h-screen bg-gray-100 flex flex-col justify-center py-12 
-    sm:px-6 lg:px-8 font-Roboto bg-heroImage bg-cover bg-center bg-no-repeat">
+    sm:px-6 lg:px-8 font-Roboto bg-heroImage bg-cover bg-center bg-no-repeat ">
       <BackgroundMask/>
       <Container/>
       {/* layout */}
-      <motion.div className="sm:mx-auto sm:w-full sm:max-w-md"
+      <motion.div className="sm:mx-auto sm:w-full sm:max-w-md "
         variants={loginVariants}
         initial='initial'
         animate='animate'
       >
-        <div className="relative pt-9 pb-10 px-4 bg-white shadow-md rounded-xl sm:px-10 ">
+        <div className="relative pt-9 pb-10 px-4 bg-white shadow-md rounded-xl sm:px-10 dark:bg-zinc-800 ">
           <div className="pt-3">
             <Header text={'Login'}/>
           </div>

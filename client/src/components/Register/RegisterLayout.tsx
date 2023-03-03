@@ -26,14 +26,14 @@ const RegisterLayout = () => {
     sm:px-6 lg:px-8 font-Roboto bg-heroImage h-max bg-cover bg-center bg-no-repeat ">
       <BackgroundMask/>
       <Container/>
-      <motion.div className="sm:mx-auto sm:w-full sm:max-w-md"
+      <motion.div className="sm:mx-auto sm:w-full sm:max-w-md "
         key={'register'}
         variants={registerVariants}
         initial='initial'
         animate='animate'
         exit='exit'
       >
-        <div className="relative pt-9 pb-10 px-4 bg-white shadow-md rounded-xl sm:px-10 ">
+        <div className="relative pt-9 pb-10 px-4 bg-white shadow-md rounded-xl sm:px-10 dark:text-gray-100 dark:bg-zinc-800">
           <Header text={'Register'}/>
           <RegisterForm/>
         </div>

@@ -131,7 +131,7 @@ const LoginForm = () => {
         </FormControl>
         <div className="flex items-center justify-between text-sm font-medium">
           <div className="pt-4  text-gray-500 text-primary-600 
-          hover:text-primary-500 hover:underline hover:text-red-600">
+          hover:text-primary-500 hover:underline hover:text-red-600 dark:text-gray-300">
             <Link to='/login'>
               Forgot Your Password?
             </Link>

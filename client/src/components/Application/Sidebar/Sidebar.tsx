@@ -1,8 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { motion, Variants } from 'framer-motion';
-import Box from '@mui/material/Box';
 import { Drawer,  } from '@mui/material';
-import { Link } from 'react-router-dom';
 import {AiOutlineArrowLeft} from 'react-icons/ai';
 import {CiSettings} from 'react-icons/ci';
 import {FiUser} from 'react-icons/fi';
@@ -10,7 +8,7 @@ import { useDrawerStore } from '../../../store/Drawer/drawerStore';
 import { useUserStore } from '../../../store/User/userStore';
 import UserInfo from './UserInfo/UserInfo';
 import { logoutUser } from '../../../api/User/logoutUser';
-import useDarkMode from '../../../hooks/useDarkMode';
+import SwitchToggle from '../../Common/Buttons/SwitchToggle';
 
 /* framer motions config */
 const sideBarVariants : Variants={
@@ -33,7 +31,7 @@ export const Sidebar = () => {
     const isOpen = useDrawerStore(state=> state.isOpen);
     const setIsOpen = useDrawerStore(state => state.setIsOpen);
     const loggedInUser = useUserStore(state => state.loggedInUser);
-
+    
     const navigate = useNavigate();
 
     function logOutHandeller(){
@@ -41,6 +39,7 @@ export const Sidebar = () => {
         setIsOpen(!isOpen);
         navigate('/');
     }
+
 
     return (
         <div className='top-0 z-50 absolute '>
@@ -80,21 +79,10 @@ export const Sidebar = () => {
                             </div>
                         {/* Dark Mode */}
                             <div className=" mt-5 flex items-center">
-                                <span className=' mr-4 text-md dark:text-gray-100'>Dark Mode</span>
+                                
                                 <label className="relative inline-flex items-center cursor-pointer">
                                     <div className="">
-                                        <input type="checkbox" value="" className="sr-only peer"
-                                            onClick={()=> useDarkMode}
-                                        />
-                                        <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 
-                                        dark:peer-focus:ring-red-800 rounded-full peer 
-                                        dark:bg-gray-600 peer-checked:after:translate-x-full peer-checked:after:border-white 
-                                        after:content-[''] 
-                                        after:absolute after:top-[2px] after:left-[2px] 
-                                        after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 
-                                        after:transition-all dark:border-gray-600 peer-checked:bg-red-600"
-                                        >
-                                        </div>
+                                        <SwitchToggle/>
                                     </div>
                                 </label>
                             </div>

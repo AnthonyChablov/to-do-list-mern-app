@@ -22,12 +22,12 @@ const HomeLayout = () => {
   return (
     <section className="relative bg-heroImage bg-cover bg-center bg-no-repeat flex flex-col items-center h-screen ">
       <BackgroundMask/>
-      <motion.div className="mt-[14vh] px-20 py-20 relative mx-auto font-Roboto bg-white shadow-2xl rounded-xl"
+      <motion.div className="mt-[14vh] px-20 py-20 relative mx-auto font-Roboto bg-white shadow-2xl rounded-xl dark:bg-zinc-800 "
         variants={loginVariants}
         initial='initial'
         animate='animate'
       >
-        <div className="w-10/12 max-w-3xl mx-auto text-gray-900">
+        <div className="w-10/12 max-w-3xl mx-auto text-gray-900 dark:text-gray-100">
           <h1 className="text-3xl sm:text-4xl text-center font-bold">
             Manage Your Tasks, Quick and Easy
           </h1>

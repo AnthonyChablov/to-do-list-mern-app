@@ -83,7 +83,7 @@ const Card = ({id, title, description,startDate,dueDate, handleDeleteTodo, anima
                   isCompleted 
                     ?
                       <div className="">
-                        <IoIosCheckmarkCircle size={23} color={'green'}/>
+                        <IoIosCheckmarkCircle size={23} color={'#65c466'}/>
                       </div> 
                     : 
                       <div className="">
@@ -97,13 +97,13 @@ const Card = ({id, title, description,startDate,dueDate, handleDeleteTodo, anima
             </div>
             <div className="flex items-center">
               {/* Delete button */}
-              <button className=" mr-3 p-1 hover:bg-zinc-600 hover:rounded-xl"
+              <button className=" mr-3 p-1 hover:bg-zinc-400 dark:hover:bg-zinc-600 hover:rounded-xl"
                 onClick={()=>handleDeleteTodo(id)}
               >
                 <MdDeleteOutline size={19} color="red"/>
               </button>
               {/* Edit Button */}
-              <button className=" mr-3 p-1 hover:bg-zinc-600 hover:rounded-xl"
+              <button className=" mr-3 p-1 hover:bg-zinc-400 dark:hover:bg-zinc-600 hover:rounded-xl"
                 onClick={()=>{
                   /* Opens Modal */
                   handleModalOpen(!open);

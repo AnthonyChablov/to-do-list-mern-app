@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { ErrorBoundary } from "react-error-boundary";
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import Loading from './components/Loading/Loading';
 import GlobalError from './components/GlobalError/GlobalError';
-
+import useLocalStorage from "use-local-storage";
+import { useDarkModeStore } from './store/DarkMode/darkModeStore';
 
 /* lazy loading on routes */
 const Home = React.lazy(() => import('./pages/Homepage'));
@@ -19,6 +20,13 @@ const ErrorBoundaryLayout = () => ( // Error boundary for catching errors in our
 );
 
 function App() {
+
+  const [isDarkMode, setDarkMode] = useLocalStorage<boolean>(
+    'usehooks-ts-dark-mode',
+    false,
+  );
+
+  const body = window.document.body;
 
   const router = createBrowserRouter([
     {
@@ -49,6 +57,11 @@ function App() {
       ]
     }
   ]); 
+
+  useEffect(()=>{
+    body.classList.add(!isDarkMode ? 'light' : 'dark');
+    body.classList.remove(isDarkMode ? 'light' : 'dark'  );
+  },[isDarkMode]);
 
   return (
     <div className="App">

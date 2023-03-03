@@ -49,7 +49,6 @@ const RegisterForm = () => {
             setEmail: state.setEmail ,
             setPassword: state.setPassword ,
             setConfirmPassword: state.setConfirmPassword,
-
         }), shallow
     );
     const [isPasswordsMatch, setIsPasswordsMatch] = useState(true);
