@@ -28,13 +28,14 @@ export const useTodosStore = create <State & Action>((set, get)=>({
     removeTodo : (todoId:any) => set((prevState)=>(
         {todos : [...prevState.todos].filter((todo)=> todo._id !== todoId)}
     )),
-    updateTodoUI : (id: string, title: string, description: string, startDate: Date, dueDate:Date) => {
+    updateTodoUI : (id: string, title: string, description: string, isCompleted:Boolean, startDate: Date, dueDate:Date) => {
         const { todos } = get();
         set({
           todos: todos.map(todo =>({
             ...todo,
             title: todo._id === id ? title : todo.title,
             description: todo._id === id ? description : todo.description,
+            isCompleted: todo._id === id? isCompleted: todo.isCompleted ,
             startDate: todo._id === id ? startDate : todo.startDate,
             dueDate: todo._id === id ? dueDate : todo.dueDate,
           }))

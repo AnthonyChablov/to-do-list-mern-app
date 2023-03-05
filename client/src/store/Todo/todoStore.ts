@@ -4,6 +4,7 @@ import { Dayjs } from 'dayjs';
 type State = {
     title: String | string,
     description: String | string,
+    isCompleted : Boolean,
     startDate : Dayjs | null,
     dueDate : Dayjs | null, 
 }
@@ -18,6 +19,7 @@ type Action = {
 export const useTodoStore = create<State & Action>((set)=>({
     title: '',
     description: '',
+    isCompleted: false,
     startDate : null,
     dueDate : null, 
     setTitle : (newTitle : String) => set({ title: newTitle }),

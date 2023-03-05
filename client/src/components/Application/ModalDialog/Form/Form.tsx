@@ -1,3 +1,4 @@
+import { useState, useMemo, useEffect } from 'react';
 import { shallow } from 'zustand/shallow';
 import { Dayjs } from 'dayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -36,7 +37,7 @@ const Form = ({mode}:IForm) => {
         setDueDate : state.setDueDate,
       }), shallow
     );
-    
+
     async function handleCreateTodo(e: React.FormEvent){
       e.preventDefault(); 
       const newTodo = await createTodo(title, description, startDate, dueDate); /* Create new task */
@@ -56,95 +57,96 @@ const Form = ({mode}:IForm) => {
       handleModalOpen(!open);
     }
 
+
     return (
-      <form 
-        
-        onSubmit = {
-        mode === 'Update'
-          ? handleUpdateTodo 
-          : handleCreateTodo 
-      }>
-      {/* title */}
-        <TextField 
-          className=''
-          autoComplete='off'
-          name='Title' 
-          variant='standard' 
-          label='Title' 
-          fullWidth 
-          value={title} 
-          required 
-          onChange={( e: React.ChangeEvent<HTMLInputElement>)=> {
-              setTitle(e.target.value);
-          }}
-        >
-        </TextField>
-      {/* desc */}
-        <TextField 
-          autoComplete='off'
-          name='Description' 
-          variant='standard' 
-          label='Description' 
-          fullWidth 
-          value={description} 
-          margin="normal"
-          required 
-          onChange={( e:  React.ChangeEvent<HTMLInputElement>)=> {
-              setDescription(e.target.value);
-          }}>
-        </TextField>
-      {/* dates */}
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <div className=" flex flex-col ">
-          {/* startDate */}
-            <DesktopDatePicker
-              label="Start Date"
-              inputFormat="MM/DD/YYYY"
-              value={startDate}
-              onChange={(newValue: Dayjs | null)=> {
-                setStartDate( newValue );
-              }}
-              renderInput={
-                (params) => 
-                  <TextField 
-                    autoComplete='off'
-                    fullWidth 
-                    variant='standard'  
-                    margin="normal"
-                    value={startDate} 
-                    required
-                    {...params} 
-                  />
-              }
-            />
-          {/* dueDate */}
-            <DesktopDatePicker
-              label="Due Date"
-              inputFormat="MM/DD/YYYY"
-              value={dueDate}
-              onChange={(newValue: Dayjs | null)=> {
-                setDueDate( newValue );
-              }}
-              renderInput={
-                (params) => 
-                  <TextField 
-                    autoComplete='off'
-                    fullWidth 
-                    variant='standard'  
-                    margin="normal"
-                    value={dueDate} 
-                    required
-                    {...params} 
-                  />
-              }
-            />
+      
+        <form onSubmit = {
+          mode === 'Update'
+            ? handleUpdateTodo 
+            : handleCreateTodo 
+        }>
+        {/* title */}
+          <TextField 
+            className=''
+            autoComplete='off'
+            name='Title' 
+            variant='standard' 
+            label='Title' 
+            fullWidth 
+            value={title} 
+            required 
+            onChange={( e: React.ChangeEvent<HTMLInputElement>)=> {
+                setTitle(e.target.value);
+            }}
+          >
+          </TextField>
+        {/* desc */}
+          <TextField 
+            className=''
+            autoComplete='off'
+            name='Description' 
+            variant='standard' 
+            label='Description' 
+            fullWidth 
+            value={description} 
+            margin="normal"
+            required 
+            onChange={( e:  React.ChangeEvent<HTMLInputElement>)=> {
+                setDescription(e.target.value);
+            }}>
+          </TextField>
+        {/* dates */}
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <div className=" flex flex-col ">
+            {/* startDate */}
+              <DesktopDatePicker
+                label="Start Date"
+                inputFormat="MM/DD/YYYY"
+                value={startDate}
+                onChange={(newValue: Dayjs | null)=> {
+                  setStartDate( newValue );
+                }}
+                renderInput={
+                  (params) => 
+                    <TextField 
+                      autoComplete='off'
+                      fullWidth 
+                      variant='standard'  
+                      margin="normal"
+                      value={startDate} 
+                      required
+                      {...params} 
+                    />
+                }
+              />
+            {/* dueDate */}
+              <DesktopDatePicker
+                label="Due Date"
+                inputFormat="MM/DD/YYYY"
+                value={dueDate}
+                onChange={(newValue: Dayjs | null)=> {
+                  setDueDate( newValue );
+                }}
+                renderInput={
+                  (params) => 
+                    <TextField 
+                      autoComplete='off'
+                      fullWidth 
+                      variant='standard'  
+                      margin="normal"
+                      value={dueDate} 
+                      required
+                      {...params} 
+                    />
+                }
+              />
+            </div>
+          </LocalizationProvider>
+        {/* Submit Button */}
+          <div className="pt-10 text-center">
+            <SubmitButton name={`${mode} Task`}/>
           </div>
-        </LocalizationProvider>
-      {/* Submit Button */}
-        <div className="pt-10 text-center">
-          <SubmitButton name={`${mode} Task`}/>
-        </div>
-      </form>
+        </form>
     );
 };
 

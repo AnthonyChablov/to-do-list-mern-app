@@ -4,6 +4,7 @@ export type TTodo = {
     _id: string;
     title: String,
     description: String,
+    isCompleted:Boolean,
     startDate: Date,
     dueDate: Date,
 }

@@ -1,11 +1,12 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState, useMemo} from 'react';
 import { ErrorBoundary } from "react-error-boundary";
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
+import useLocalStorage from "use-local-storage";
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Loading from './components/Loading/Loading';
 import GlobalError from './components/GlobalError/GlobalError';
-import useLocalStorage from "use-local-storage";
-import { useDarkModeStore } from './store/DarkMode/darkModeStore';
 
+import CssBaseline from '@mui/material/CssBaseline';
 /* lazy loading on routes */
 const Home = React.lazy(() => import('./pages/Homepage'));
 const Application = React.lazy(() => import('./pages/AppPage'));
@@ -19,14 +20,14 @@ const ErrorBoundaryLayout = () => ( // Error boundary for catching errors in our
   </ErrorBoundary>
 );
 
+const body = window.document.body;
+
 function App() {
 
   const [isDarkMode, setDarkMode] = useLocalStorage<boolean>(
     'usehooks-ts-dark-mode',
     false,
   );
-
-  const body = window.document.body;
 
   const router = createBrowserRouter([
     {
@@ -58,17 +59,36 @@ function App() {
     }
   ]); 
 
+  const [mode, setMode] = useState <'light' | 'dark'> ('light');
+  
+  const theme = useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode,
+        },
+      }),
+    [mode],
+  );
+
   useEffect(()=>{
     body.classList.add(!isDarkMode ? 'light' : 'dark');
-    body.classList.remove(isDarkMode ? 'light' : 'dark'  );
-  },[isDarkMode]);
+    body.classList.remove(isDarkMode ? 'light' : 'dark');
+    
+    setMode( !isDarkMode ? 'dark' : 'light');
+  },[isDarkMode]); 
 
   return (
-    <div className="App">
-      <React.Suspense fallback={<Loading/>}>
-        <RouterProvider router={router} />
-      </React.Suspense>
-    </div>
+   
+      <div className="App">
+        <ThemeProvider theme={theme}>
+          <CssBaseline/>
+          <React.Suspense fallback={<Loading/>}>
+            <RouterProvider router={router} />
+          </React.Suspense>
+        </ThemeProvider>
+      </div>
+    
   )
 }
 

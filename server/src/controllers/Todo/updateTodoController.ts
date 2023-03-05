@@ -17,7 +17,6 @@ export async function updateTodoController(req: Request, res:Response, next:Next
 
         await todo.save();
         res.json(todo);
-        
     } catch(error){
         next(error);
     }

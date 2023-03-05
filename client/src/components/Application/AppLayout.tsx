@@ -33,6 +33,23 @@ const buttonVariants : Variants={
   },
 }
 
+const noTaskVariants : Variants={
+  initial:{
+      y:-12,
+      opacity:0
+  },
+  animate:{
+      y:0,
+      opacity:1,
+      transition:{
+          type: 'tween',
+          ease: 'easeInOut',
+          duration: .40,
+          when: '',
+      }
+  },
+}
+
 const AppLayout = () => {
 
   /* State */
@@ -67,11 +84,12 @@ const AppLayout = () => {
   /* Render Todo Items */
   const todoItems = todos.map((todo: any, i:number)=>{
     return ( 
-      <Card 
+      <Card
         key={todo?._id}
         id={todo?._id}
         title={todo?.title}
         description={todo?.description}
+        isCompleted={todo?.isCompleted}
         startDate={todo?.startDate}
         dueDate = {todo?.dueDate}
         isDone= {todo?.isDone}
@@ -80,19 +98,12 @@ const AppLayout = () => {
       />
     )
   });
+  
   async function handleDeleteTodo(todoId : string){
     await deleteTodo(todoId); // Call to api
     removeTodo(todoId); // Change UI 
   };
 
-  
-  /* if user not logged in redirect */
-  /*  
-  useEffect(()=>{
-    if (!fetchUser ){
-      navigate('/login')
-    }
-  },[]) */
 
   return (
     <div className={`pt-6 h-screen max-h-screen  overflow-auto dark:bg-zinc-800 dark:text-gray-100
@@ -113,9 +124,9 @@ const AppLayout = () => {
           >
             <AiOutlineMenu size={18}/>
           </motion.button>
+          
           {
-            !loadingFetchLoggedInUser 
-            && 
+            !loadingFetchLoggedInUser && 
             <Header 
               userFirstName={
                 !isErrorFetchLoggedInUser 
@@ -125,14 +136,28 @@ const AppLayout = () => {
             />
           }
         </div>
-        <motion.div className="pt-11 flex flex-col md:flex-none md:grid 
-          md:grid-cols-2 lg:grid-cols-3 items-center "
+        <motion.div className={`pt-11 flex flex-col md:flex-none md:grid 
+           items-center 
+          ${todoItems.length < 3 
+            ? 'md:grid-cols-1 lg:grid-cols-1 justify-items-center' 
+            : 'md:grid-cols-2 lg:grid-cols-3'
+          } `
+          }
         >
+        {/* Render cards */}
           { 
-            /* Render cards */
             loadingFetchTodos 
               ? <Loading/> 
-              :  !isErrorFetchTodos ? todoItems : ''
+              : !isErrorFetchTodos 
+                ? todoItems.length === 0
+                  ? <motion.p className ='text-md text-gray-500 dark:text-gray-200  pt-20 font-Roboto'
+                      variants={noTaskVariants}
+                      initial={'initial'}
+                      animate={'animate'}
+                    > No Tasks, Please add a task.
+                    </motion.p>
+                  : todoItems 
+                : ''
           }
         </motion.div>
       </div>

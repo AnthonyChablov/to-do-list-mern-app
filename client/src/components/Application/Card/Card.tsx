@@ -6,12 +6,14 @@ import {BiCircle} from 'react-icons/bi';
 import { useModalStore } from '../../../store/Modal/modalStore';
 import { useFormStore } from "../../../store/Form/formStore";
 import { useCardStore } from "../../../store/Card/cardStore";
+import { updateIsCompleted } from "../../../api/Todo/updateIsCompleted";
 
 export interface Todo{
   key:String,
   id:String,
   title: String,
   description: String,
+  isCompleted: Boolean,
   startDate: Date,
   dueDate: Date,
   isDone:Boolean,
@@ -19,7 +21,7 @@ export interface Todo{
   animationProperty: number
 }
 
-const Card = ({id, title, description,startDate,dueDate, handleDeleteTodo, animationProperty}:Todo) => {
+const Card = ({id, title, description,startDate,dueDate, handleDeleteTodo, isCompleted,  animationProperty}:Todo) => {
 
   /* Framer Motion config */
   const cardVariants = {
@@ -60,7 +62,13 @@ const Card = ({id, title, description,startDate,dueDate, handleDeleteTodo, anima
 
   /* Card State */
   const setCardId = useCardStore(state => state.setCardId);
-  const [isCompleted, setIsCompleted] = useState(false);
+  const [completed, setCompleted] = useState(isCompleted); 
+
+
+  async function  handleIsCompleted(){
+    setCompleted(!completed);
+   
+  }
 
   return (
     <>
@@ -77,10 +85,15 @@ const Card = ({id, title, description,startDate,dueDate, handleDeleteTodo, anima
           dark:from-zinc-700 dark:to-zinc-700 "
           >
             <div className="flex items-center ">
-              <button className="mr-3 ml-2" onClick={ () => setIsCompleted(!isCompleted)}>
+              <button className="mr-3 ml-2" 
+                onClick={ () => {
+                    handleIsCompleted()
+                  }
+                }
+              >
                 {/* Change isCompleted */}
                 {
-                  isCompleted 
+                  completed 
                     ?
                       <div className="">
                         <IoIosCheckmarkCircle size={23} color={'#65c466'}/>
@@ -91,7 +104,7 @@ const Card = ({id, title, description,startDate,dueDate, handleDeleteTodo, anima
                       </div> 
                 }
               </button>
-              <p className={`text-lg py-[0.16rem] ${ isCompleted ? 'line-through' : '' }`}>
+              <p className={`text-lg py-[0.16rem] ${ completed ? 'line-through' : '' }`}>
                 {title}
               </p>
             </div>
@@ -118,11 +131,11 @@ const Card = ({id, title, description,startDate,dueDate, handleDeleteTodo, anima
             </div>
           </div>
           <div className="p-2 h-fit dark:bg-gray-200 ">
-            <div className={`text-sm pt-1.5 text-gray-600 underline pb-3 ${ isCompleted ? 'line-through' : '' } dark:text-zinc-900`}>
+            <div className={`text-sm pt-1.5 text-gray-600 underline pb-3 ${ completed ? 'line-through' : '' } dark:text-zinc-900`}>
               {/* Displays Date */}
               {startDay.toDateString()} <span> - </span> {dueDay.toDateString()}
             </div>
-            <p className={`pb-3 text-sm dark:text-zinc-900  ${isCompleted ? 'line-through' : '' }`}> {description}</p>
+            <p className={`pb-3 text-sm dark:text-zinc-900  ${completed ? 'line-through' : '' }`}> {description}</p>
           </div>
         </motion.div>
       </AnimatePresence>

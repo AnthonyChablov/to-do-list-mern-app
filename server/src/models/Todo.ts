@@ -7,6 +7,7 @@ const TodoSchema = new Schema({
   userId: ObjectId,
   title: String,
   description: String,
+  isCompleted:Boolean,
   startDate: Date,
   dueDate: Date,
 });

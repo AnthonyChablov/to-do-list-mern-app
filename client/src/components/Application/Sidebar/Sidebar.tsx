@@ -61,7 +61,9 @@ export const Sidebar = () => {
                                 className='' 
                                 onClick={()=>setIsOpen(true)}
                             >
-                                <div className="px-3 py-3  text-1xl  hover:bg-gray-300 rounded-full  dark:bg-gray-100 dark:hover:bg-gray-500" >
+                                <div className="px-3 py-3  text-1xl  hover:bg-gray-300 rounded-full  
+                                    dark:bg-gray-100 dark:hover:bg-gray-500" 
+                                >
                                     <AiOutlineArrowLeft size={24} color={'black'} />
                                 </div>
                             </button>
