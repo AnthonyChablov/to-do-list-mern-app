@@ -1,6 +1,6 @@
 import { useState,  } from 'react';
 import { shallow } from 'zustand/shallow';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, color, motion } from 'framer-motion';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import InputLabel from '@mui/material/InputLabel';
@@ -32,6 +32,7 @@ const errorMessageVariants = { // Framer motion config
     opacity:0
   }
 };
+
 
 const LoginForm = () => {
   
@@ -83,10 +84,11 @@ const LoginForm = () => {
 
   return (
     <>
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleLogin} >
       {/* Email */}
         <TextField 
-        autoComplete='on'
+          
+          autoComplete='on'
           error = {error}
           name='Email' 
           variant='standard' 

@@ -1,9 +1,10 @@
-import  React, { useEffect } from 'react';
+import  React, { useEffect, useContext } from 'react';
 import { styled } from '@mui/material/styles';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch , {SwitchProps}  from '@mui/material/Switch';
 import useLocalStorage from "use-local-storage";
+import { ColorModeContext } from '../../../App';
 
 const IOSSwitch = styled((props: SwitchProps) => (
   <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
@@ -57,21 +58,24 @@ const IOSSwitch = styled((props: SwitchProps) => (
 }));
 
 const SwitchToggle = () => {
-
+  const colorMode = React.useContext(ColorModeContext);
   const [isDarkMode, setDarkMode] = useLocalStorage<boolean>(
     'usehooks-ts-dark-mode',
     false,
   );
  
   function handleChange(event:React.ChangeEvent<HTMLInputElement>){
-    setDarkMode(event.target.checked);
+    setDarkMode(event.target.checked); // tailwind toggle
+    
   }
 
   const body = window.document.body;
 
   useEffect(()=>{
+    colorMode.toggleColorMode();
     body.classList.add(!isDarkMode ? 'light' : 'dark');
     body.classList.remove(isDarkMode ? 'light' : 'dark'  );
+    
   },[isDarkMode]);
 
   return (
@@ -85,7 +89,11 @@ const SwitchToggle = () => {
           <IOSSwitch 
             sx={{ ml:4.5 }}  
             checked={isDarkMode}
-            onChange={handleChange}
+            
+            onChange={
+              handleChange
+            }
+            
           />
         }
         label={'Dark Mode'}
