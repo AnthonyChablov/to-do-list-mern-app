@@ -6,7 +6,6 @@ import {BiCircle} from 'react-icons/bi';
 import { useModalStore } from '../../../store/Modal/modalStore';
 import { useFormStore } from "../../../store/Form/formStore";
 import { useCardStore } from "../../../store/Card/cardStore";
-import { updateIsCompleted } from "../../../api/Todo/updateIsCompleted";
 
 export interface Todo{
   key:String,
@@ -16,7 +15,6 @@ export interface Todo{
   isCompleted: Boolean,
   startDate: Date,
   dueDate: Date,
-  isDone:Boolean,
   handleDeleteTodo: Function,
   animationProperty: number
 }

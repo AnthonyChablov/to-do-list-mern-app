@@ -1,11 +1,12 @@
-import React, {useEffect, useState, useMemo} from 'react';
+import React, {useEffect, useState} from 'react';
 import { ErrorBoundary } from "react-error-boundary";
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import useLocalStorage from "use-local-storage";
-import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Loading from './components/Loading/Loading';
 import GlobalError from './components/GlobalError/GlobalError';
 import CssBaseline from '@mui/material/CssBaseline';
+
 /* lazy loading on routes */
 const Home = React.lazy(() => import('./pages/Homepage'));
 const Application = React.lazy(() => import('./pages/AppPage'));
@@ -21,24 +22,23 @@ const ErrorBoundaryLayout = () => ( // Error boundary for catching errors in our
 
 const body = window.document.body;
 
+/* react context for mui */
 export interface iColorModeContext {
   toggleColorMode: Function
 }
-
 export const ColorModeContext = React.createContext<iColorModeContext>({
    toggleColorMode: () => {} 
 });
 
 function App() {
-
-  /* Local Storage Dark mode variable */
   const [isDarkMode, setDarkMode] = useLocalStorage<boolean>(
     'usehooks-ts-dark-mode',
     false,
   );
+  const [mode, setMode] = React.useState<'light' | 'dark'>(isDarkMode ? 'dark': 'light');
+  
 
   /* MUI dark mode toggle */
-  const [mode, setMode] = React.useState<'light' | 'dark'>(isDarkMode ? 'dark': 'light');
   const colorMode = React.useMemo(
     () => ({
       toggleColorMode: () => {
@@ -47,8 +47,6 @@ function App() {
     }),
     [],
   );
-
-  /* mui theme */
   const theme = React.useMemo(
     () =>
       createTheme({
@@ -89,16 +87,12 @@ function App() {
     }
   ]); 
 
-  
-
   useEffect(()=>{
     body.classList.add(!isDarkMode ? 'light' : 'dark');
     body.classList.remove(isDarkMode ? 'light' : 'dark');
     
   },[isDarkMode]); 
 
-
-  
 
   return (
     

@@ -32,13 +32,9 @@ const LoginLayout = () => {
         initial='initial'
         animate='animate'
       >
-        <div className="relative pt-9 pb-10 px-4 bg-white shadow-md rounded-xl sm:px-10 dark:bg-zinc-800 ">
-          <div className="pt-3">
-            <Header text={'Login'}/>
-          </div>
-          <div className="">
-            <LoginForm/>
-          </div>
+        <div className="relative pt-12 pb-10 px-4 bg-white shadow-md rounded-xl sm:px-10 dark:bg-zinc-800 ">
+          <Header text={'Login'}/>
+          <LoginForm/>
         </div>
       </motion.div>
     </section>
