@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import { ErrorBoundary } from "react-error-boundary";
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import useLocalStorage from "use-local-storage";
@@ -37,7 +37,6 @@ function App() {
   );
   const [mode, setMode] = React.useState<'light' | 'dark'>(isDarkMode ? 'dark': 'light');
   
-
   /* MUI dark mode toggle */
   const colorMode = React.useMemo(
     () => ({

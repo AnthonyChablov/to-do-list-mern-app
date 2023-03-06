@@ -1,9 +1,8 @@
-import { useRef, useEffect , useState} from 'react';
+import { useRef} from 'react';
 import { motion, Variants } from 'framer-motion';
 import { shallow } from 'zustand/shallow'
 import { useQuery } from "react-query"; 
 import {AiOutlineMenu} from 'react-icons/ai';
-import { useNavigate } from 'react-router-dom';
 import Header from "./Header/Header";
 import Card from "./Card/Card";
 import Toolbar from "./Toolbar/Toolbar";
@@ -15,7 +14,6 @@ import { useUserStore } from '../../store/User/userStore';
 import { useDrawerStore } from '../../store/Drawer/drawerStore';
 import useIsOverflow  from "../../hooks/useIsOverflow"; // ****
 import { Sidebar } from './Sidebar/Sidebar';
-import { getLoggedInUser } from '../../api/User/getLoggedInUser';
 import { TTodo } from '../../api/Todo/getTodos';
 
 /* framer-motion config */
@@ -65,12 +63,10 @@ const AppLayout = () => {
   const setIsOpen = useDrawerStore(state => state.setIsOpen);
   const loggedInUser = useUserStore(state => state.loggedInUser);
   const fetchLoggedInUser = useUserStore(state => state.fetchLoggedInUser);
-  const [hidden, setHidden ] = useState(false);
 
   /* Hooks */
   const layoutRef = useRef<HTMLInputElement>(null); 
   const isOverflow = useIsOverflow(layoutRef);
-  const navigate = useNavigate();
 
   /* Fetch All Todos */
   const {isLoading : loadingFetchTodos, isError: isErrorFetchTodos,  data : fetchedTodos} = useQuery( 
@@ -89,18 +85,7 @@ const AppLayout = () => {
     removeTodo(todoId); // Change UI 
   };
 
-  useEffect(()=>{
-    const currUser = getLoggedInUser();
-    const getEmail = async () => {
-      const res = await currUser;
-      if(!res?.email){
-        setHidden(true);
-        navigate('/login');
-      }
-    }
-    setHidden(false);
-    getEmail();
-  },[loggedInUser]);
+  
 
   const todoItems = Array.isArray(todos) 
     ? todos.map((todo: TTodo, i:number)=>{
@@ -122,7 +107,7 @@ const AppLayout = () => {
 
   return (
     <div> 
-      {hidden ? <></> :
+      {
         <div className={`pt-6 h-screen max-h-screen  overflow-auto dark:bg-zinc-800 dark:text-gray-100
           bg-slate-100 font-Roboto ${!isOverflow && 'pb-52' }`}
           ref={layoutRef }
@@ -141,14 +126,14 @@ const AppLayout = () => {
                 <AiOutlineMenu size={18}/>
               </motion.button>
               {
-                !loadingFetchLoggedInUser && 
+                !loadingFetchLoggedInUser ?
                 <Header 
                   userFirstName={
                     !isErrorFetchLoggedInUser 
                       ? loggedInUser?.firstName
                       : ''
                   }
-                />
+                />:''
               }
             </div>
             <motion.div className={`pt-11 flex flex-col md:flex-none md:grid 
