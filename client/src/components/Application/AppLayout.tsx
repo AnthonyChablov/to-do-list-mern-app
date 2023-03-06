@@ -75,8 +75,8 @@ const AppLayout = () => {
     ()=>fetchTodos 
   );
 
-  /* Fetch Logged In User */
-  const {isLoading : loadingFetchLoggedInUser, isError: isErrorFetchLoggedInUser, data : fetchUser,} = useQuery( 
+  /* Fetch User and assign state */
+  const {isLoading : loadingFetchLoggedInUser, isError: isErrorFetchLoggedInUser, data : fetchedUser,} = useQuery( 
     'loggedInUser', 
     ()=>fetchLoggedInUser,
   ); 
@@ -103,6 +103,18 @@ const AppLayout = () => {
     await deleteTodo(todoId); // Call to api
     removeTodo(todoId); // Change UI 
   };
+
+  useEffect(()=>{
+
+    const currUser = getLoggedInUser()
+
+    const getEmail = async () => {
+      const res = (await currUser).email
+      console.log(res);
+    }
+    getEmail();
+    
+  },[]);
 
 
   return (
