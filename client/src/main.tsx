@@ -7,7 +7,7 @@ import {
   QueryClient, 
   QueryClientProvider
 } from 'react-query';
-import { disableReactDevTools } from '@fvilers/disable-react-devtools';
+
 
 const queryClient = new QueryClient();
 
