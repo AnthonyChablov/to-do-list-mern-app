@@ -18,7 +18,7 @@ const app = express();
 // middleware
 app.use(express.json());
 var corsOptions = { /* CORS configuration */
-    origin: 'http://127.0.0.1:5173',
+    origin: 'https://todoify.onrender.com',
     credentials : true
 }
 app.use(cors(corsOptions));
