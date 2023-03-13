@@ -12,8 +12,7 @@ export async function registerUser(credentials: IRegisterCredentials){
     await fetch(`${API_URL}/user/register`, {
         method: "POST",
         headers: new Headers({
-            'Accept': 'application/json',
-            'Access-Control-Allow-Origin':'https://todoify.onrender.com',
+
             'Content-Type': 'application/json',
         }),
         body: JSON.stringify(credentials),
