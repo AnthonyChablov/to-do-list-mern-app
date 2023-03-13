@@ -20,8 +20,7 @@ export async function loginUser(credentials: ILoginCredentials){
         if (!res.ok) {
             throw new Error("HTTP status " + res.status);
         }
-
-        return res.json();
+return res.json();
     });
     
 }
