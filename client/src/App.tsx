@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import { ErrorBoundary } from "react-error-boundary";
-import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
+import { createHashRouter, RouterProvider, Outlet } from 'react-router-dom';
 import useLocalStorage from "use-local-storage";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Loading from './components/Loading/Loading';
@@ -56,7 +56,7 @@ function App() {
     [mode],
   );
 
-  const router = createBrowserRouter([
+  const router = createHashRouter([
     {
       element: <ErrorBoundaryLayout />,
       children:[

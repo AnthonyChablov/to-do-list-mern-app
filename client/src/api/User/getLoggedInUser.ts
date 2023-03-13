@@ -6,7 +6,7 @@ export async function getLoggedInUser():Promise<IUser>{
         credentials: 'include',
         headers: new Headers({
             'Accept': 'application/json',
-            'Access-Control-Allow-Origin':'https://todoify.onrender.com',
+            'Access-Control-Allow-Origin':'http://localhost:8000/',
             'Content-Type': 'application/json',
         })
     });
