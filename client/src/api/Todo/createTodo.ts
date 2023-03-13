@@ -20,7 +20,7 @@ export async function createTodo(
         credentials: 'include',
         headers: new Headers({
             'Accept': 'application/json',
-            'Access-Control-Allow-Origin':`${API_URL}`,
+            'Access-Control-Allow-Origin':`${URL}/api`,
             'Content-Type': 'application/json',
         })
     });

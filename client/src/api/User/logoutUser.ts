@@ -6,7 +6,7 @@ export async function logoutUser(){
         credentials: 'include',
         headers: new Headers({
             'Accept': 'application/json',
-            'Access-Control-Allow-Origin':`${API_URL}`,
+            'Access-Control-Allow-Origin':`${URL}`,
             'Content-Type': 'application/json',
         })
     });

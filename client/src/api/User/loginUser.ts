@@ -11,7 +11,7 @@ export async function loginUser(credentials: ILoginCredentials){
         method:'POST',
         headers: new Headers({
             'Accept': 'application/json',
-            'Access-Control-Allow-Origin':`${API_URL}`,
+            'Access-Control-Allow-Origin':`${URL}`,
             'Content-Type': 'application/json',
         }),
         body: JSON.stringify(credentials),
