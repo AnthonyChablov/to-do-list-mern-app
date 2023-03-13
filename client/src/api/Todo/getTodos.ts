@@ -14,7 +14,7 @@ export async function getTodos(): Promise<TTodo[]>{
         credentials: 'include',
         headers: new Headers({
             'Accept': 'application/json',
-            'Access-Control-Allow-Origin':'http://localhost:8000/',
+            'Access-Control-Allow-Origin':'https://todoify.onrender.com',
             'Content-Type': 'application/json',
         })
     });
