@@ -12,7 +12,7 @@ export async function updateTodo(todoId:String, title: String, description: Stri
         credentials: 'include',
         headers: new Headers({
             'Accept': 'application/json',
-            'Access-Control-Allow-Origin':'https://todoify.onrender.com',
+            'Access-Control-Allow-Origin':`${API_URL}`,
             'Content-Type': 'application/json',
         })
     });

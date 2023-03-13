@@ -11,9 +11,11 @@ export interface IRegisterCredentials{
 export async function registerUser(credentials: IRegisterCredentials){
     await fetch(`${API_URL}/user/register`, {
         method: "POST",
-        headers:{
-            "Content-Type":"application/json",
-        },
+        headers: new Headers({
+            'Accept': 'application/json',
+            'Access-Control-Allow-Origin':`${API_URL}`,
+            'Content-Type': 'application/json',
+        }),
         body: JSON.stringify(credentials),
         credentials: 'include'
     }).then((res) => {

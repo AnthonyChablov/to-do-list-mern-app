@@ -9,9 +9,11 @@ export interface ILoginCredentials{
 export async function loginUser(credentials: ILoginCredentials){
     await fetch(`${API_URL}/user/login`, {
         method:'POST',
-        headers:{
-            "Content-Type":"application/json",
-        },
+        headers: new Headers({
+            'Accept': 'application/json',
+            'Access-Control-Allow-Origin':`${API_URL}`,
+            'Content-Type': 'application/json',
+        }),
         body: JSON.stringify(credentials),
         credentials: 'include'
     }).then((res) => {
