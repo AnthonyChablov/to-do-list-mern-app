@@ -1,4 +1,4 @@
-import { API_URL } from "../config";
+import { API_URL, API_CROSS_ORIGIN } from "../config";
 
 export type TTodo = {
     _id: string;
@@ -14,7 +14,7 @@ export async function getTodos(): Promise<TTodo[]>{
         credentials: 'include',
         headers: new Headers({
             'Accept': 'application/json',
-            'Access-Control-Allow-Origin':'https://todoify.onrender.com',
+            'Access-Control-Allow-Origin':`${API_CROSS_ORIGIN}`,
             'Content-Type': 'application/json',
         })
     });

@@ -68,6 +68,6 @@ mongoose.connect(
     process.env.MONGO_URL ?? ''
 ).then(()=>{
     console.log(`Listening on Port ${process.env.PORT}`);
-    app.listen(process.env.PORT);
+    app.listen(process.env.PORT || 3000);
 });
 
