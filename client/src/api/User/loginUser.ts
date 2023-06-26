@@ -1,5 +1,5 @@
 import {IUser} from '../../models/User';
-import { API_URL } from '../config';
+import { API_URL , } from '../config';
 
 export interface ILoginCredentials{
     email:String,

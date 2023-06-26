@@ -12,7 +12,6 @@ export async function registerUser(credentials: IRegisterCredentials){
     await fetch(`${API_URL}/user/register`, {
         method: "POST",
         headers: new Headers({
-
             'Content-Type': 'application/json',
         }),
         body: JSON.stringify(credentials),

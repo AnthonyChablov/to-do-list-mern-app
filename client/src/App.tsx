@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import { ErrorBoundary } from "react-error-boundary";
-import { createHashRouter, RouterProvider, Outlet } from 'react-router-dom';
+import { createHashRouter,createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import useLocalStorage from "use-local-storage";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Loading from './components/Loading/Loading';
@@ -56,7 +56,7 @@ function App() {
     [mode],
   );
 
-  const router = createHashRouter([
+  const router = createBrowserRouter([
     {
       element: <ErrorBoundaryLayout />,
       children:[
@@ -89,12 +89,9 @@ function App() {
   useEffect(()=>{
     body.classList.add(!isDarkMode ? 'light' : 'dark');
     body.classList.remove(isDarkMode ? 'light' : 'dark');
-    
   },[isDarkMode]); 
 
-
   return (
-    
       <ThemeProvider theme={theme}>
         <ColorModeContext.Provider value={colorMode}>
           <div className="App" >

@@ -4,6 +4,6 @@ export async function logoutUser(){
     await fetch(`${API_URL}/user/logout`, {
         method:'POST',
         credentials: 'include',
-        
     });
+    
 }

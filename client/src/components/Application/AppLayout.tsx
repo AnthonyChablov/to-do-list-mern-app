@@ -70,13 +70,13 @@ const AppLayout = () => {
 
   /* Fetch All Todos */
   const {isLoading : loadingFetchTodos, isError: isErrorFetchTodos,  data : fetchedTodos} = useQuery( 
-    'todos', 
+    ['todos', loggedInUser], 
     ()=>fetchTodos,
   );
 
   /* Fetch User and assign state */
   const {isLoading : loadingFetchLoggedInUser, isError: isErrorFetchLoggedInUser, data : fetchedUser,} = useQuery( 
-    'loggedInUser', 
+    ['loggedInUser', loggedInUser], 
     ()=>fetchLoggedInUser,
   ); 
   
@@ -84,8 +84,6 @@ const AppLayout = () => {
     await deleteTodo(todoId); // Call to api
     removeTodo(todoId); // Change UI 
   };
-
-  
 
   const todoItems = Array.isArray(todos) 
     ? todos.map((todo: TTodo, i:number)=>{
@@ -126,14 +124,15 @@ const AppLayout = () => {
                 <AiOutlineMenu size={18}/>
               </motion.button>
               {
-                !loadingFetchLoggedInUser ?
-                <Header 
-                  userFirstName={
-                    !isErrorFetchLoggedInUser 
-                      ? loggedInUser?.firstName
-                      : ''
-                  }
-                />:''
+                !loadingFetchLoggedInUser 
+                  ? <Header 
+                      userFirstName={
+                        !isErrorFetchLoggedInUser 
+                          ? loggedInUser?.firstName
+                          : ''
+                      }
+                    />
+                  : ''
               }
             </div>
             <motion.div className={`pt-11 flex flex-col md:flex-none md:grid 

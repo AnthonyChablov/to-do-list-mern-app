@@ -43,19 +43,4 @@ const HomeLayout = () => {
     </section>
   )
 }
-
-
-/* 
-  (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-200">
-      <h1 className="text-3xl font-bold text-gray-800">Welcome to My To-Do App</h1>
-      <p className="text-xl text-gray-600 mt-4">Stay organized and achieve your goals with ease</p>
-      <button className="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded mt-6">
-        Get Started
-      </button>
-    </div>
-  )
-
-*/
-
-export default HomeLayout
+export default HomeLayout;

@@ -1,4 +1,4 @@
-
+import { useQueryClient } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import { motion, Variants } from 'framer-motion';
 import { Drawer,  } from '@mui/material';
@@ -27,18 +27,22 @@ const sideBarVariants : Variants={
     },
 }
 
-
 export const Sidebar = () => {
-    /* State */
     
+    /* State */
     const isOpen = useDrawerStore(state=> state.isOpen);
     const setIsOpen = useDrawerStore(state => state.setIsOpen);
     const loggedInUser = useUserStore(state => state.loggedInUser);
     
+    /* Hooks */
     const navigate = useNavigate();
+    const queryClient = useQueryClient();
 
     function logOutHandeller(){
         logoutUser();
+        queryClient.removeQueries();
+        queryClient.invalidateQueries(["loggedInUser"]);
+        queryClient.invalidateQueries(["todos"]);
         setIsOpen(!isOpen);
         navigate('/');
     }

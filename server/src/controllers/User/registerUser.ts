@@ -14,7 +14,7 @@ export const registerUser = async(req: Request, res:Response, next:NextFunction)
             throw createHttpError(400,'Parameters Missing' ); // bad request
         }
         // We dont want to rely on error msg from our database, we want to create our own check in the backend
-        const existingUserEmail = await UserModel.findOne({email: email}).exec(); // if this is true we know user already exists
+        const existingUserEmail = await UserModel.findOne({email: email}).exec(); 
         
         if(existingUserEmail){
             throw createHttpError(400,'User already exists. Please use another email address or log in.' );

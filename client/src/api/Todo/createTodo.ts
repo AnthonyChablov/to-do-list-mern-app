@@ -20,7 +20,7 @@ export async function createTodo(
         credentials: 'include',
         headers: new Headers({
             'Accept': 'application/json',
-            'Access-Control-Allow-Origin':'https://todoify-api.onrender.com/',
+            'Access-Control-Allow-Origin':'https://todoify.onrender.com',
             'Content-Type': 'application/json',
         })
     });

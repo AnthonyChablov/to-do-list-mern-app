@@ -15,7 +15,9 @@ const LoginPage = () => {
 
   /* redirect user if logged in  */
   useEffect(()=>{
+
     const currUser = getLoggedInUser();
+
     const getEmail = async () => {
       const res = await currUser;
       if(res?.email){
@@ -25,8 +27,9 @@ const LoginPage = () => {
         setHidden(()=>false);
       }
     }
-    
+
     getEmail();
+    
   },[loggedInUser]);
 
   return (
