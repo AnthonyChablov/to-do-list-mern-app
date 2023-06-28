@@ -10,6 +10,7 @@ import env from "./utils/validateEnv";
 import MongoStore from 'connect-mongo';
 import createHttpError, {isHttpError} from 'http-errors';
 import { auth } from './middleware/auth';
+import { corsOptionsOrigin } from '../config';
 
 /* setup */
 config();
@@ -18,7 +19,7 @@ const app = express();
 // middleware
 app.use(express.json());
 var corsOptions = { /* CORS configuration */
-    origin: 'http://127.0.0.1:5173',
+    origin: corsOptionsOrigin,
     credentials : true
 }
 app.use(cors(corsOptions));
