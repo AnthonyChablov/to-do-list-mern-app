@@ -23,7 +23,8 @@ const LoginLayout = () => {
   
   return (
     <section className="relative min-h-screen bg-gray-100 flex flex-col justify-center py-12 
-    sm:px-6 lg:px-8 font-Roboto bg-heroImage bg-cover bg-center bg-no-repeat ">
+      sm:px-6 lg:px-8 font-Roboto bg-heroImage bg-cover bg-center bg-no-repeat "
+    >
       <BackgroundMask/>
       <Container/>
       {/* layout */}
@@ -32,7 +33,7 @@ const LoginLayout = () => {
         initial='initial'
         animate='animate'
       >
-        <div className="relative pt-12 pb-10 px-4 bg-white shadow-md rounded-xl sm:px-10 dark:bg-zinc-800 ">
+        <div className="relative pt-12 pb-10 px-4 bg-white shadow-md rounded-xl sm:px-10 dark:bg-zinc-700 ">
           <Header text={'Login'}/>
           <LoginForm/>
         </div>

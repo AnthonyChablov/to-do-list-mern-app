@@ -1,11 +1,13 @@
 import React, {useEffect} from 'react';
 import { ErrorBoundary } from "react-error-boundary";
-import { createHashRouter,createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
+import {createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import useLocalStorage from "use-local-storage";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Loading from './components/Loading/Loading';
 import GlobalError from './components/GlobalError/GlobalError';
 import CssBaseline from '@mui/material/CssBaseline';
+import { useDarkModeStore } from './store/DarkMode/darkModeStore';
+import { StyledEngineProvider } from "@mui/material";
 
 /* lazy loading on routes */
 const Home = React.lazy(() => import('./pages/Homepage'));
@@ -20,41 +22,11 @@ const ErrorBoundaryLayout = () => ( // Error boundary for catching errors in our
   </ErrorBoundary>
 );
 
-const body = window.document.body;
-
-/* react context for mui */
-export interface iColorModeContext {
-  toggleColorMode: Function
-}
-export const ColorModeContext = React.createContext<iColorModeContext>({
-   toggleColorMode: () => {} 
-});
-
 function App() {
-  const [isDarkMode, setDarkMode] = useLocalStorage<boolean>(
-    'usehooks-ts-dark-mode',
-    false,
-  );
-  const [mode, setMode] = React.useState<'light' | 'dark'>(isDarkMode ? 'dark': 'light');
-  
-  /* MUI dark mode toggle */
-  const colorMode = React.useMemo(
-    () => ({
-      toggleColorMode: () => {
-        setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
-      },
-    }),
-    [],
-  );
-  const theme = React.useMemo(
-    () =>
-      createTheme({
-        palette: {
-          mode,
-        },
-      }),
-    [mode],
-  );
+
+  const theme = useDarkModeStore(state => state.theme);
+  const setTheme = useDarkModeStore(state => state.setTheme);
+ 
 
   const router = createBrowserRouter([
     {
@@ -88,30 +60,27 @@ function App() {
 
   useEffect(()=>{
 
-    const themeMode = localStorage.getItem("theme-mode-ac");
-
-    if (mode === 'dark' || themeMode === 'dark' ) {
+    const themeMode = localStorage.getItem("usehooks-ts-dark-mode");
+    if (theme === 'dark' || themeMode === 'dark' ) {
       document.documentElement.classList.add('dark');
-      setMode('dark');
+      setTheme('dark');
     }else{
       document.documentElement.classList.remove('dark');
-      setMode('light');
+      setTheme('light');
     }
 
-  },[isDarkMode]); 
+  },[theme]); 
 
   return (
-      <ThemeProvider theme={theme}>
-        <ColorModeContext.Provider value={colorMode}>
-          <div className="App" >
-            <CssBaseline/>
-              <React.Suspense fallback={<Loading/>}>
-                <RouterProvider router={router} />
-              </React.Suspense>
-          </div>
-        </ColorModeContext.Provider>
-      </ThemeProvider>
-    
+    <div className="App" >
+      <StyledEngineProvider injectFirst>
+        <CssBaseline/>
+        <React.Suspense fallback={<Loading/>}>
+          <RouterProvider router={router} />
+        </React.Suspense>
+      </StyledEngineProvider>
+    </div>
+
   )
 }
 

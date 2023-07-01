@@ -87,7 +87,7 @@ const LoginForm = () => {
       <form onSubmit={handleLogin} >
       {/* Email */}
         <TextField 
-          
+          className='text-slate-200 '
           autoComplete='on'
           error = {error}
           name='Email' 
@@ -104,6 +104,7 @@ const LoginForm = () => {
         </TextField>
       {/* Password */}
         <FormControl 
+          
           error={error}
           variant='standard' 
           fullWidth

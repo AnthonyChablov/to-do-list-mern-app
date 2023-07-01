@@ -58,7 +58,7 @@ const ModalDialog = () => {
         key='modal'
         className=''
       >
-        <Box className='dark:bg-zinc-800 dark:text-gray-100'
+        <Box className='dark:bg-zinc-300 dark:text-slate-800'
           sx={style} 
         >
           <motion.div 
