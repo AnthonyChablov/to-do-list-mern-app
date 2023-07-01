@@ -87,8 +87,17 @@ function App() {
   ]); 
 
   useEffect(()=>{
-    body.classList.add(!isDarkMode ? 'light' : 'dark');
-    body.classList.remove(isDarkMode ? 'light' : 'dark');
+
+    const themeMode = localStorage.getItem("theme-mode-ac");
+
+    if (mode === 'dark' || themeMode === 'dark' ) {
+      document.documentElement.classList.add('dark');
+      setMode('dark');
+    }else{
+      document.documentElement.classList.remove('dark');
+      setMode('light');
+    }
+
   },[isDarkMode]); 
 
   return (
