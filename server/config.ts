@@ -1,1 +1,1 @@
-export const corsOptionsOrigin = 'https://to-do-list-mern-app.vercel.app/';
+export const corsOptionsOrigin = 'https://to-do-list-mern-app.vercel.app';
