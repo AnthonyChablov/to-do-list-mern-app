@@ -87,7 +87,9 @@ const LoginForm = () => {
       <form onSubmit={handleLogin} >
       {/* Email */}
         <TextField 
-          className='text-slate-200 '
+          InputProps={{
+            className: 'dark:text-slate-200 border-slate-100',
+          }}
           autoComplete='on'
           error = {error}
           name='Email' 
@@ -103,8 +105,7 @@ const LoginForm = () => {
         }>
         </TextField>
       {/* Password */}
-        <FormControl 
-          
+        <FormControl   
           error={error}
           variant='standard' 
           fullWidth
@@ -116,6 +117,7 @@ const LoginForm = () => {
         >
           <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
           <Input
+            className='dark:text-slate-200 ' 
             id="outlined-adornment-password"
             type={showPassword ? 'text' : 'password'}
             endAdornment={
