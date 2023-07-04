@@ -119,6 +119,9 @@ const RegisterForm = () => {
         <form onSubmit={handleRegister}>
         {/* First Name */}
             <TextField 
+                InputProps={{
+                    className: 'dark:text-slate-200 border-slate-100',
+                }}
                 error={error}
                 name='FirstName' 
                 variant='standard' 
@@ -134,6 +137,9 @@ const RegisterForm = () => {
             </TextField>
         {/* Last Name */}
             <TextField 
+            InputProps={{
+                className: 'dark:text-slate-200 border-slate-100',
+              }}
                 error={error}
                 name='LastName' 
                 variant='standard' 
