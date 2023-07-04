@@ -21,7 +21,7 @@ const AppPage = () => {
       if(!res?.email){
         setHidden(()=> true);
         navigate('/login');
-      }else {
+      } else {
         setHidden(()=> false);
       }
     } 

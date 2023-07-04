@@ -31,10 +31,6 @@ const AppLayout = () => {
   const loggedInUser = useUserStore(state => state.loggedInUser);
   const fetchLoggedInUser = useUserStore(state => state.fetchLoggedInUser);
 
-  /* Hooks */
-  const layoutRef = useRef<HTMLInputElement>(null); 
-  const isOverflow = useIsOverflow(layoutRef);
-
   /* Fetch Data */
     /* Fetch All Todos */
   const {isLoading : loadingFetchTodos, isError: isErrorFetchTodos,  data : fetchedTodos, isFetching:isFetchTodos } = useQuery( 
@@ -77,8 +73,7 @@ const AppLayout = () => {
     <div> 
       {
         <div className={`pt-6 h-screen max-h-screen  overflow-auto dark:bg-zinc-800 dark:text-gray-100
-          bg-slate-100 font-Roboto ${!isOverflow && 'pb-52' }`}
-          ref={layoutRef }
+          bg-slate-100 font-Roboto pb-52`}
         > 
         {/* content container */}
           <motion.div className="px-4 w-[87%] max-w-[90rem] mx-auto"
