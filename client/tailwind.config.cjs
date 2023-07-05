@@ -1,6 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 
-
 module.exports = {
   important: true,
   content: [
@@ -12,7 +11,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'heroImage': "url('src/assets/backgroundImage2.jpeg')",
+        'heroImage': "url('assets/backgroundImage2.jpeg')",
       },
       fontFamily: {
         'Roboto': ['Roboto', 'sans-serif'],

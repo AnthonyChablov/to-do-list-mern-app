@@ -22,7 +22,7 @@ const HomeLayout = () => {
   return (
     <section className="relative bg-heroImage bg-cover bg-center bg-no-repeat flex flex-col items-center h-screen ">
       <BackgroundMask/>
-      <motion.div className="mt-[14vh] px-20 py-20 relative mx-auto font-Roboto bg-white shadow-2xl rounded-xl dark:bg-zinc-800 "
+      <motion.div className="mt-[14vh] px-20 py-20 relative mx-auto font-Roboto bg-white shadow-2xl rounded-xl dark:bg-zinc-700 "
         variants={loginVariants}
         initial='initial'
         animate='animate'

@@ -1,6 +1,6 @@
 import { useState,  } from 'react';
 import { shallow } from 'zustand/shallow';
-import { AnimatePresence, color, motion } from 'framer-motion';
+import { AnimatePresence,  motion } from 'framer-motion';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import InputLabel from '@mui/material/InputLabel';
@@ -138,7 +138,7 @@ const LoginForm = () => {
           <div className="pt-4  text-gray-500 text-primary-600 
           hover:text-primary-500 hover:underline hover:text-red-600 dark:text-gray-300">
             <Link to='/register'>
-              Forgot Your Password?
+              Sign-up Instead?
             </Link>
           </div>
         {/*  Error Message */}
