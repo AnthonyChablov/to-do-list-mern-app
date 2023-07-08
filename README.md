@@ -6,7 +6,6 @@ A MERN Full-Stack Task-List Tracker App with User-Authentication. Allows users t
 <img src="https://github.com/AnthonyChablov/to-do-list-mern-app/assets/86855033/bbf3912f-dc15-40d2-8044-e38db516e128" width="300">
 <img src="https://github.com/AnthonyChablov/to-do-list-mern-app/assets/86855033/854ec9c1-7c5d-4e59-9ae6-6de789557a3c" width="300">
 <img src="https://github.com/AnthonyChablov/to-do-list-mern-app/assets/86855033/eb3c0ca9-83f6-4874-be98-4d7f9e4e9052" width="300">
-![Screen Shot 2023-07-04 at 19 24 39]()
 
 ## Desktop View
 <img src="https://github.com/AnthonyChablov/to-do-list-mern-app/assets/86855033/26f6a601-1a56-46e9-8bcc-1ca30e21e6eb" width="800">
