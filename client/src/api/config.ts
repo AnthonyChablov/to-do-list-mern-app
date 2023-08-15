@@ -8,7 +8,6 @@ export const API_CROSS_ORIGIN = 'https://to-do-list-mern-app-production.up.railw
 
 /* 
     dev environment
-
     export const API_URL = "http://localhost:3000/api";
     export const API_CROSS_ORIGIN = 'http://localhost:3000/';
 */
