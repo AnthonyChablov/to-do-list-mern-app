@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import Button from "./Button/Button";
 import BackgroundMask from "../Common/Formatting/BackgroundMask"
+import bg from '../../assets/backgroundImage2.jpeg';
 
 const loginVariants = {
   initial:{ 
@@ -20,7 +21,13 @@ const loginVariants = {
 
 const HomeLayout = () => {
   return (
-    <section className="relative bg-heroImage bg-cover bg-center bg-no-repeat flex flex-col items-center h-screen ">
+    <section className="relative  bg-cover bg-center bg-no-repeat flex flex-col items-center h-screen "
+      style={{
+        backgroundImage: `url(${bg})`,
+        width: '100%',
+        height: '100%',
+      }}
+    >
       <BackgroundMask/>
       <motion.div className="mt-[14vh] px-20 py-20 relative mx-auto font-Roboto bg-white shadow-2xl rounded-xl dark:bg-zinc-700 "
         variants={loginVariants}
