@@ -3,6 +3,7 @@ import LoginForm from './Form/LoginForm';
 import BackgroundMask from '../Common/Formatting/BackgroundMask';
 import Container from '../Common/Formatting/Container';
 import Header from '../Common/Text/Header';
+import bg from '../../assets/backgroundImage2.jpeg';
 
 const loginVariants = {
   initial:{
@@ -23,7 +24,12 @@ const LoginLayout = () => {
   
   return (
     <section className="relative min-h-screen bg-gray-100 flex flex-col justify-center py-12 
-      sm:px-6 lg:px-8 font-Roboto bg-heroImage bg-cover bg-center bg-no-repeat "
+      sm:px-6 lg:px-8 font-Roboto bg-cover bg-center bg-no-repeat "
+      style={{
+        backgroundImage: `url(${bg})`,
+        width: '100%',
+        height: '100%',
+      }}
     >
       <BackgroundMask/>
       <Container/>

@@ -3,6 +3,7 @@ import BackgroundMask from "../Common/Formatting/BackgroundMask"
 import Container from "../Common/Formatting/Container"
 import Header from "../Common/Text/Header"
 import RegisterForm from "./Form/RegisterForm"
+import bg from '../../assets/backgroundImage2.jpeg';
 
 const registerVariants = { // Framer motion config
   initial:{
@@ -23,7 +24,13 @@ const registerVariants = { // Framer motion config
 const RegisterLayout = () => {
   return (
     <div className="relative min-h-screen bg-gray-100 flex flex-col justify-center 
-    sm:px-6 lg:px-8 font-Roboto bg-heroImage h-max bg-cover bg-center bg-no-repeat ">
+    sm:px-6 lg:px-8 font-Roboto bg-heroImage h-max bg-cover bg-center bg-no-repeat "
+      style={{
+        backgroundImage: `url(${bg})`,
+        width: '100%',
+        height: '100%',
+      }}
+    >
       <BackgroundMask/>
       <Container/>
       <motion.div className="sm:mx-auto sm:w-full sm:max-w-md "
