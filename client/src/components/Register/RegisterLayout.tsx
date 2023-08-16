@@ -24,7 +24,7 @@ const registerVariants = { // Framer motion config
 const RegisterLayout = () => {
   return (
     <div className="relative min-h-screen bg-gray-100 flex flex-col justify-center 
-    sm:px-6 lg:px-8 font-Roboto bg-heroImage h-max bg-cover bg-center bg-no-repeat "
+    sm:px-6 lg:px-8 font-Roboto h-max bg-cover bg-center bg-no-repeat "
       style={{
         backgroundImage: `url(${bg})`,
         width: '100%',

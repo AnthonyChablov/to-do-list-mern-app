@@ -21,7 +21,7 @@ const loginVariants = {
 
 const HomeLayout = () => {
   return (
-    <section className="relative  bg-cover bg-center bg-no-repeat flex flex-col items-center h-screen "
+    <section className="relative bg-cover bg-center bg-no-repeat flex flex-col items-center h-screen "
       style={{
         backgroundImage: `url(${bg})`,
         width: '100%',
