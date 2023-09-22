@@ -10,9 +10,6 @@ module.exports = {
   darkMode:'class',
   theme: {
     extend: {
-      backgroundImage: {
-        'heroImage': "url('assets/backgroundImage2.jpeg')",
-      },
       fontFamily: {
         'Roboto': ['Roboto', 'sans-serif'],
       },
